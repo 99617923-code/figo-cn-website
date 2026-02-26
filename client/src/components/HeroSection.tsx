@@ -1,11 +1,13 @@
 /**
  * 「量子棱镜」— Hero首屏
- * 全屏动态渐变背景 + 品牌宣言 + 数据统计
- * 公司年份基于2005年成立自动计算
+ * 简洁大气的全屏设计：新背景图 + 大标题 + 核心数据
+ * 去掉多余的浮动球体，让视觉更干净
  */
-import { IMAGES, STATS, getCompanyYears } from "@/lib/constants";
+import { STATS, getCompanyYears } from "@/lib/constants";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+
+const HERO_BG_URL = "https://private-us-east-1.manuscdn.com/sessionFile/bN4U4uXLu8g7u0VyGeOUbh/sandbox/8vV0SJAlnc5i4U6yw9p09Q-img-1_1772125797000_na1fn_aGVyby1iZy1jbGVhbg.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvYk40VTR1WEx1OGc3dTBWeUdlT1ViaC9zYW5kYm94Lzh2VjBTSkFsbmM1aTRVNnl3OXAwOVEtaW1nLTFfMTc3MjEyNTc5NzAwMF9uYTFmbl9hR1Z5YnkxaVp5MWpiR1ZoYmcuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=ACj2gqXOuCnUD4Q6~zee0QGV6JNwQrITj7qBHJXRyT319D6FKwEMNr1AdqF6ACwDGtUMmEpjQ5zT8IC6iF7lMLZW7ED-HVXj~YI6Lq6oDS~gyNg5SHxU1mklxA3Ad1pOVD1cgAXR9tNr2HqTC43EGVrlRb8K05jAuuFrm7G-aEHe9csayns5A2~duRZjELFPOgUbCxZnEH-GhySffvcZfb-BB6aP7HuoSeptl6PwQaK1z43IorwGuoXtXfPglSHBM8-k3b5J~HYDOXqfddhIc6E74F3GC-IJUPMHaCX0ceUkjnJ2geRH73A5QaRTDJt3jKLoLVN382E1qCfuPtf0ZQ__";
 
 function AnimatedNumber({ target, duration = 1800 }: { target: number; duration?: number }) {
   const [current, setCurrent] = useState(0);
@@ -34,12 +36,15 @@ function StatItem({ value, suffix, label, delay }: { value: string; suffix: stri
   const numericValue = value === "DYNAMIC_YEARS" ? getCompanyYears() : (parseInt(value.replace(/,/g, "")) || 0);
 
   return (
-    <div className="text-center" style={{ animationDelay: `${delay}ms` }}>
-      <div className="font-mono-data text-3xl lg:text-4xl font-bold text-white">
+    <div
+      className="relative group text-center px-6 py-4"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <div className="font-mono-data text-3xl lg:text-5xl font-bold text-white tracking-tight">
         <AnimatedNumber target={numericValue} duration={2000} />
-        <span className="gradient-text">{suffix}</span>
+        <span className="text-emerald-400">{suffix}</span>
       </div>
-      <div className="mt-1 text-sm text-white/50">{label}</div>
+      <div className="mt-2 text-sm text-white/50 tracking-wide">{label}</div>
     </div>
   );
 }
@@ -49,64 +54,69 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Background */}
+      {/* Background Image — clean, minimal */}
       <div className="absolute inset-0">
         <img
-          src={IMAGES.heroBg}
+          src={HERO_BG_URL}
           alt="AI technology background"
           className="w-full h-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/60 via-[#0a0e1a]/40 to-[#0a0e1a]/80" />
-      </div>
-
-      {/* Animated Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 lg:w-[28rem] lg:h-[28rem] rounded-full bg-gradient-to-br from-cyan-500/15 to-blue-600/15 blur-3xl animate-float-delayed" />
+        {/* Subtle overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050a15]/90 via-[#050a15]/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050a15]/80 via-transparent to-[#050a15]/40" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container pt-32 pb-20">
+      <div className="relative z-10 container pt-32 pb-24">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 animate-fade-up">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-sm text-white/70">{companyYears}年技术沉淀 · 国家高新技术企业</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm mb-10 animate-fade-up">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-sm text-emerald-300/90 font-medium">{companyYears}年技术沉淀 · 国家高新技术企业</span>
           </div>
 
-          {/* Heading */}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-up stagger-1">
+          {/* Heading — larger, bolder */}
+          <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.1] mb-8 animate-fade-up stagger-1">
             <span className="text-white">构建下一代</span>
             <br />
-            <span className="gradient-text">AI 智能体</span>
+            <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              AI 智能体
+            </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-base lg:text-lg text-white/60 max-w-2xl mb-10 leading-relaxed animate-fade-up stagger-2">
-            从大模型API管理到数字人复刻，从AI销售训练到智能工具平台——火鹰科技为企业提供全栈AI智能体定制开发服务，让AI真正为业务创造价值。
+          {/* Subtitle — cleaner */}
+          <p className="text-lg lg:text-xl text-white/55 max-w-2xl mb-12 leading-relaxed animate-fade-up stagger-2">
+            从大模型API管理到数字人复刻，从AI销售训练到智能工具平台
+            <br className="hidden sm:block" />
+            火鹰科技为企业提供全栈AI智能体定制开发服务
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 mb-16 animate-fade-up stagger-3">
+          <div className="flex flex-wrap gap-4 mb-20 animate-fade-up stagger-3">
             <a
               href="#products"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg shadow-blue-500/25"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5"
             >
-              探索产品矩阵 <ArrowRight className="w-4 h-4" />
+              探索产品矩阵 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/20 text-white/80 hover:bg-white/10 hover:text-white transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg border border-white/15 text-white/80 hover:bg-white/5 hover:border-white/25 hover:text-white transition-all duration-300"
             >
               预约技术咨询
             </a>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-up stagger-4">
+          {/* Stats — with dividers */}
+          <div className="flex flex-wrap items-center animate-fade-up stagger-4">
             {STATS.map((stat, i) => (
-              <StatItem key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 200} />
+              <div key={stat.label} className="flex items-center">
+                <StatItem value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 200} />
+                {i < STATS.length - 1 && (
+                  <div className="hidden md:block w-px h-12 bg-white/10 mx-2" />
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -114,8 +124,8 @@ export default function HeroSection() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-10">
-        <span className="text-xs text-white/30 tracking-[0.3em] uppercase">Scroll</span>
-        <ChevronDown className="w-5 h-5 text-white/30" />
+        <span className="text-xs text-white/25 tracking-[0.3em] uppercase">Scroll</span>
+        <ChevronDown className="w-5 h-5 text-white/25" />
       </div>
     </section>
   );
