@@ -55,13 +55,6 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
       }`}
       style={{ transitionDelay: `${index * 120}ms` }}
     >
-      {/* Connector line (not on last item) */}
-      {index < steps.length - 1 && (
-        <div className="hidden lg:block absolute top-10 left-[calc(100%+0.5rem)] w-[calc(100%-1rem)] h-px">
-          <div className="w-full h-px bg-gradient-to-r from-blue-500/30 to-purple-500/30" />
-        </div>
-      )}
-
       <div className="glass-card rounded-2xl p-6 h-full">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
