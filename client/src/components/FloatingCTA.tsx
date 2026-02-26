@@ -37,7 +37,7 @@ export default function FloatingCTA() {
   return (
     <>
       {/* Floating buttons */}
-      <div className="fixed right-4 bottom-8 z-40 flex flex-col items-center gap-3">
+      <div className="fixed right-4 bottom-28 z-40 flex flex-col items-center gap-3">
         {/* Back to top */}
         {showBackTop && (
           <button
@@ -158,14 +158,7 @@ export default function FloatingCTA() {
           </button>
         </div>
 
-        {/* Quick consult */}
-        <button
-          onClick={scrollToContact}
-          className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-0.5"
-          title="在线咨询"
-        >
-          <MessageCircle size={18} />
-        </button>
+
       </div>
     </>
   );
