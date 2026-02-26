@@ -32,8 +32,6 @@ import AboutSection from "@/components/AboutSection";
 import FAQSection from "@/components/FAQSection";
 import UrgencyCTA from "@/components/UrgencyCTA";
 import ContactSection from "@/components/ContactSection";
-import FloatingCTA from "@/components/FloatingCTA";
-import MossBadge from "@/components/MossBadge";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
@@ -57,8 +55,6 @@ export default function FigoAgent() {
         <UrgencyCTA />
         <ContactSection />
       </main>
-      <FloatingCTA />
-      <MossBadge />
       <Footer />
     </div>
   );
