@@ -1,11 +1,13 @@
 /*
  * 「量子棱镜」— 产品详情页通用布局
- * 统一的产品详情页结构：Hero + 功能列表 + 应用场景 + 技术优势 + CTA
+ * 统一的产品详情页结构：完整Navbar + Hero + 功能列表 + 应用场景 + 技术优势 + CTA + 完整Footer
  */
 import { useInView } from "@/hooks/useInView";
 import { COMPANY_INFO } from "@/lib/constants";
-import { ArrowLeft, Phone, Mail, ChevronRight } from "lucide-react";
+import { Phone, Mail, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 interface Feature {
   icon: React.ReactNode;
@@ -155,32 +157,12 @@ export default function ProductDetailLayout({
     window.location.href = "/FigoAgent#contact";
   };
 
+  const companyYears = new Date().getFullYear() - 2005;
+
   return (
     <div className="min-h-screen bg-[#0c0c14] text-white overflow-x-hidden">
-      {/* Fixed Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0c0c14]/80 backdrop-blur-xl border-b border-white/5">
-        <nav className="container flex items-center justify-between h-16 lg:h-20">
-          <div className="flex items-center gap-4">
-            <Link href="/FigoAgent" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors group">
-              <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm">返回首页</span>
-            </Link>
-            <div className="w-px h-5 bg-white/10" />
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-blue-500/25">
-                火
-              </div>
-              <span className="text-white font-semibold text-sm hidden sm:block">火鹰科技</span>
-            </div>
-          </div>
-          <button
-            onClick={scrollToContact}
-            className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all hover:-translate-y-0.5"
-          >
-            获取演示
-          </button>
-        </nav>
-      </header>
+      {/* 使用完整的Navbar，传入isDetailPage标记 */}
+      <Navbar isDetailPage />
 
       {/* Hero Section */}
       <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
@@ -196,7 +178,7 @@ export default function ProductDetailLayout({
           <div className="flex items-center gap-2 text-sm text-white/40 mb-8">
             <Link href="/FigoAgent" className="hover:text-white/60 transition-colors">首页</Link>
             <ChevronRight size={14} />
-            <span className="text-white/60">产品矩阵</span>
+            <Link href="/FigoAgent#products" className="hover:text-white/60 transition-colors">产品矩阵</Link>
             <ChevronRight size={14} />
             <span className="text-white/80">{name}</span>
           </div>
@@ -264,7 +246,7 @@ export default function ProductDetailLayout({
       {/* Scenarios Section */}
       <section className="relative py-20 lg:py-28">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-0 w-[600px] h-[600px] -translate-y-1/2 opacity-[0.03]"
+          <div className="absolute top-1/3 left-0 w-[400px] h-[400px] opacity-[0.06]"
             style={{ background: `radial-gradient(circle, ${gradientColors}, transparent 60%)` }} />
         </div>
         <div className="container relative">
@@ -316,7 +298,7 @@ export default function ProductDetailLayout({
             对{name}感兴趣？
           </h2>
           <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
-            联系我们的专业团队，获取产品演示和定制化解决方案。火鹰科技{getCompanyYearsText()}年行业经验，为您提供最专业的技术服务。
+            联系我们的专业团队，获取产品演示和定制化解决方案。火鹰科技{companyYears}年行业经验，为您提供最专业的技术服务。
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button
@@ -337,23 +319,8 @@ export default function ProductDetailLayout({
         </div>
       </section>
 
-      {/* Simple Footer */}
-      <footer className="border-t border-white/5 bg-[#080810]">
-        <div className="container py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-md bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs">火</div>
-            <span className="text-sm text-white/50">{COMPANY_INFO.name}</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href={COMPANY_INFO.icpUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-white/30 hover:text-white/50 transition-colors">{COMPANY_INFO.icp}</a>
-            <Link href="/FigoAgent" className="text-xs text-white/30 hover:text-white/50 transition-colors">返回首页</Link>
-          </div>
-        </div>
-      </footer>
+      {/* 使用完整的Footer */}
+      <Footer />
     </div>
   );
-}
-
-function getCompanyYearsText() {
-  return new Date().getFullYear() - 2005;
 }

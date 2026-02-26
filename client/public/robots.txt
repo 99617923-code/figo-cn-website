@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /FigoAgent
+Allow: /FigoAgent/products/
+Disallow: /api/
+
+Sitemap: https://www.figo.cn/sitemap.xml
+
+# 火鹰科技 AI智能体定制开发
+# www.figo.cn

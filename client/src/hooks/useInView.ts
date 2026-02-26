@@ -25,15 +25,15 @@ export function useInView(options?: IntersectionObserverInit) {
           observer.unobserve(element);
         }
       },
-      { threshold: 0.01, rootMargin: "100px 0px", ...options }
+      { threshold: 0.01, rootMargin: "200px 0px", ...options }
     );
 
     observer.observe(element);
 
-    // Fallback: if not visible after 1.5s, force visible
+    // Fallback: if not visible after 500ms, force visible
     const fallbackTimer = setTimeout(() => {
       setIsInView(true);
-    }, 1500);
+    }, 500);
 
     return () => {
       observer.disconnect();
