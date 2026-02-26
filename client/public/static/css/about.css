@@ -1,0 +1,1038 @@
+.au-list {
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid #ddd;
+}
+.au-list .al-box {
+  width: 1200px;
+  margin: 0 auto;
+}
+.au-list .al-box ul li {
+  float: left;
+  font-size: 16px;
+  margin-right: 18px;
+}
+.au-list .al-box ul li a {
+  font-size: 16px;
+  color: #333;
+  margin: 0 25px;
+  float: left;
+  box-sizing: border-box;
+}
+.au-list .al-box ul .alb-active a {
+  color: #4a85f8;
+  box-sizing: border-box;
+  border-bottom: 1px solid #4a85f8;
+}
+.figoIntroduction {
+  position: relative;
+  display: flex;
+  background: url('../images/about_img.jpg') no-repeat;
+  background-size: cover;
+  justify-content: center;
+}
+.figoIntroduction .fi-text {
+  background: rgba(255, 255, 255, 0.6);
+  width: 100%;
+}
+.figoIntroduction .fi-text .fit-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figoIntroduction .fi-text .fit-title {
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figoIntroduction .fi-text .fit-title span {
+  color: #2461F6;
+}
+.figoIntroduction .fi-text .fit-content {
+  width: 1200px;
+  margin: 100px auto 80px;
+  background-color: #fff;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top {
+  display: flex;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top img {
+  width: 700px;
+  height: 300px;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top .fitct-right {
+  width: 500px;
+  height: 300px;
+  background-color: #F1F1F1;
+  padding: 50px;
+  box-sizing: border-box;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text1 {
+  font-size: 30px;
+  color: #333;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text2 {
+  font-size: 14px;
+  color: #666;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text3 {
+  margin-top: 50px;
+  font-size: 22px;
+  color: #333;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text3 img {
+  width: 13px;
+  height: 19px;
+}
+.figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text4 {
+  font-size: 14px;
+  color: #333;
+  margin-top: 5px;
+  margin-left: 22px;
+}
+.figoIntroduction .fi-text .fit-content .fitc-bottom {
+  background: #fff;
+  padding: 35px;
+  font-size: 16px;
+  line-height: 30px;
+  color: #666;
+}
+.figoIntroduction .fi-text .fit-content .fitc-bottom .fitcb-text {
+  text-indent: 2em;
+}
+.figoTeam {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+}
+.figoTeam .ft-text {
+  width: 1200px;
+  padding-bottom: 70px;
+}
+.figoTeam .ft-text .ftt-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figoTeam .ft-text .ftt-title {
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figoTeam .ft-text .ftt-title span {
+  color: #2461F6;
+}
+.figoTeam .ft-text .ftt-content {
+  margin: 0px auto;
+  margin-top: 70px;
+}
+.figoTeam .ft-text .ftt-content ul {
+  margin: 0 auto;
+}
+.figoTeam .ft-text .ftt-content ul li {
+  float: left;
+  margin-left: 110px;
+}
+.figoTeam .ft-text .ftt-content ul li .fttc-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.figoTeam .ft-text .ftt-content ul li .fttc-content img {
+  width: 160px;
+  height: 160px;
+}
+.figoTeam .ft-text .ftt-content ul li .fttc-content .fttcc-text1 {
+  font-size: 18px;
+  color: #333;
+  margin-top: 25px;
+  font-weight: 600;
+}
+.figoTeam .ft-text .ftt-content ul li .fttc-content .fttcc-text2 {
+  font-size: 16px;
+  color: #333;
+  margin-top: 5px;
+}
+.figoEnvironment {
+  background: #F2F2F2;
+  display: flex;
+  justify-content: center;
+}
+.figoEnvironment .fe-text {
+  width: 1200px;
+  padding-bottom: 0px;
+}
+.figoEnvironment .fe-text .fet-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figoEnvironment .fe-text .fet-title {
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figoEnvironment .fe-text .fet-title span {
+  color: #2461F6;
+}
+.figoEnvironment .fe-text .fet-content {
+  margin-top: 50px;
+}
+.figoDevelop {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+.figoDevelop .fd-text {
+  width: 1200px;
+}
+.figoDevelop .fd-text .fdt-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figoDevelop .fd-text .fdt-title {
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figoDevelop .fd-text .fdt-title span {
+  color: #2461F6;
+}
+.figo-honour {
+  display: flex;
+  justify-content: center;
+  background-color: #F2F2F2;
+}
+.figo-honour .fh-text {
+  width: 1200px;
+  padding-bottom: 60px;
+}
+.figo-honour .fh-text .fht-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figo-honour .fh-text .fht-title {
+  margin-bottom: 70px;
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figo-honour .fh-text .fht-title span {
+  color: #2461F6;
+}
+.figo-honour .fh-text .fhc-imgList ul li {
+  float: left;
+  margin-right: 20px;
+}
+.figo-honour .fh-text .fhc-imgList ul li img {
+  width: 380px;
+  height: 300px;
+}
+.figo-certificate {
+  display: flex;
+  background: #fff;
+  justify-content: center;
+}
+.figo-certificate .fc-text {
+  width: 1200px;
+}
+.figo-certificate .fc-text .fct-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figo-certificate .fc-text .fct-title {
+  margin-bottom: 30px;
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figo-certificate .fc-text .fct-title span {
+  color: #2461F6;
+}
+.figo-success {
+  display: flex;
+  justify-content: center;
+  background: url('../images/figo_aboutUs@2x.png') no-repeat;
+  background-size: 100% 100%;
+}
+.figo-success .fs-text {
+  width: 1200px;
+}
+.figo-success .fs-text .fst-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figo-success .fs-text .fst-title {
+  margin-bottom: 60px;
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figo-success .fs-text .fst-title span {
+  color: #2461F6;
+}
+.figo-success .fs-text .fst-imgList {
+  padding-bottom: 70px;
+}
+.figo-success .fs-text .fst-imgList ul {
+  background-color: #f2f2f2;
+  width: 1200px;
+  height: 438px;
+  padding: 5px;
+  padding-left: 6px;
+  box-sizing: border-box;
+}
+.figo-success .fs-text .fst-imgList ul li {
+  float: left;
+  margin-right: 9px;
+  margin-bottom: 9px;
+}
+.figo-success .fs-text .fst-imgList ul li img {
+  width: 230px;
+  height: 100px;
+}
+.figo-success .fs-text .fst-imgList ul li:nth-of-type(5n) {
+  margin-right: 0px;
+}
+.figo-Desc {
+  display: flex;
+  justify-content: center;
+  background-color: #2461F6;
+}
+.figo-Desc .fD-text {
+  width: 1200px;
+  height: 200px;
+  display: flex;
+}
+.figo-Desc .fD-text .fDt-item {
+  width: 299px;
+  box-sizing: border-box;
+  border-left: 1px solid #fff;
+  display: flex;
+  align-items: center;
+}
+.figo-Desc .fD-text .fDt-item .fDt-line {
+  height: 20px;
+  background-color: #fff;
+  margin-top: -50px;
+  width: 4px;
+}
+.figo-Desc .fD-text .fDt-item .fDt-content {
+  height: 200px;
+  display: flex;
+  margin-left: 25px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.figo-Desc .fD-text .fDt-item .fDt-content .fDtc-title {
+  color: #fff;
+  margin-top: 15px;
+  font-size: 50px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.figo-Desc .fD-text .fDt-item .fDt-content .fDtc-title span {
+  font-size: 28px;
+}
+.figo-Desc .fD-text .fDt-item .fDt-content .fDtc-text {
+  color: #fff;
+  width: 240px;
+  font-family: Source Han Sans CN;
+  font-size: 14px;
+  text-align: center;
+  line-height: 24px;
+  margin-bottom: 15px;
+}
+.figo-Contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+}
+.figo-Contact .fC-text {
+  width: 1200px;
+}
+.figo-Contact .fC-text .fCt-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figo-Contact .fC-text .fCt-title {
+  margin-bottom: 40px;
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figo-Contact .fC-text .fCt-title span {
+  color: #2461F6;
+}
+.figo-Contact .fC-text .fCt-messageBox {
+  width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  background: #2461F6;
+  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.5);
+  height: 120px;
+  z-index: 10;
+  position: relative;
+}
+.figo-Contact .fC-text .fCt-messageBox .fCtm-item {
+  margin-top: 30px;
+  width: 265px;
+  height: 60px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.figo-Contact .fC-text .fCt-messageBox .fCtm-item .fCtmi-title {
+  font-size: 17px;
+  color: #fff;
+}
+.figo-Contact .fC-text .fCt-messageBox .fCtm-item .fCtmi-text {
+  font-size: 17px;
+  margin-top: 5px;
+  color: #fff;
+}
+.figo-Contact .fC-text .fCt-messageBox .fCtm-item:nth-of-type(4) {
+  border-left: 1px solid #b4b0b0;
+}
+.figo-Contact .fC-text .fCt-addressMessage {
+  background: #F3F3F3;
+  width: 1200px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 50px 60px;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-top {
+  padding: 20px 60px;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-top .fCtat-title {
+  font-family: Alibaba PuHuiTi;
+  font-size: 22px;
+  font-weight: 500;
+  color: #000;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-top .fCtat-text {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-top .fCtat-text span {
+  font-weight: 600;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-line {
+  height: 1px;
+  margin-top: 10px;
+  background: #000;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-bottom {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item {
+  width: 360px;
+  box-sizing: border-box;
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item img {
+  width: 14px;
+  height: 22px;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item .fCtabi-content {
+  margin-left: 15px;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item .fCtabi-content .fCtabic-text1 {
+  font-size: 18px;
+  color: #000;
+  font-weight: 500;
+}
+.figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item .fCtabi-content .fCtabic-text2 {
+  font-size: 14px;
+  color: #666;
+}
+.figo-Contact .fC-imgBg {
+  width: 100%;
+  position: relative;
+  margin-top: -370px;
+}
+.figo-Contact .fC-imgBg img {
+  width: 100%;
+  height: 580px;
+}
+.figo-join {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+}
+.figo-join .fj-text {
+  width: 1200px;
+  padding-bottom: 80px;
+}
+.figo-join .fj-text .fjt-engTitle {
+  margin-top: 45px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: Alibaba PuHuiTi;
+}
+.figo-join .fj-text .fjt-title {
+  margin-bottom: 40px;
+  margin-top: -12px;
+  font-weight: 600;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.figo-join .fj-text .fjt-title span {
+  color: #2461F6;
+}
+.figo-join .fj-text .fjt-text {
+  font-size: 14px;
+  text-align: center;
+}
+.figo-join .fj-text .fjt-text span {
+  color: #2461F6;
+}
+.figo-join .fj-text .fjt-item {
+  box-shadow: 0px 11px 16px 2px rgba(17, 22, 122, 0.15);
+  border: 1px solid #f5e7e7;
+  border-radius: 18px;
+  margin-top: 60px;
+  padding-bottom: 10px;
+}
+.figo-join .fj-text .fjt-item .fjti-top {
+  height: 50px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+  background: #2461f6;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  padding: 0 30px;
+}
+.figo-join .fj-text .fjt-item .fjti-top .fjtit-left {
+  display: flex;
+}
+.figo-join .fj-text .fjt-item .fjti-top .fjtit-left .fjtitl-left {
+  font-family: Alibaba PuHuiTi;
+  font-weight: 500;
+}
+.figo-join .fj-text .fjt-item .fjti-top .fjtit-left .fjtitl-right {
+  margin-left: 40px;
+  font-weight: 300;
+  font-family: Alibaba PuHuiTi;
+}
+.figo-join .fj-text .fjt-item .fjti-top .fjtit-right {
+  font-family: Alibaba PuHuiTi;
+  font-weight: 500;
+}
+.figo-join .fj-text .fjt-item .fjti-content {
+  padding: 0 30px;
+  padding-bottom: 20px;
+}
+.figo-join .fj-text .fjt-item .fjti-content .fjtic-title {
+  margin-left: -7px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20px;
+  color: #000;
+}
+.figo-join .fj-text .fjt-item .fjti-content .fjtic-text {
+  margin-top: 5px;
+  font-size: 16px;
+  line-height: 26px;
+}
+.figo-join .fj-text .fjt-item .fjti-content:nth-of-type(3) .fjtic-title {
+  margin-top: 5px;
+}
+.figo-join .fj-imgText {
+  background: url('../images/figo-flImg@2x.png') no-repeat;
+  height: 500px;
+  width: 100%;
+  background-size: 100% 100%;
+}
+.figo-join .fj-imgText .fji-text {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 80px;
+  padding-left: 35px;
+}
+.figo-join .fj-imgText .fji-text p {
+  font-size: 24px;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: Alibaba PuHuiTi;
+}
+.figo-join .fj-imgText .fji-text span {
+  font-size: 16px;
+  color: #000;
+  font-family: Alibaba PuHuiTi;
+  font-weight: 600;
+  line-height: 40px;
+}
+@media only screen and (max-width: 760px) {
+  .au-list {
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    height: 43px;
+    line-height: 43px;
+  }
+  .au-list .al-box {
+    width: 700px;
+  }
+  .au-list .al-box ul li {
+    font-size: 14px;
+    margin-right: 0px;
+  }
+  .au-list .al-box ul li a {
+    font-size: 14px;
+    margin: 0 10px;
+    height: 42px;
+  }
+  .figoIntroduction .fi-text {
+    width: 100%;
+  }
+  .figoIntroduction .fi-text .fit-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figoIntroduction .fi-text .fit-title {
+    font-size: 22px;
+    margin-top: -6px;
+  }
+  .figoIntroduction .fi-text .fit-content {
+    width: calc(100% - 20px);
+    margin: 20px auto 30px;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top {
+    flex-direction: column;
+    width: 100%;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top img {
+    width: 100%;
+    height: auto;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top .fitct-right {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text1 {
+    font-size: 18px;
+    color: #333;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text2 {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text3 {
+    margin-top: 15px;
+    font-size: 20px;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text3 img {
+    width: 13px;
+    height: 19px;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-top .fitct-right .fitctr-text4 {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+    margin-left: 22px;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-bottom {
+    background: #fff;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #666;
+  }
+  .figoIntroduction .fi-text .fit-content .fitc-bottom .fitcb-text {
+    text-indent: 2em;
+  }
+  .figoTeam .ft-text {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .figoTeam .ft-text .ftt-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figoTeam .ft-text .ftt-title {
+    font-size: 22px;
+    margin-top: -6px;
+  }
+  .figoTeam .ft-text .ftt-content {
+    margin: 0px auto;
+    margin-top: 20px;
+  }
+  .figoTeam .ft-text .ftt-content ul {
+    margin: 0 auto;
+    width: 100%;
+  }
+  .figoTeam .ft-text .ftt-content ul li {
+    float: left;
+    margin-left: calc(calc(100% - 200px) / 3);
+  }
+  .figoTeam .ft-text .ftt-content ul li .fttc-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .figoTeam .ft-text .ftt-content ul li .fttc-content img {
+    width: 100px;
+    height: 100px;
+  }
+  .figoTeam .ft-text .ftt-content ul li .fttc-content .fttcc-text1 {
+    margin-top: 15px;
+  }
+  .figoTeam .ft-text .ftt-content ul li .fttc-content .fttcc-text2 {
+    margin-top: 5px;
+  }
+  .figoTeam .ft-text .ftt-content ul li:nth-of-type(3),
+  .figoTeam .ft-text .ftt-content ul li:nth-of-type(4) {
+    margin-top: 15px;
+  }
+  .figoEnvironment .fe-text .fet-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figoEnvironment .fe-text .fet-title {
+    font-size: 22px;
+    margin-top: -6px;
+  }
+  .figoEnvironment .fe-text .fet-content {
+    margin-top: 20px;
+  }
+  .figoDevelop .fd-text .fdt-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figoDevelop .fd-text .fdt-title {
+    font-size: 22px;
+    margin-top: -6px;
+  }
+  .figo-honour .fh-text {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .figo-honour .fh-text .fht-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figo-honour .fh-text .fht-title {
+    font-size: 22px;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .figo-honour .fh-text .fhc-imgList ul li {
+    float: left;
+    margin-left: calc(calc(100% - 332px) / 3);
+    margin-right: 0px;
+  }
+  .figo-honour .fh-text .fhc-imgList ul li img {
+    width: 166px;
+    height: auto;
+  }
+  .figo-certificate .fc-text {
+    width: 100%;
+  }
+  .figo-certificate .fc-text .fct-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figo-certificate .fc-text .fct-title {
+    font-size: 22px;
+    margin-top: -6px;
+    margin-bottom: 0px;
+  }
+  .figo-success .fs-text {
+    width: 100%;
+    padding-bottom: 30px;
+  }
+  .figo-success .fs-text .fst-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figo-success .fs-text .fst-title {
+    font-size: 22px;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .figo-success .fs-text .fst-imgList {
+    padding-bottom: 20px;
+  }
+  .figo-success .fs-text .fst-imgList ul {
+    width: 330px;
+    margin: 0 auto;
+    height: auto;
+    padding: 0;
+    box-sizing: border-box;
+    background: transparent;
+  }
+  .figo-success .fs-text .fst-imgList ul li {
+    float: left;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-color: #f2f2f2;
+    padding: 2px;
+  }
+  .figo-success .fs-text .fst-imgList ul li img {
+    width: 160px;
+    height: 75px;
+  }
+  .figo-success .fs-text .fst-imgList ul li:nth-of-type(5n) {
+    margin-right: 0px;
+  }
+  .figo-Desc .fD-text {
+    width: 320px;
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .figo-Desc .fD-text .fDt-item {
+    width: 160px;
+  }
+  .figo-Desc .fD-text .fDt-item .fDt-line {
+    height: 20px;
+    margin-top: -50px;
+    width: 4px;
+  }
+  .figo-Desc .fD-text .fDt-item .fDt-content {
+    height: 150px;
+    display: flex;
+    margin-left: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .figo-Desc .fD-text .fDt-item .fDt-content .fDtc-title {
+    color: #fff;
+    margin-top: 15px;
+    font-size: 30px;
+    font-family: Source Han Sans CN;
+    font-weight: 500;
+    color: #FFFFFF;
+  }
+  .figo-Desc .fD-text .fDt-item .fDt-content .fDtc-title span {
+    font-size: 20px;
+  }
+  .figo-Desc .fD-text .fDt-item .fDt-content .fDtc-text {
+    color: #fff;
+    width: 120px;
+    font-family: Source Han Sans CN;
+    font-size: 12px;
+    text-align: center;
+    line-height: 22px;
+    margin-bottom: 15px;
+  }
+  .figo-Contact .fC-text {
+    width: 100%;
+  }
+  .figo-Contact .fC-text .fCt-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figo-Contact .fC-text .fCt-title {
+    font-size: 22px;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .figo-Contact .fC-text .fCt-messageBox {
+    width: 280px;
+    height: auto;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+  }
+  .figo-Contact .fC-text .fCt-messageBox .fCtm-item {
+    width: 140px;
+    margin-top: 10px;
+  }
+  .figo-Contact .fC-text .fCt-messageBox .fCtm-item .fCtmi-title {
+    font-size: 14px;
+  }
+  .figo-Contact .fC-text .fCt-messageBox .fCtm-item .fCtmi-text {
+    font-size: 14px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage {
+    width: 320px;
+    margin: 0 auto;
+    margin-top: -80px;
+    padding: 10px 20px;
+    padding-bottom: 20px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-top {
+    padding: 10px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-top .fCtat-title {
+    font-size: 18px;
+    margin-top: 80px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-top .fCtat-text {
+    margin-top: 10px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-bottom {
+    margin-top: 10px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item img {
+    width: 12px;
+    height: 18px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item .fCtabi-content {
+    margin-left: 15px;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item .fCtabi-content .fCtabic-text1 {
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+  }
+  .figo-Contact .fC-text .fCt-addressMessage .fCta-bottom .fCtab-item .fCtabi-content .fCtabic-text2 {
+    font-size: 12px;
+    color: #666;
+  }
+  .figo-Contact .fC-imgBg {
+    margin-top: -530px;
+  }
+  .figo-join .fj-text {
+    width: 320px;
+    padding-bottom: 30px;
+  }
+  .figo-join .fj-text .fjt-engTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .figo-join .fj-text .fjt-title {
+    font-size: 22px;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .figo-join .fj-text .fjt-item {
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  .figo-join .fj-text .fjt-item .fjti-top {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 36px;
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  .figo-join .fj-text .fjt-item .fjti-top .fjtit-left .fjtitl-right {
+    margin-left: 10px;
+  }
+  .figo-join .fj-text .fjt-item .fjti-content {
+    padding: 0 15px;
+    padding-bottom: 5px;
+  }
+  .figo-join .fj-text .fjt-item .fjti-content .fjtic-title {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .figo-join .fj-text .fjt-item .fjti-content .fjtic-text {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .figo-join .fj-imgText {
+    height: 360px;
+  }
+  .figo-join .fj-imgText .fji-text {
+    width: 320px;
+    padding-left: 0px;
+    margin-top: 30px;
+  }
+  .figo-join .fj-imgText .fji-text p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  .figo-join .fj-imgText .fji-text span {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .video_list {
+    padding: 5px;
+    padding-top: 0px;
+  }
+}

@@ -1,0 +1,23 @@
+html{background:#fff;overflow:auto;}
+body{min-width:100%;font:12px/1.5 Tahoma,"Microsoft Yahei";color:#333; -webkit-font-smoothing: antialiased; }
+button,submit,input,select,textarea {font:12px/1.5 Tahoma,"Microsoft YaHei"; outline:none;}
+a{color:#333; text-decoration:none; cursor:pointer; outline: 0 none;}
+a:hover{ text-decoration:none;}
+a:focus{-moz-outline-style:none; border:0px;}
+html,body,h1,h2,h3,h4,h5,h6,div,p,dl,dt,dd,ul,ol,li,form,fieldset,legend,button,submit,input,textarea,select,table,tr,th,td,hr,pre,sup,address,cite,dfn,em,var,blockquote { margin:0; padding:0}
+header,footer,article,aside,section,nav,menu,hgroup,details,dialog,figure,figcaption{display:block}
+ol,li,ul,dl,dt,dd{list-style:none;}
+fieldset,img {border:0}
+img { border:none; vertical-align:middle;}
+button,submit,input,select { vertical-align:middle;}
+button,submit { cursor:pointer;}
+button::-moz-focus-inner,
+submit::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner { padding:0; border:none;}
+textarea { resize:none; outline:none;}
+address,cite,dfn,em,var{font-style:normal; }
+h1,h2,h3,h4,h5,h6{font-size:inherit; font-weight:lighter;}
+.clear{clear:both;}

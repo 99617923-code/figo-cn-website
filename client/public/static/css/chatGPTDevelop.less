@@ -1,0 +1,757 @@
+// 定制
+.customDevelop{
+    background: url('../images/gpt_banner.png');
+    background-size: 100% 100%;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .cd-text{
+        width: 1200px;
+        .figoImg{
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+        .cdt-title{
+            position: absolute;
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+        }
+        .cdt-text{
+            background: url('../images/rectangle.png') no-repeat;
+            background-size: 429px 88px;
+            width: 429px;
+            font-size: 21px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: calc(44% + 92px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #1C2A64;
+            line-height: 45px; 
+            font-weight: bold;
+        }
+        .cdt-content{
+            color: #fff;
+            position: absolute;
+            top: calc(44% + 130px);
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+            width: 1200px;
+            font-weight: 400;
+        }
+    }
+}
+
+// 什么是chatGPT
+.isGPT{
+    background: url('../images/gpt_bg_01.png') no-repeat;
+    background-size: 100% 100%;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    .ig-text{
+        width: 1200px;
+        .igt-title{
+            color: #050A6E;
+            font-size: 30px;
+            line-height: 50px;
+            background: url('../images/ic_circle@2x.png') no-repeat;
+            background-position: 50%;
+            background-size: 240px 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .igt-content{
+            margin-top: 50px;
+            ul li{
+                float: left;
+                margin-right: 40px;
+                .igt-box{
+                    padding: 18px;
+                    width: 266px;
+                    box-sizing: border-box;
+                    background: #fff;
+                    height: 354px;
+                    box-shadow: 0px 11px 16px 2px rgba(17,22,122,0.15);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    img{
+                        margin-top: 18px;
+                        width: 87px;
+                        height: 92px;
+                    }
+                    .igtb-text{
+                        font-size: 18px;
+                        font-weight: 300;
+                        font-family: Alibaba PuHuiTi;
+                        line-height: 30px;
+                        color: #333;
+                        text-align: center;
+                        margin-top: 30px;
+                        // 单个英文不换行
+                        word-wrap:break-word;
+                        //超出5行隐藏
+                        word-break:break-all;
+                        overflow: hidden;                
+                        text-overflow: ellipsis;          
+                        display: -webkit-box;             
+                        text-overflow: ellipsis;         
+                        -webkit-box-orient: vertical;     
+                        -webkit-line-clamp: 5;
+                    }
+                }
+            }
+            ul li:nth-of-type(4) {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+// ChatGPT能做什么模块
+.gptDo{
+    display: flex;
+    background: #fff;
+    justify-content: center;
+    .gd-text{
+        width: 1200px;
+        // 盒子
+        .gbt-box{
+            width: 1200px;
+            height: 454px;
+            margin-top: -126px;
+            background: #FFFFFF;
+            box-shadow: 0px 11px 16px 2px rgba(17,22,122,0.15);
+            border-radius: 18px;
+            display: flex;
+            box-sizing: border-box;
+            padding: 70px 40px;
+            .gbtb-left{
+                .gbtbl-title{
+                    font-size: 30px;
+                    font-weight: 500;
+                    color: #000;
+                    line-height: 49px;
+                }
+                .gbtbl-text{
+                    width: 480px;
+                    margin-top: 40px;
+                    line-height: 30px;
+                    font-size: 20px;
+                    //超3行隐藏
+                    word-break:break-all;
+                    overflow: hidden;                
+                    text-overflow: ellipsis;          
+                    display: -webkit-box;             
+                    text-overflow: ellipsis;         
+                    -webkit-box-orient: vertical;     
+                    -webkit-line-clamp: 3;
+                }
+                .gbtbl-btn{
+                    margin-top: 50px;
+                    padding: 18px 16px;
+                    border: 2px solid #050A6E;
+                    border-radius: 9px;
+                    width: 200px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    span{
+                        color: #050A6E;
+                        font-size: 28px;
+                    }
+                    img{
+                        width: 35px;
+                        height: 19px;
+                    }
+                }
+            }
+            .gbtb-right{
+                margin-left: 180px;
+                img{
+                    width: 319px;
+                    height: 312px;
+                }
+            }
+        }
+        //内容
+        .gbt-content{
+            ul{
+                li{
+                    float: left;
+                    margin-right: 110px;
+                    .gbtc-box{
+                        margin-top: 85px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        img{
+                            width: 160px;
+                            height: 160px;
+                        }
+                        .gbtcb-text{
+                            margin-top: 60px;
+                            width: 310px;
+                            font-weight: 300;
+                            line-height: 30px;
+                            color: #333;
+                            font-size: 20px;
+                            // 单个英文不换行
+                            word-wrap:break-word;
+                            //超出5行隐藏
+                            word-break:break-all;
+                            overflow: hidden;                
+                            text-overflow: ellipsis;          
+                            display: -webkit-box;             
+                            text-overflow: ellipsis;         
+                            -webkit-box-orient: vertical;     
+                            -webkit-line-clamp: 5;
+                        }
+                    }
+                }
+                li:nth-of-type(3) {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+// gpt描述模块
+.gptDesc{
+    margin-top: 110px;
+    background: url('../images/gpt_banner_02@2x.png') no-repeat;
+    background-size: 100% 100%;
+    // height: 600px;
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: center;
+    .gD-text{
+        width: 1200px;
+        .gDt-text1{
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            font-size: 26px;
+            line-height: 37px;
+            margin-top: 70px;
+            font-family: Alibaba PuHuiTi;
+        }
+        .gDt-text2{
+            font-weight: 300;
+            color: #fff;
+            margin-top: 19px;
+            text-align: center;
+            font-size: 40px;
+            font-family: Alibaba PuHuiTi;
+        }
+        .gDt-text3{
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            font-size: 70px;
+            font-weight: 400;
+            font-family: Alibaba PuHuiTi;
+            margin-bottom: 80px;
+        }
+        .gDt-text4{
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            font-size: 26px;
+            line-height: 40px;
+            font-family: Alibaba PuHuiTi;
+        }
+    }
+}
+
+// 肥狗ai高级功能模块
+.gptHighFunction{
+    background: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    .gh-text{
+        width: 1100px;
+        padding-bottom: 85px;
+        .ght-title{
+            color: #050A6E;
+            font-size: 30px;
+            line-height: 60px;
+            background: url('../images/ic_circle_02@2x.png') no-repeat;
+            background-position: 50%;
+            background-size: 260px 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            margin-top: 65px;
+            margin-bottom: 40px;
+        }
+        .ghc-content{
+            display: flex;
+            align-items: center;
+            .ghcc-left{
+                .ghccl-content{
+                    cursor: pointer;
+                    width: 440px;
+                    border: 1px solid #050A6E;
+                    box-shadow: 0px 11px 16px 2px rgba(17,22,122,0.15);
+                    border-radius: 18px;
+                    box-sizing: border-box;
+                    padding: 10px;
+                    margin-top: 18px;
+                    .ghcclc-box1{
+                        display: flex;
+                        .ghcclcb-left{
+                            img{
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                        .ghcclcb-right{
+                            margin-left: 15px;
+                            .ghcclcbr-text1{
+                                font-size: 20px;
+                                font-weight: 400;
+                                color: #000;
+                            }
+                            .ghcclcbr-text2{
+                                width: 340px;
+                                margin-top: 10px;
+                                font-size: 16px;
+                                color: #333;
+                            }
+                        }
+                    }
+                    .ghcclc-box2{
+                        display: flex;
+                        justify-content: end;
+                        margin-top: 15px;
+                        margin-bottom: 5px;
+                        align-items: center;
+                        span{
+                            font-size: 16px;
+                            color: #fff;
+                        }
+                        img{
+                            width: 30px;
+                            height: 15px;
+                            margin-left: 5px;
+                            margin-right: 8px;
+                        }
+                    }
+                }
+                 // 高亮
+                .ghccl-active{
+                      background-color: #050A6E;
+                     .ghcclc-box1{
+                      .ghcclcb-right{
+                        .ghcclcbr-text1{
+                            color: #fff;
+                        }
+                       .ghcclcbr-text2{
+                            color: #fff;
+                        }
+                       }
+                   }
+                }
+                
+            }
+            .ghcc-right{
+                margin-left: 110px;
+                .ghccr-img:nth-of-type(1){
+                    img{
+                        width: 500px;
+                        height: 500px;
+                    }
+                }
+                .ghccr-img:nth-of-type(2){
+                    img{
+                        width: 400px;
+                        height: 560px;
+                    }
+                }
+                .ghccr-img:nth-of-type(3){
+                    img{
+                        width: 500px;
+                        height: 350px;
+                    }
+                }
+                .ghccr-img:nth-of-type(4){
+                    img{
+                        width: 500px;
+                        height: 350px;
+                    }
+                }
+                .ghccr-img:nth-of-type(5){
+                    img{
+                        width: 500px;
+                        height: 400px;
+                    }
+                }
+            }
+        }
+       
+    }
+}
+
+// 肥狗AI使用效果演示
+.gptUse{
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    .gu-text{
+        width: 1100px;
+        .gut-title{
+            color: #050A6E;
+            font-size: 30px;
+            line-height: 60px;
+            background: url('../images/ic_circle_03@2x.png') no-repeat;
+            background-position: 50%;
+            background-size: 285px 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            margin-top: 65px;
+            margin-bottom: 40px;
+        }
+        // 标题
+        .gut-box{
+            display: flex;
+            justify-content: space-evenly;
+            .gutb-item{
+                cursor: pointer;
+                display: flex;
+                padding: 8px;
+                border-bottom: 4px solid transparent;
+                img{
+                    width: 44px;
+                    height: 53px;
+                }
+                .gutbi-text{
+                    width: 220px;
+                    color: #050A6E;
+                    font-size: 17px;
+                    font-weight: 400;
+                    text-align: center;
+                }
+            }
+            .gutb-active{
+                border-bottom: 4px solid #050A6E;
+                box-shadow: 0px 11px 16px 2px rgba(17,22,122,0.15);
+            }
+        }
+        // 内容
+        .gut-content{
+            margin-top: 60px;
+            margin-bottom: 70px;
+            width: 1100px;
+            border-radius: 18px;
+            border: 1px solid #050A6E;
+            box-sizing: border-box;
+            padding: 50px;
+            padding-top: 10px;
+            padding-bottom: 60px;
+            .gutc-item{
+                .gutci-right{
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
+                    margin-top: 35px;
+                    .gutcir-text{
+                        color: #fff;
+                        background: #13C4CC;
+                        box-shadow: 0px 7px 18px 0px rgba(0,0,0,0.1);
+                        border-radius: 11px;
+                        line-height: 50px;
+                        padding: 0 15px;
+                        height: 50px;
+                        margin-right: 10px;
+                        font-size: 16px;
+                    }
+                    img{
+                        width: 65px;
+                    }
+                }
+                .gutci-left{
+                    margin-top: 35px;
+                    display: flex;
+                    justify-content: start;
+                    img{
+                        width: 65px;
+                        height: 65px;
+                    }
+                    .gutcil-text{
+                        margin-left: 10px;
+                        padding: 15px;
+                        background: #FFFFFF;
+                        box-shadow: 0px 7px 18px 0px rgba(0,0,0,0.1);
+                        border-radius: 11px;
+                        width: 820px;
+                        line-height: 35px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            .gutc-item:nth-of-type(2){
+                .gutci-right{
+                    display: flex;
+                    justify-content: end;
+                    align-items: flex-start;
+                    margin-top: 35px;
+                    .gutcir-text{
+                        color: #fff;
+                        background: #13C4CC;
+                        width: 820px;
+                        box-shadow: 0px 7px 18px 0px rgba(0,0,0,0.1);
+                        border-radius: 11px;
+                        line-height: 35px;
+                        padding: 15px;
+                        margin-right: 10px;
+                        font-size: 16px;
+                        height: auto;
+                    }
+                    img{
+                        width: 65px;
+                    }
+                }
+                
+            }
+            
+        }
+    }
+}
+
+// gpt系统
+.gptSystem{
+    display: flex;
+    background: #fff;
+    justify-content: center;
+    .gs-text{
+        width: 1200px;
+        .gst-title{
+            color: #050A6E;
+            font-size: 30px;
+            line-height: 60px;
+            background: url('../images/ic_circle_03@2x.png') no-repeat;
+            background-position: 50%;
+            background-size: 300px 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            margin-top: 75px;
+        }
+        // 内容
+        .gst-content{
+            margin-top: 75px;
+            display: flex;
+            .gstc-left{
+                ul{
+                    li{
+                        .gstcl-content{
+                            margin-top: 30px;
+                            display: flex;
+                            .gstclc-point{
+                                width: 18px;
+                                height: 18px;
+                                background: #050A6E;
+                                border-radius: 50%;
+                                margin-top: 6px;
+                            }
+                            .gstclc-text{
+                                margin-left: 10px;
+                                width: 540px;
+                                font-size: 18px;
+                                line-height: 30px;
+                                color: #666;
+                                 //超出4行隐藏
+                                word-break:break-all;
+                                overflow: hidden;                
+                                text-overflow: ellipsis;          
+                                display: -webkit-box;             
+                                text-overflow: ellipsis;         
+                               -webkit-box-orient: vertical;     
+                                -webkit-line-clamp: 4;
+                            }
+                        }
+                    }
+                    li:nth-of-type(1){
+                        .gstcl-content{
+                            margin-top: 10px;
+                        }
+                    }
+                }
+                
+            }
+            .gstc-right{
+                margin-left: 60px;
+                img{
+                    width: 530px;
+                    height: 700px;
+                }
+            }
+        }
+    }
+}
+
+// 更多模型更多功能模块
+.gptFunction{
+    display: flex;
+    justify-content: center;
+    background: #F2F2F2;
+    .gf-text{
+        width: 1100px;
+        .gft-title{
+            color: #050A6E;
+            font-size: 30px;
+            line-height: 60px;
+            background: url('../images/ic_circle_04@2x.png') no-repeat;
+            background-position: 50%;
+            background-size: 430px 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            margin-top: 75px;
+        }
+        // 内容
+        .gft-content{
+            margin-top: 10px;
+            ul{
+                li{
+                    margin-top: 60px;
+                    float: left;
+                    .gftc-content{
+                        width: 360px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        img{
+                            width: 160px;
+                            height: 160px;
+                        }
+                        .gftcc-text{
+                            margin-top: 15px;
+                            font-size: 18px;
+                            color: #333;
+                        }
+                    }
+                }
+                
+            }
+        }
+        .clearBoth{
+            clear: both;
+        }
+        //线条
+        .gfc-line{
+            width: 620px;
+            height: 2px;
+            background: #000000;
+            margin: 0 auto;
+            margin-top: 70px;
+        }
+        //二维码
+        .gfc-aiCode{
+            margin: 60px auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            img{
+                width: 250px;
+                height: 250px;
+            }
+            .gfci-text{
+                margin-top: 20px;
+                font-size: 28px;
+                color: #000;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+//定制
+.gptCustom{
+    display: flex;
+    background: url('../images/gpt_bg_02@2x.png') no-repeat;
+    background-size: 100% 100%;
+    justify-content: center;
+    padding-bottom: 70px;
+    margin-bottom: -2px;
+    .gc-text{
+        width: 1100px;
+        .gct-title{
+            color: #fff;
+            font-size: 30px;
+            line-height: 60px;
+            background: url('../images/ic_circle_05@2x.png') no-repeat;
+            background-position: 50%;
+            background-size: 300px 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            margin-top: 75px;
+        }
+        //内容
+        .gct-content{
+            ul{
+                li{
+                    margin-top: 60px;
+                    .gctc-content{
+                        display: flex;
+                        .gctcc-left{
+                            margin-left: 50px;
+                            img{
+                                width: 140px;
+                                height: 140px;
+                            }   
+                        }
+                        .gctcc-right{
+                            margin-left: 60px;
+                            width: 850px;
+                            .gctccr-text1{
+                                color: #fff;
+                                font-size: 26px;
+                            }
+                            .gctccr-text2{
+                                margin-top: 20px;
+                                color: #fff;
+                                font-size: 18px;
+                                font-weight: 300;
+                                line-height: 35px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // 二维码
+        .gct-qrCode{
+            margin: 0 auto;
+            margin-top: 75px;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 20px;
+            img{
+                width: 250px;
+                height: 250px;
+            }
+        }
+        .gct-text1{
+            margin-top: 15px;
+            text-align: center;
+            color: #fff;
+            font-size: 26px;
+        }
+    }
+
+}
