@@ -22,8 +22,11 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
       }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/20 flex items-center justify-center mb-4 group-hover:border-blue-500/40 transition-colors">
-        <Icon size={20} className="text-blue-400" />
+      <div className="flex items-start justify-between mb-4">
+        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/20 flex items-center justify-center group-hover:border-blue-500/40 transition-colors">
+          <Icon size={20} className="text-blue-400" />
+        </div>
+        <span className="text-[9px] font-medium text-cyan-400/60 tracking-wider uppercase bg-cyan-500/5 border border-cyan-500/10 px-2 py-0.5 rounded-full">AI</span>
       </div>
       <h3 className="text-lg font-semibold text-white mb-2">{service.title}</h3>
       <p className="text-sm text-white/50 leading-relaxed">{service.description}</p>

@@ -50,6 +50,10 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[0]; index: n
         <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
           <Icon size={22} className="text-white" />
         </div>
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[10px] font-medium text-emerald-400">AI Powered</span>
+        </div>
       </div>
 
       {/* Title */}

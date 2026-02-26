@@ -3,22 +3,26 @@
  * 路径: /FigoAgent/
  * 独立于旧站点，作为AI智能体业务的专属展示页
  * 
- * 营销型网站完整结构：
+ * 营销型网站完整结构（AI增强版）：
  * 1. Hero首屏 - 第一印象，统计数据社会证明
- * 2. 产品矩阵 - 展示AI产品实力
- * 3. 服务能力 - 全栈服务覆盖
- * 4. 成功案例 - 真实项目数据，用成果说话
- * 5. 信任背书 - 客户评价、资质证书、行业覆盖
- * 6. 技术生态 - 合作伙伴和客户类型
- * 7. 开发流程 - 专业方法论
- * 8. 关于我们 - 企业历史和实力
- * 9. FAQ常见问题 - 消除疑虑，提升SEO
- * 10. 紧迫感CTA - 限时优惠，促进转化
- * 11. 联系我们 - 转化入口
+ * 2. AI技术架构 - 三层AI架构可视化，展示技术深度
+ * 3. 产品矩阵 - 展示AI产品实力（AI Powered标签）
+ * 4. AI能力演示 - 实时对话演示，展示Moss等自研产品
+ * 5. 服务能力 - 全栈AI服务覆盖（AI标签）
+ * 6. 成功案例 - 真实项目数据，用成果说话
+ * 7. 信任背书 - 客户评价、资质证书、行业覆盖
+ * 8. 技术生态 - 合作伙伴和客户类型
+ * 9. 开发流程 - AI化专业方法论
+ * 10. 关于我们 - 企业历史和实力
+ * 11. FAQ常见问题 - 消除疑虑，提升SEO
+ * 12. 紧迫感CTA - 限时优惠，促进转化
+ * 13. 联系我们 - 转化入口
  */
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import AIArchitectureSection from "@/components/AIArchitectureSection";
 import ProductsSection from "@/components/ProductsSection";
+import AIShowcaseSection from "@/components/AIShowcaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import CaseStudySection from "@/components/CaseStudySection";
 import TrustSection from "@/components/TrustSection";
@@ -29,6 +33,7 @@ import FAQSection from "@/components/FAQSection";
 import UrgencyCTA from "@/components/UrgencyCTA";
 import ContactSection from "@/components/ContactSection";
 import FloatingCTA from "@/components/FloatingCTA";
+import MossBadge from "@/components/MossBadge";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
@@ -39,7 +44,9 @@ export default function FigoAgent() {
       <Navbar />
       <main>
         <HeroSection />
+        <AIArchitectureSection />
         <ProductsSection />
+        <AIShowcaseSection />
         <ServicesSection />
         <CaseStudySection />
         <TrustSection />
@@ -51,6 +58,7 @@ export default function FigoAgent() {
         <ContactSection />
       </main>
       <FloatingCTA />
+      <MossBadge />
       <Footer />
     </div>
   );
