@@ -1,23 +1,42 @@
-/*
+/**
  * 「量子棱镜」— Hero首屏
  * 全屏动态渐变背景 + 品牌宣言 + 数据统计
  * 公司年份基于2005年成立自动计算
  */
 import { IMAGES, STATS, getCompanyYears } from "@/lib/constants";
-import { useCountUp } from "@/hooks/useCountUp";
-import { useInView } from "@/hooks/useInView";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
 
-function StatItem({ value, suffix, label }: { value: string; suffix: string; label: string }) {
-  const { ref, isInView } = useInView();
-  // 动态年份处理
-  const displayValue = value === "DYNAMIC_YEARS" ? getCompanyYears() : parseInt(value);
-  const count = useCountUp(displayValue, 2000, isInView);
+function AnimatedNumber({ target, duration = 1800 }: { target: number; duration?: number }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (target <= 0) return;
+    const startTime = Date.now();
+    const step = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCurrent(Math.round(eased * target));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        setCurrent(target);
+      }
+    };
+    requestAnimationFrame(step);
+  }, [target, duration]);
+
+  return <>{current}</>;
+}
+
+function StatItem({ value, suffix, label, delay }: { value: string; suffix: string; label: string; delay: number }) {
+  const numericValue = value === "DYNAMIC_YEARS" ? getCompanyYears() : (parseInt(value.replace(/,/g, "")) || 0);
 
   return (
-    <div ref={ref} className="text-center">
+    <div className="text-center" style={{ animationDelay: `${delay}ms` }}>
       <div className="font-mono-data text-3xl lg:text-4xl font-bold text-white">
-        {isInView ? count : 0}
+        <AnimatedNumber target={numericValue} duration={2000} />
         <span className="gradient-text">{suffix}</span>
       </div>
       <div className="mt-1 text-sm text-white/50">{label}</div>
@@ -34,90 +53,69 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <img
           src={IMAGES.heroBg}
-          alt=""
-          className="w-full h-full object-cover opacity-40"
+          alt="AI technology background"
+          className="w-full h-full object-cover"
+          loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c14]/60 via-[#0c0c14]/30 to-[#0c0c14]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/60 via-[#0a0e1a]/40 to-[#0a0e1a]/80" />
       </div>
 
-      {/* Animated orbs */}
+      {/* Animated Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-20"
-          style={{
-            background: "radial-gradient(circle, rgba(59,130,246,0.4), transparent 70%)",
-            animation: "float-orb 20s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="absolute top-1/3 -right-24 w-80 h-80 rounded-full opacity-15"
-          style={{
-            background: "radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%)",
-            animation: "float-orb 25s ease-in-out infinite reverse",
-          }}
-        />
-        <div
-          className="absolute bottom-20 left-1/4 w-64 h-64 rounded-full opacity-10"
-          style={{
-            background: "radial-gradient(circle, rgba(16,185,129,0.4), transparent 70%)",
-            animation: "float-orb 18s ease-in-out infinite 2s",
-          }}
-        />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 lg:w-[28rem] lg:h-[28rem] rounded-full bg-gradient-to-br from-cyan-500/15 to-blue-600/15 blur-3xl animate-float-delayed" />
       </div>
 
       {/* Content */}
-      <div className="relative container pt-28 lg:pt-32 pb-16">
-        <div className="max-w-4xl">
+      <div className="relative z-10 container pt-32 pb-20">
+        <div className="max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 animate-fade-up">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs text-white/70 tracking-wide">{companyYears}年技术沉淀 · 国家高新技术企业</span>
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-sm text-white/70">{companyYears}年技术沉淀 · 国家高新技术企业</span>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight animate-fade-up stagger-1" style={{ opacity: 0 }}>
+          {/* Heading */}
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-up stagger-1">
             <span className="text-white">构建下一代</span>
             <br />
             <span className="gradient-text">AI 智能体</span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="mt-6 lg:mt-8 text-lg lg:text-xl text-white/60 max-w-2xl leading-relaxed animate-fade-up stagger-2" style={{ opacity: 0 }}>
+          {/* Subtitle */}
+          <p className="text-base lg:text-lg text-white/60 max-w-2xl mb-10 leading-relaxed animate-fade-up stagger-2">
             从大模型API管理到数字人复刻，从AI销售训练到智能工具平台——火鹰科技为企业提供全栈AI智能体定制开发服务，让AI真正为业务创造价值。
           </p>
 
           {/* CTA Buttons */}
-          <div className="mt-8 lg:mt-10 flex flex-wrap gap-4 animate-fade-up stagger-3" style={{ opacity: 0 }}>
+          <div className="flex flex-wrap gap-4 mb-16 animate-fade-up stagger-3">
             <a
               href="#products"
-              onClick={(e) => { e.preventDefault(); document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" }); }}
-              className="group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl hover:shadow-xl hover:shadow-blue-500/25 transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg shadow-blue-500/25"
             >
-              探索产品矩阵
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              探索产品矩阵 <ArrowRight className="w-4 h-4" />
             </a>
             <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-white/80 border border-white/15 rounded-xl hover:bg-white/5 hover:border-white/25 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/20 text-white/80 hover:bg-white/10 hover:text-white transition-all duration-300"
             >
               预约技术咨询
             </a>
           </div>
-        </div>
 
-        {/* Stats */}
-        <div className="mt-16 lg:mt-24 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-3xl animate-fade-up stagger-4" style={{ opacity: 0 }}>
-          {STATS.map((stat) => (
-            <StatItem key={stat.label} {...stat} />
-          ))}
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-up stagger-4">
+            {STATS.map((stat, i) => (
+              <StatItem key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 200} />
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <span className="text-[10px] text-white/30 tracking-widest uppercase">Scroll</span>
-        <ChevronDown size={16} className="text-white/30" />
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-10">
+        <span className="text-xs text-white/30 tracking-[0.3em] uppercase">Scroll</span>
+        <ChevronDown className="w-5 h-5 text-white/30" />
       </div>
     </section>
   );

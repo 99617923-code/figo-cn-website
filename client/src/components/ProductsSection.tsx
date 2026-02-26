@@ -1,11 +1,12 @@
 /*
  * 「量子棱镜」— 产品矩阵
  * 毛玻璃卡片 + 渐变边框光泽 + stagger入场动画
- * 落地页展示模式：无外部链接，点击"获取演示"引导联系销售
+ * 落地页展示模式：点击"了解详情"进入产品详情页，点击"获取演示"引导联系销售
  */
 import { PRODUCTS } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
-import { Cpu, Target, User, Watch, Sparkles, Phone } from "lucide-react";
+import { Cpu, Target, User, Watch, Sparkles, Phone, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Cpu, Target, User, Watch, Sparkles,
@@ -82,14 +83,23 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[0]; index: n
         ))}
       </div>
 
-      {/* CTA Button - 获取功能演示 */}
-      <button
-        onClick={scrollToContact}
-        className={`relative w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium text-white/80 bg-gradient-to-r ${product.gradient} opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer`}
-      >
-        <Phone size={14} />
-        获取功能演示
-      </button>
+      {/* CTA Buttons */}
+      <div className="relative flex gap-3">
+        <Link
+          href={product.detailPath}
+          className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium text-white/70 bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] hover:text-white hover:border-white/[0.15] transition-all duration-300"
+        >
+          了解详情
+          <ArrowRight size={14} />
+        </Link>
+        <button
+          onClick={scrollToContact}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium text-white/80 bg-gradient-to-r ${product.gradient} opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer`}
+        >
+          <Phone size={14} />
+          获取演示
+        </button>
+      </div>
     </div>
   );
 }

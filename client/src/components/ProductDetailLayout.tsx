@@ -1,0 +1,359 @@
+/*
+ * 「量子棱镜」— 产品详情页通用布局
+ * 统一的产品详情页结构：Hero + 功能列表 + 应用场景 + 技术优势 + CTA
+ */
+import { useInView } from "@/hooks/useInView";
+import { COMPANY_INFO } from "@/lib/constants";
+import { ArrowLeft, Phone, Mail, ChevronRight } from "lucide-react";
+import { Link } from "wouter";
+
+interface Feature {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  badge?: string;
+}
+
+interface Scenario {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+interface TechAdvantage {
+  title: string;
+  description: string;
+  metric?: string;
+  metricLabel?: string;
+}
+
+interface ProductDetailProps {
+  name: string;
+  tagline: string;
+  heroDescription: string;
+  gradient: string;
+  gradientColors: string;
+  heroIcon: React.ReactNode;
+  stats: { value: string; label: string }[];
+  features: Feature[];
+  scenarios: Scenario[];
+  techAdvantages: TechAdvantage[];
+  architectureDescription?: string;
+  children?: React.ReactNode;
+}
+
+/* ─── Extracted sub-components so hooks are NOT called inside loops ─── */
+
+function SectionHeader({ label, title, subtitle }: { label: string; title: string; subtitle: string }) {
+  const { ref, isInView } = useInView();
+  return (
+    <div ref={ref} className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+      <span className="text-xs font-medium tracking-widest uppercase text-blue-400/80 mb-3 block">{label}</span>
+      <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">{title}</h2>
+      <p className="mt-4 text-base text-white/50 leading-relaxed">{subtitle}</p>
+    </div>
+  );
+}
+
+function FeatureCard({ feature, gradient, index }: { feature: Feature; gradient: string; index: number }) {
+  const { ref, isInView } = useInView();
+  return (
+    <div
+      ref={ref}
+      className={`relative p-6 rounded-2xl transition-all duration-700 group ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      style={{
+        transitionDelay: `${index * 80}ms`,
+        background: "rgba(255,255,255,0.03)",
+        border: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.04), rgba(139,92,246,0.04))", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "inherit" }}
+      />
+      <div className="relative flex items-start gap-4">
+        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity`}>
+          {feature.icon}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-2">
+            <h3 className="text-base font-semibold text-white">{feature.title}</h3>
+            {feature.badge && (
+              <span className="px-2 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30">{feature.badge}</span>
+            )}
+          </div>
+          <p className="text-sm text-white/45 leading-relaxed">{feature.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ScenarioCard({ scenario, gradient, index }: { scenario: Scenario; gradient: string; index: number }) {
+  const { ref, isInView } = useInView();
+  return (
+    <div
+      ref={ref}
+      className={`relative p-8 rounded-2xl transition-all duration-700 group ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      style={{
+        transitionDelay: `${index * 100}ms`,
+        background: "rgba(255,255,255,0.02)",
+        border: "1px solid rgba(255,255,255,0.05)",
+      }}
+    >
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.03), rgba(139,92,246,0.03))", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "inherit" }}
+      />
+      <div className="relative">
+        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center mb-5 opacity-70 group-hover:opacity-100 transition-opacity`}>
+          {scenario.icon}
+        </div>
+        <h3 className="text-lg font-semibold text-white mb-3">{scenario.title}</h3>
+        <p className="text-sm text-white/45 leading-relaxed">{scenario.description}</p>
+      </div>
+    </div>
+  );
+}
+
+function TechCard({ adv, index }: { adv: TechAdvantage; index: number }) {
+  const { ref, isInView } = useInView();
+  return (
+    <div
+      ref={ref}
+      className={`relative p-6 lg:p-8 rounded-2xl transition-all duration-700 group ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      style={{
+        transitionDelay: `${index * 100}ms`,
+        background: "rgba(255,255,255,0.03)",
+        border: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.04), rgba(139,92,246,0.04))", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "inherit" }}
+      />
+      <div className="relative">
+        <div className="flex items-start justify-between mb-4">
+          <h3 className="text-lg font-semibold text-white">{adv.title}</h3>
+          {adv.metric && (
+            <div className="text-right flex-shrink-0 ml-4">
+              <div className="font-mono text-xl font-bold text-blue-400">{adv.metric}</div>
+              {adv.metricLabel && <div className="text-[10px] text-white/40">{adv.metricLabel}</div>}
+            </div>
+          )}
+        </div>
+        <p className="text-sm text-white/45 leading-relaxed">{adv.description}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Main Layout ─── */
+
+export default function ProductDetailLayout({
+  name, tagline, heroDescription, gradient, gradientColors, heroIcon,
+  stats, features, scenarios, techAdvantages, architectureDescription, children,
+}: ProductDetailProps) {
+  const scrollToContact = () => {
+    window.location.href = "/FigoAgent#contact";
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0c0c14] text-white overflow-x-hidden">
+      {/* Fixed Navbar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0c0c14]/80 backdrop-blur-xl border-b border-white/5">
+        <nav className="container flex items-center justify-between h-16 lg:h-20">
+          <div className="flex items-center gap-4">
+            <Link href="/FigoAgent" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors group">
+              <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+              <span className="text-sm">返回首页</span>
+            </Link>
+            <div className="w-px h-5 bg-white/10" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-blue-500/25">
+                火
+              </div>
+              <span className="text-white font-semibold text-sm hidden sm:block">火鹰科技</span>
+            </div>
+          </div>
+          <button
+            onClick={scrollToContact}
+            className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all hover:-translate-y-0.5"
+          >
+            获取演示
+          </button>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] opacity-[0.12]"
+            style={{ background: `radial-gradient(ellipse, ${gradientColors}, transparent 70%)` }} />
+          <div className="absolute top-1/4 right-0 w-[400px] h-[400px] opacity-[0.06]"
+            style={{ background: `radial-gradient(circle, ${gradientColors}, transparent 60%)` }} />
+        </div>
+
+        <div className="container relative">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-2 text-sm text-white/40 mb-8">
+            <Link href="/FigoAgent" className="hover:text-white/60 transition-colors">首页</Link>
+            <ChevronRight size={14} />
+            <span className="text-white/60">产品矩阵</span>
+            <ChevronRight size={14} />
+            <span className="text-white/80">{name}</span>
+          </div>
+
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-xl`}>
+                {heroIcon}
+              </div>
+              <div>
+                <h1 className="text-3xl lg:text-5xl font-bold text-white">{name}</h1>
+                <p className="text-lg text-white/50 mt-1">{tagline}</p>
+              </div>
+            </div>
+
+            <p className="text-lg lg:text-xl text-white/60 leading-relaxed max-w-3xl mb-10">
+              {heroDescription}
+            </p>
+
+            <div className="flex flex-wrap gap-6 mb-10">
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center px-6 py-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                  <div className="font-mono text-2xl font-bold text-white">{stat.value}</div>
+                  <div className="text-xs text-white/40 mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <button
+                onClick={scrollToContact}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-white bg-gradient-to-r ${gradient} hover:shadow-lg transition-all hover:-translate-y-0.5`}
+              >
+                <Phone size={16} />
+                预约产品演示
+              </button>
+              <a
+                href={`mailto:${COMPANY_INFO.email}`}
+                className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-white/70 bg-white/[0.06] border border-white/[0.1] hover:bg-white/[0.1] hover:text-white transition-all"
+              >
+                <Mail size={16} />
+                商务咨询
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="relative py-20 lg:py-28">
+        <div className="container">
+          <SectionHeader
+            label="Core Features"
+            title="核心功能"
+            subtitle={`${name}提供全方位的功能支持，满足企业在不同场景下的需求`}
+          />
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {features.map((feature, i) => (
+              <FeatureCard key={feature.title} feature={feature} gradient={gradient} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Scenarios Section */}
+      <section className="relative py-20 lg:py-28">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/2 left-0 w-[600px] h-[600px] -translate-y-1/2 opacity-[0.03]"
+            style={{ background: `radial-gradient(circle, ${gradientColors}, transparent 60%)` }} />
+        </div>
+        <div className="container relative">
+          <SectionHeader
+            label="Application Scenarios"
+            title="应用场景"
+            subtitle="覆盖多个行业和业务场景，为不同领域的企业提供专业的AI解决方案"
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {scenarios.map((scenario, i) => (
+              <ScenarioCard key={scenario.title} scenario={scenario} gradient={gradient} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Advantages Section */}
+      <section className="relative py-20 lg:py-28">
+        <div className="container">
+          <SectionHeader
+            label="Technical Advantages"
+            title="技术优势"
+            subtitle="基于火鹰科技多年技术积累，为产品提供坚实的技术底座"
+          />
+          {architectureDescription && (
+            <div className="max-w-3xl mx-auto mb-12 p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+              <p className="text-sm text-white/50 leading-relaxed">{architectureDescription}</p>
+            </div>
+          )}
+          <div className="grid md:grid-cols-2 gap-5">
+            {techAdvantages.map((adv, i) => (
+              <TechCard key={adv.title} adv={adv} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Custom content slot */}
+      {children}
+
+      {/* CTA Section */}
+      <section className="relative py-20 lg:py-28">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-[0.08]"
+            style={{ background: `radial-gradient(ellipse, ${gradientColors}, transparent 70%)` }} />
+        </div>
+        <div className="container relative text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+            对{name}感兴趣？
+          </h2>
+          <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
+            联系我们的专业团队，获取产品演示和定制化解决方案。火鹰科技{getCompanyYearsText()}年行业经验，为您提供最专业的技术服务。
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <button
+              onClick={scrollToContact}
+              className={`flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium text-white bg-gradient-to-r ${gradient} hover:shadow-xl transition-all hover:-translate-y-0.5`}
+            >
+              <Phone size={18} />
+              立即咨询：{COMPANY_INFO.salesPhone}
+            </button>
+            <a
+              href={`mailto:${COMPANY_INFO.email}`}
+              className="flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium text-white/70 bg-white/[0.06] border border-white/[0.1] hover:bg-white/[0.1] hover:text-white transition-all"
+            >
+              <Mail size={18} />
+              发送邮件咨询
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Simple Footer */}
+      <footer className="border-t border-white/5 bg-[#080810]">
+        <div className="container py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-md bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs">火</div>
+            <span className="text-sm text-white/50">{COMPANY_INFO.name}</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href={COMPANY_INFO.icpUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-white/30 hover:text-white/50 transition-colors">{COMPANY_INFO.icp}</a>
+            <Link href="/FigoAgent" className="text-xs text-white/30 hover:text-white/50 transition-colors">返回首页</Link>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function getCompanyYearsText() {
+  return new Date().getFullYear() - 2005;
+}

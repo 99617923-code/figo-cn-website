@@ -67,15 +67,12 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {PRODUCTS.map((product) => (
                 <li key={product.id}>
-                  <button
-                    onClick={() => {
-                      const el = document.getElementById("contact");
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="text-sm text-white/40 hover:text-white/70 transition-colors text-left"
+                  <a
+                    href={product.detailPath}
+                    className="text-sm text-white/40 hover:text-white/70 transition-colors"
                   >
                     {product.name}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

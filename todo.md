@@ -11,3 +11,16 @@
 - [ ] 将公司成立年份改为自动计算（基于2005年）
 - [ ] 更新所有组件中的公司信息
 - [ ] 验证并保存checkpoint
+
+## 第三轮：产品详情页开发
+
+- [ ] 研究各产品站点详细功能信息
+- [ ] 创建 FigoAPI 详情页（/FigoAgent/products/figo-engine）
+- [ ] 创建 SaleSpark 详情页（/FigoAgent/products/salespark）
+- [ ] 创建 火鹰导师替身系统 详情页（/FigoAgent/products/moss）
+- [ ] 创建 Ring AI 详情页（/FigoAgent/products/ring-ai）
+- [ ] 创建 FigoAI 智能工具平台 详情页（/FigoAgent/products/figo-ai）
+- [ ] 更新路由配置（App.tsx）
+- [ ] 产品卡片添加"了解详情"链接到详情页
+- [ ] SEO优化（每个页面独立的meta信息和结构化数据）
+- [ ] 验证所有页面效果
