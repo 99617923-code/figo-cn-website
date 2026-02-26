@@ -1,16 +1,18 @@
 /*
  * 「量子棱镜」— Hero首屏
  * 全屏动态渐变背景 + 品牌宣言 + 数据统计
+ * 公司年份基于2005年成立自动计算
  */
-import { IMAGES, STATS } from "@/lib/constants";
+import { IMAGES, STATS, getCompanyYears } from "@/lib/constants";
 import { useCountUp } from "@/hooks/useCountUp";
 import { useInView } from "@/hooks/useInView";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 function StatItem({ value, suffix, label }: { value: string; suffix: string; label: string }) {
   const { ref, isInView } = useInView();
-  const numValue = parseInt(value);
-  const count = useCountUp(numValue, 2000, isInView);
+  // 动态年份处理
+  const displayValue = value === "DYNAMIC_YEARS" ? getCompanyYears() : parseInt(value);
+  const count = useCountUp(displayValue, 2000, isInView);
 
   return (
     <div ref={ref} className="text-center">
@@ -24,6 +26,8 @@ function StatItem({ value, suffix, label }: { value: string; suffix: string; lab
 }
 
 export default function HeroSection() {
+  const companyYears = getCompanyYears();
+
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
       {/* Background */}
@@ -67,7 +71,7 @@ export default function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 animate-fade-up">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs text-white/70 tracking-wide">20年技术沉淀 · 国家高新技术企业</span>
+            <span className="text-xs text-white/70 tracking-wide">{companyYears}年技术沉淀 · 国家高新技术企业</span>
           </div>
 
           {/* Headline */}

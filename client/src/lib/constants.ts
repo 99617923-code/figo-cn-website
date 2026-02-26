@@ -122,8 +122,12 @@ export const SERVICES = [
   },
 ];
 
+// 自动计算公司经营年份（基于2005年成立）
+const FOUNDED_YEAR = 2005;
+export const getCompanyYears = () => new Date().getFullYear() - FOUNDED_YEAR;
+
 export const STATS = [
-  { value: "20", suffix: "年", label: "行业深耕" },
+  { value: "DYNAMIC_YEARS", suffix: "年+", label: "行业深耕" },
   { value: "5000", suffix: "+", label: "项目交付" },
   { value: "100", suffix: "+", label: "专业团队" },
   { value: "20", suffix: "+", label: "AI模型接入" },
@@ -132,13 +136,19 @@ export const STATS = [
 export const COMPANY_INFO = {
   name: "广州火鹰信息科技有限公司",
   shortName: "火鹰科技",
-  established: 2005,
+  established: FOUNDED_YEAR,
   founder: "莫国勇",
   founderEn: "Figo",
   email: "ceo@figo.cn",
+  salesPhone: "158-8998-8630",
   phone: "020-29869409",
   website: "www.figo.cn",
-  address: "广州市天河区",
+  address: "广东省广州市番禺区南浦凹凸凹创意园C317-318",
+  icp: "粤ICP备09123041号-1",
+  icpUrl: "https://beian.miit.gov.cn/",
+  softwareCode: "粤R-2014-0169",
+  highTechCode: "GR201544001141",
+  stockCode: "890461",
   qualifications: ["国家高新技术企业", "新四板股权代码890461", "CMMI Level-3"],
 };
 

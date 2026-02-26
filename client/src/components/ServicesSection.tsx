@@ -2,7 +2,7 @@
  * 「量子棱镜」— 服务能力
  * 六大核心服务 + 生态系统图 + zigzag布局
  */
-import { IMAGES, SERVICES } from "@/lib/constants";
+import { IMAGES, SERVICES, getCompanyYears } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
 import { Bot, Blocks, AudioWaveform, LayoutDashboard, Cloud, Wifi } from "lucide-react";
 
@@ -53,7 +53,7 @@ export default function ServicesSection() {
             全栈AI开发<span className="gradient-text-green">服务能力</span>
           </h2>
           <p className="mt-4 text-base text-white/50 leading-relaxed">
-            20年软件定制开发经验与前沿AI技术的深度融合，为企业提供从咨询到交付的一站式AI解决方案。
+            {getCompanyYears()}年软件定制开发经验与前沿AI技术的深度融合，为企业提供从咨询到交付的一站式AI解决方案。
           </p>
         </div>
 

@@ -1,10 +1,11 @@
 /*
  * 「量子棱镜」— 联系我们 / CTA
  * 全屏背景 + 联系方式 + 表单
+ * 使用旧站真实公司资料
  */
 import { IMAGES, COMPANY_INFO } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
-import { Mail, Phone, MapPin, Globe, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, ArrowRight, Clock } from "lucide-react";
 
 export default function ContactSection() {
   const { ref: titleRef, isInView: titleVisible } = useInView();
@@ -49,31 +50,43 @@ export default function ContactSection() {
 
             <div className="glass-card rounded-xl p-5 flex items-start gap-4">
               <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                <Mail size={18} className="text-blue-400" />
+                <Phone size={18} className="text-blue-400" />
               </div>
               <div>
-                <div className="text-sm font-medium text-white mb-0.5">电子邮箱</div>
-                <a href={`mailto:${COMPANY_INFO.email}`} className="text-sm text-white/50 hover:text-blue-400 transition-colors">
-                  {COMPANY_INFO.email}
+                <div className="text-sm font-medium text-white mb-0.5">售前咨询热线</div>
+                <a href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`} className="text-sm text-white/50 hover:text-blue-400 transition-colors">
+                  {COMPANY_INFO.salesPhone}
                 </a>
+                <div className="text-xs text-white/30 mt-0.5">座机：{COMPANY_INFO.phone}</div>
               </div>
             </div>
 
             <div className="glass-card rounded-xl p-5 flex items-start gap-4">
               <div className="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
-                <Phone size={18} className="text-purple-400" />
+                <Clock size={18} className="text-purple-400" />
               </div>
               <div>
-                <div className="text-sm font-medium text-white mb-0.5">咨询热线</div>
-                <a href={`tel:${COMPANY_INFO.phone}`} className="text-sm text-white/50 hover:text-purple-400 transition-colors">
-                  {COMPANY_INFO.phone}
-                </a>
+                <div className="text-sm font-medium text-white mb-0.5">工作时间</div>
+                <span className="text-sm text-white/50">工作日 9:30 - 18:00</span>
               </div>
             </div>
 
             <div className="glass-card rounded-xl p-5 flex items-start gap-4">
               <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
-                <MapPin size={18} className="text-emerald-400" />
+                <Mail size={18} className="text-emerald-400" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-white mb-0.5">电子邮箱</div>
+                <a href={`mailto:${COMPANY_INFO.email}`} className="text-sm text-white/50 hover:text-emerald-400 transition-colors">
+                  {COMPANY_INFO.email}
+                </a>
+                <div className="text-xs text-white/30 mt-0.5">企业邮箱：kefu@figo.cn</div>
+              </div>
+            </div>
+
+            <div className="glass-card rounded-xl p-5 flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+                <MapPin size={18} className="text-amber-400" />
               </div>
               <div>
                 <div className="text-sm font-medium text-white mb-0.5">公司地址</div>

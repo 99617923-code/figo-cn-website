@@ -1,33 +1,36 @@
 /*
  * 「量子棱镜」— 关于我们
- * 20年历程 + 资质展示 + 公司优势
+ * 公司年份基于2005年成立自动计算，无需每年更新
  */
-import { IMAGES, COMPANY_INFO } from "@/lib/constants";
+import { IMAGES, COMPANY_INFO, getCompanyYears } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
 import { Shield, Award, Users, Clock, CheckCircle, type LucideIcon } from "lucide-react";
 
-const advantages = [
-  {
-    icon: Clock,
-    title: "20年行业深耕",
-    description: "自2005年成立以来，持续专注软件定制开发领域，积累了丰富的行业经验和技术沉淀。",
-  },
-  {
-    icon: Users,
-    title: "100+专业团队",
-    description: "汇聚产品经理、架构师、全栈工程师、AI算法工程师等多领域专业人才。",
-  },
-  {
-    icon: Award,
-    title: "国家高新技术企业",
-    description: "通过国家高新技术企业认证，CMMI Level-3资质，新四板股权代码890461。",
-  },
-  {
-    icon: Shield,
-    title: "5000+项目交付",
-    description: "服务覆盖金融、教育、医疗、零售等多个行业，项目交付成功率行业领先。",
-  },
-];
+function getAdvantages() {
+  const years = getCompanyYears();
+  return [
+    {
+      icon: Clock,
+      title: `${years}年行业深耕`,
+      description: `自2005年成立以来，持续专注软件定制开发领域，积累了${years}年丰富的行业经验和技术沉淀。`,
+    },
+    {
+      icon: Users,
+      title: "100+专业团队",
+      description: "汇聚产品经理、架构师、全栈工程师、AI算法工程师等多领域专业人才。",
+    },
+    {
+      icon: Award,
+      title: "国家高新技术企业",
+      description: `通过国家高新技术企业认证，CMMI Level-3资质，新四板股权代码${COMPANY_INFO.stockCode}。`,
+    },
+    {
+      icon: Shield,
+      title: "5000+项目交付",
+      description: "服务覆盖金融、教育、医疗、零售等多个行业，项目交付成功率行业领先。",
+    },
+  ];
+}
 
 function AdvantageCard({ adv, index }: { adv: { icon: LucideIcon; title: string; description: string }; index: number }) {
   const { ref, isInView } = useInView();
@@ -50,6 +53,8 @@ function AdvantageCard({ adv, index }: { adv: { icon: LucideIcon; title: string;
 export default function AboutSection() {
   const { ref: titleRef, isInView: titleVisible } = useInView();
   const { ref: imgRef, isInView: imgVisible } = useInView();
+  const companyYears = getCompanyYears();
+  const advantages = getAdvantages();
 
   return (
     <section id="about" className="relative py-24 lg:py-32">
@@ -64,7 +69,7 @@ export default function AboutSection() {
         >
           <span className="text-xs font-medium tracking-widest uppercase text-amber-400/80 mb-3 block">About Us</span>
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
-            <span className="gradient-text">20年</span>技术沉淀
+            <span className="gradient-text">{companyYears}年</span>技术沉淀
           </h2>
           <p className="mt-4 text-base text-white/50 leading-relaxed">
             {COMPANY_INFO.name}成立于{COMPANY_INFO.established}年，是一家专注于软件定制开发的国家高新技术企业。从传统软件开发到AI智能体定制，我们始终站在技术前沿，为企业数字化转型提供强有力的技术支撑。
@@ -80,7 +85,7 @@ export default function AboutSection() {
           >
             <img
               src={IMAGES.heritage}
-              alt="火鹰科技20年技术演进历程"
+              alt={`火鹰科技${companyYears}年技术演进历程`}
               className="w-full h-72 lg:h-96 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c14]/80 via-transparent to-transparent" />
