@@ -17,7 +17,6 @@ export const PRODUCTS = [
     name: "火鹰引擎 FigoAPI",
     tagline: "企业级大模型 API 管理平台",
     description: "统一API网关，一键接入OpenAI、Claude、Gemini、DeepSeek等20+主流大模型。智能路由、自动熔断、内容安全过滤、精细计费，为企业AI应用保驾护航。",
-    url: "https://api.figo.cn",
     stats: [
       { label: "支持模型", value: "100+" },
       { label: "服务可用性", value: "99.9%" },
@@ -32,7 +31,6 @@ export const PRODUCTS = [
     name: "SaleSpark",
     tagline: "AI销售训练平台",
     description: "与逼真的AI客户对话训练，掌握SPIN、挑战者销售、MEDDIC等经过验证的销售方法论。实时AI教练提供5维度评分，游戏化成长体系让每位销售成为顶尖高手。",
-    url: "https://www.salespark.vip",
     stats: [
       { label: "活跃用户", value: "1,200+" },
       { label: "训练场次", value: "49,000+" },
@@ -47,7 +45,6 @@ export const PRODUCTS = [
     name: "火鹰导师替身系统",
     tagline: "数字人复刻系统",
     description: "深度复刻导师的思维、声音和知识体系，打造7×24小时在线的数字分身。自动回复学员咨询、主动关怀跟进、智能管理对话，让导师的影响力突破时间和空间的限制。",
-    url: "https://moss.figo.cn",
     stats: [
       { label: "声音克隆", value: "高保真" },
       { label: "在线时长", value: "7×24h" },
@@ -62,7 +59,6 @@ export const PRODUCTS = [
     name: "Ring AI",
     tagline: "AI智能戒指移动应用",
     description: "通用AI智能戒指移动应用，支持连接市场上所有开放API/SDK的智能戒指。提供AI健康分析、家人绑定、多维度数据分析、订阅增值服务，全球适用。",
-    url: "https://github.com/99617923-code/ring-ai",
     stats: [
       { label: "设备兼容", value: "全品牌" },
       { label: "语言支持", value: "全球化" },
@@ -77,7 +73,6 @@ export const PRODUCTS = [
     name: "FigoAI 智能工具平台",
     tagline: "AI驱动的智能工具订阅平台",
     description: "集成多种AI能力，包括AI写标书、AI视频创作、学术AI助手、企微智能客服、直播切片、AI智能表格等功能。按量付费，用多少付多少。",
-    url: "https://www.figoai.xyz",
     stats: [
       { label: "累计用户", value: "10,000+" },
       { label: "处理任务", value: "100,000+" },
