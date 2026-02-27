@@ -37,7 +37,6 @@ import FAQSection from "@/components/FAQSection";
 import UrgencyCTA from "@/components/UrgencyCTA";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
 import SEOHead from "@/components/SEOHead";
 
 export default function FigoAgent() {
@@ -63,7 +62,6 @@ export default function FigoAgent() {
         <ContactSection />
       </main>
       <Footer />
-      <FloatingCTA />
     </div>
   );
 }
