@@ -3,13 +3,17 @@
  * 路径: /FigoAgent/
  * 独立于旧站点，作为AI智能体业务的专属展示页
  * 
- * 营销型网站完整结构（AI增强版）：
+ * 营销型网站完整结构（AI增强版 v2）：
  * 1. Hero首屏 - 第一印象，统计数据社会证明
+ * 1.5 客户Logo滚动墙 - 无缝循环滚动，强化信任
  * 2. AI技术架构 - 三层AI架构可视化，展示技术深度
+ * 2.5 AI系统实时数据 - 技术数据仪表盘，展示实力
  * 3. 产品矩阵 - 展示AI产品实力（AI Powered标签）
+ * 3.5 产品对比矩阵 - 快速选择合适产品
  * 4. AI能力演示 - 实时对话演示，展示Moss等自研产品
  * 5. 服务能力 - 全栈AI服务覆盖（AI标签）
  * 6. 成功案例 - 真实项目数据，用成果说话
+ * 6.5 ROI计算器 - 直观展示投资回报，降低决策门槛
  * 7. 信任背书 - 客户评价、资质证书、行业覆盖
  * 8. 技术生态 - 合作伙伴和客户类型
  * 9. 开发流程 - AI化专业方法论
@@ -20,11 +24,15 @@
  */
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import ClientLogoWall from "@/components/ClientLogoWall";
 import AIArchitectureSection from "@/components/AIArchitectureSection";
+import AIMetricsDashboard from "@/components/AIMetricsDashboard";
 import ProductsSection from "@/components/ProductsSection";
+import ProductComparisonMatrix from "@/components/ProductComparisonMatrix";
 import AIShowcaseSection from "@/components/AIShowcaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import CaseStudySection from "@/components/CaseStudySection";
+import ROICalculator from "@/components/ROICalculator";
 import TrustSection from "@/components/TrustSection";
 import PartnersSection from "@/components/PartnersSection";
 import ProcessSection from "@/components/ProcessSection";
@@ -33,6 +41,7 @@ import FAQSection from "@/components/FAQSection";
 import UrgencyCTA from "@/components/UrgencyCTA";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import FloatingCTA from "@/components/FloatingCTA";
 import SEOHead from "@/components/SEOHead";
 
 export default function FigoAgent() {
@@ -42,11 +51,15 @@ export default function FigoAgent() {
       <Navbar />
       <main>
         <HeroSection />
+        <ClientLogoWall />
         <AIArchitectureSection />
+        <AIMetricsDashboard />
         <ProductsSection />
+        <ProductComparisonMatrix />
         <AIShowcaseSection />
         <ServicesSection />
         <CaseStudySection />
+        <ROICalculator />
         <TrustSection />
         <PartnersSection />
         <ProcessSection />
@@ -56,6 +69,7 @@ export default function FigoAgent() {
         <ContactSection />
       </main>
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }

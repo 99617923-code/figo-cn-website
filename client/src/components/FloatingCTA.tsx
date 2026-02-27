@@ -34,6 +34,13 @@ export default function FloatingCTA() {
     }
   };
 
+  const trackClick = (action: string) => {
+    try {
+      // @ts-ignore
+      if (window._hmt) { window._hmt.push(["_trackEvent", "floating_cta", "click", action]); }
+    } catch {}
+  };
+
   return (
     <>
       {/* Floating buttons */}
@@ -111,7 +118,7 @@ export default function FloatingCTA() {
                     <rect x="25" y="55" width="5" height="5" fill="#0c0c14" />
                     {/* Fire hawk logo center */}
                     <rect x="42" y="25" width="16" height="16" fill="white" stroke="#0c0c14" strokeWidth="1" rx="2" />
-                    <text x="50" y="36" textAnchor="middle" fill="#0c0c14" fontSize="10" fontWeight="bold">火</text>
+                    <image href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/yUbGYKiGhGOgSXOq.png" x="43" y="26" width="14" height="14" />
                   </svg>
                 </div>
               </div>
@@ -124,6 +131,7 @@ export default function FloatingCTA() {
             onClick={() => {
               setWechatExpanded(!wechatExpanded);
               setPhoneExpanded(false);
+              trackClick("wechat");
             }}
             className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-0.5"
             title="微信咨询"
@@ -150,6 +158,7 @@ export default function FloatingCTA() {
             onClick={() => {
               setPhoneExpanded(!phoneExpanded);
               setWechatExpanded(false);
+              trackClick("phone");
             }}
             className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:-translate-y-0.5"
             title="电话咨询"

@@ -103,6 +103,56 @@ function getWebsiteData() {
   };
 }
 
+function getFAQData() {
+  const years = getCompanyYears();
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "火鹰科技在AI智能体开发方面有哪些优势？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `火鹰科技成立于2005年，拥有${years}年软件开发经验，是国家高新技术企业、CMMI Level-3认证企业。已成功交付5000+项目，在AI智能体领域已推出火鹰引擎、SaleSpark、导师替身系统、Ring AI、FigoAI等5大产品。`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "AI智能体定制开发的周期和费用大概是多少？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "项目周期和费用取决于具体需求的复杂度。基础AI对话机器人2-4周可交付，中等复杂度的AI智能体需要6-10周，大型AI平台需要3-6个月。我们提供免费的需求评估和方案报价服务。",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "你们支持哪些大模型的接入？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "我们的火鹰引擎平台已接入20+主流大模型，包括OpenAI GPT-4o、Claude 3.5、Gemini Pro、DeepSeek V3/R1、通义千问、文心一言等。同时支持开源模型的私有化部署。",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "项目交付后提供哪些售后服务？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "我们提供3-12个月免费维护期、7×24小时技术支持、定期系统巡检、功能迭代升级服务、完整技术文档和培训服务。客户满意度达98%。",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "数据安全和隐私保护如何保障？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "所有系统采用多租户架构确保数据隔离，传输层使用TLS 1.3加密，存储层使用AES-256加密。支持私有化部署，严格遵守《网络安全法》和《个人信息保护法》。",
+        },
+      },
+    ],
+  };
+}
+
 export default function SEOHead() {
   useEffect(() => {
     const orgScript = document.createElement("script");
@@ -115,9 +165,15 @@ export default function SEOHead() {
     webScript.textContent = JSON.stringify(getWebsiteData());
     document.head.appendChild(webScript);
 
+    const faqScript = document.createElement("script");
+    faqScript.type = "application/ld+json";
+    faqScript.textContent = JSON.stringify(getFAQData());
+    document.head.appendChild(faqScript);
+
     return () => {
       document.head.removeChild(orgScript);
       document.head.removeChild(webScript);
+      document.head.removeChild(faqScript);
     };
   }, []);
 

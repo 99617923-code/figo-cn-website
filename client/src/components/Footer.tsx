@@ -20,9 +20,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/25">
-                火
-              </div>
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/yUbGYKiGhGOgSXOq.png" alt="火鹰科技" className="h-9 w-auto object-contain" />
               <div className="flex flex-col">
                 <span className="text-white font-semibold text-base leading-tight">{COMPANY_INFO.shortName}</span>
                 <span className="text-[10px] text-white/40 leading-tight tracking-wider">AI AGENT STUDIO</span>
