@@ -1,12 +1,14 @@
 /*
  * 「量子棱镜」— 浮动CTA组件
  * 固定在页面右侧的快速咨询按钮组
- * 包含：电话咨询、在线咨询、微信扫码、回到顶部
+ * 包含：电话咨询、微信扫码、回到顶部
  * 营销目标：随时可见的转化入口，降低客户决策门槛
  */
 import { COMPANY_INFO } from "@/lib/constants";
-import { Phone, MessageCircle, ArrowUp, X } from "lucide-react";
+import { Phone, ArrowUp, X } from "lucide-react";
 import { useState, useEffect } from "react";
+
+const WECHAT_QR_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/YtbUYDAJtEwhIZuy.png";
 
 export default function FloatingCTA() {
   const [showBackTop, setShowBackTop] = useState(false);
@@ -23,15 +25,6 @@ export default function FloatingCTA() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const scrollToContact = () => {
-    const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/FigoAgent#contact";
-    }
   };
 
   const trackClick = (action: string) => {
@@ -69,58 +62,12 @@ export default function FloatingCTA() {
                   <X size={14} />
                 </button>
               </div>
-              <div className="w-full aspect-square rounded-xl bg-white flex items-center justify-center mb-3 overflow-hidden">
-                {/* 微信二维码占位 - 使用SVG生成简单的二维码样式 */}
-                <div className="text-center p-4">
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    <rect width="100" height="100" fill="white" />
-                    {/* QR code pattern */}
-                    <rect x="10" y="10" width="25" height="25" fill="#0c0c14" rx="2" />
-                    <rect x="13" y="13" width="19" height="19" fill="white" rx="1" />
-                    <rect x="16" y="16" width="13" height="13" fill="#0c0c14" rx="1" />
-                    <rect x="65" y="10" width="25" height="25" fill="#0c0c14" rx="2" />
-                    <rect x="68" y="13" width="19" height="19" fill="white" rx="1" />
-                    <rect x="71" y="16" width="13" height="13" fill="#0c0c14" rx="1" />
-                    <rect x="10" y="65" width="25" height="25" fill="#0c0c14" rx="2" />
-                    <rect x="13" y="68" width="19" height="19" fill="white" rx="1" />
-                    <rect x="16" y="71" width="13" height="13" fill="#0c0c14" rx="1" />
-                    {/* Center data */}
-                    <rect x="40" y="10" width="5" height="5" fill="#0c0c14" />
-                    <rect x="48" y="10" width="5" height="5" fill="#0c0c14" />
-                    <rect x="40" y="18" width="5" height="5" fill="#0c0c14" />
-                    <rect x="55" y="18" width="5" height="5" fill="#0c0c14" />
-                    <rect x="40" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="48" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="55" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="40" y="48" width="5" height="5" fill="#0c0c14" />
-                    <rect x="48" y="48" width="5" height="5" fill="#0c0c14" />
-                    <rect x="55" y="48" width="5" height="5" fill="#0c0c14" />
-                    <rect x="65" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="75" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="85" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="65" y="48" width="5" height="5" fill="#0c0c14" />
-                    <rect x="85" y="48" width="5" height="5" fill="#0c0c14" />
-                    <rect x="65" y="55" width="5" height="5" fill="#0c0c14" />
-                    <rect x="75" y="55" width="5" height="5" fill="#0c0c14" />
-                    <rect x="85" y="55" width="5" height="5" fill="#0c0c14" />
-                    <rect x="65" y="65" width="5" height="5" fill="#0c0c14" />
-                    <rect x="75" y="65" width="5" height="5" fill="#0c0c14" />
-                    <rect x="85" y="65" width="5" height="5" fill="#0c0c14" />
-                    <rect x="40" y="55" width="5" height="5" fill="#0c0c14" />
-                    <rect x="48" y="55" width="5" height="5" fill="#0c0c14" />
-                    <rect x="10" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="18" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="25" y="40" width="5" height="5" fill="#0c0c14" />
-                    <rect x="10" y="48" width="5" height="5" fill="#0c0c14" />
-                    <rect x="25" y="48" width="5" height="5" fill="#0c0c14" />
-                    <rect x="10" y="55" width="5" height="5" fill="#0c0c14" />
-                    <rect x="18" y="55" width="5" height="5" fill="#0c0c14" />
-                    <rect x="25" y="55" width="5" height="5" fill="#0c0c14" />
-                    {/* Fire hawk logo center */}
-                    <rect x="42" y="25" width="16" height="16" fill="white" stroke="#0c0c14" strokeWidth="1" rx="2" />
-                    <image href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/yUbGYKiGhGOgSXOq.png" x="43" y="26" width="14" height="14" />
-                  </svg>
-                </div>
+              <div className="w-full aspect-square rounded-xl bg-white p-2 mb-3 overflow-hidden">
+                <img
+                  src={WECHAT_QR_URL}
+                  alt="企业微信二维码"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
               <p className="text-xs text-white/40 text-center leading-relaxed">
                 扫码添加企业微信<br />获取一对一专属咨询服务
@@ -166,8 +113,6 @@ export default function FloatingCTA() {
             <Phone size={18} />
           </button>
         </div>
-
-
       </div>
     </>
   );

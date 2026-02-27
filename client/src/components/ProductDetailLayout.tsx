@@ -6,8 +6,10 @@ import { useInView } from "@/hooks/useInView";
 import { COMPANY_INFO } from "@/lib/constants";
 import { Phone, Mail, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import WechatQRModal from "./WechatQRModal";
 
 interface Feature {
   icon: React.ReactNode;
@@ -153,9 +155,7 @@ export default function ProductDetailLayout({
   name, tagline, heroDescription, gradient, gradientColors, heroIcon,
   stats, features, scenarios, techAdvantages, architectureDescription, children,
 }: ProductDetailProps) {
-  const scrollToContact = () => {
-    window.location.href = "/FigoAgent#contact";
-  };
+  const [qrModalOpen, setQrModalOpen] = useState(false);
 
   const companyYears = new Date().getFullYear() - 2005;
 
@@ -209,10 +209,13 @@ export default function ProductDetailLayout({
 
             <div className="flex flex-wrap gap-4">
               <button
-                onClick={scrollToContact}
+                onClick={() => setQrModalOpen(true)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-white bg-gradient-to-r ${gradient} hover:shadow-lg transition-all hover:-translate-y-0.5`}
               >
-                <Phone size={16} />
+                {/* WeChat icon */}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18z" />
+                </svg>
                 预约产品演示
               </button>
               <a
@@ -302,18 +305,21 @@ export default function ProductDetailLayout({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button
-              onClick={scrollToContact}
+              onClick={() => setQrModalOpen(true)}
               className={`flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium text-white bg-gradient-to-r ${gradient} hover:shadow-xl transition-all hover:-translate-y-0.5`}
             >
-              <Phone size={18} />
-              立即咨询：{COMPANY_INFO.salesPhone}
+              {/* WeChat icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18z" />
+              </svg>
+              扫码咨询：获取专属方案
             </button>
             <a
-              href={`mailto:${COMPANY_INFO.email}`}
+              href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`}
               className="flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium text-white/70 bg-white/[0.06] border border-white/[0.1] hover:bg-white/[0.1] hover:text-white transition-all"
             >
-              <Mail size={18} />
-              发送邮件咨询
+              <Phone size={18} />
+              电话咨询：{COMPANY_INFO.salesPhone}
             </a>
           </div>
         </div>
@@ -321,6 +327,14 @@ export default function ProductDetailLayout({
 
       {/* 使用完整的Footer */}
       <Footer />
+
+      {/* WeChat QR Modal */}
+      <WechatQRModal
+        open={qrModalOpen}
+        onClose={() => setQrModalOpen(false)}
+        title={`获取${name}演示`}
+        subtitle="扫码添加企业微信，获取一对一产品演示和定制方案"
+      />
     </div>
   );
 }

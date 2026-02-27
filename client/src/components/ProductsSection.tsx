@@ -1,23 +1,20 @@
 /*
  * 「量子棱镜」— 产品矩阵
  * 毛玻璃卡片 + 渐变边框光泽 + stagger入场动画
- * 落地页展示模式：点击"了解详情"进入产品详情页，点击"获取演示"引导联系销售
+ * 落地页展示模式：点击"了解详情"进入产品详情页，点击"获取演示"弹出企微二维码
  */
 import { PRODUCTS } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
-import { Cpu, Target, User, Watch, Sparkles, Phone, ArrowRight } from "lucide-react";
+import { Cpu, Target, User, Watch, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
+import WechatQRModal from "@/components/WechatQRModal";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Cpu, Target, User, Watch, Sparkles,
 };
 
-function scrollToContact() {
-  const el = document.getElementById("contact");
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-}
-
-function ProductCard({ product, index }: { product: typeof PRODUCTS[0]; index: number }) {
+function ProductCard({ product, index, onGetDemo }: { product: typeof PRODUCTS[0]; index: number; onGetDemo: (name: string) => void }) {
   const { ref, isInView } = useInView();
   const Icon = iconMap[product.icon] || Sparkles;
 
@@ -97,10 +94,13 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[0]; index: n
           <ArrowRight size={14} />
         </Link>
         <button
-          onClick={scrollToContact}
+          onClick={() => onGetDemo(product.name)}
           className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium text-white/80 bg-gradient-to-r ${product.gradient} opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer`}
         >
-          <Phone size={14} />
+          {/* WeChat icon */}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18z" />
+          </svg>
           获取演示
         </button>
       </div>
@@ -110,6 +110,13 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[0]; index: n
 
 export default function ProductsSection() {
   const { ref: titleRef, isInView: titleVisible } = useInView();
+  const [qrModalOpen, setQrModalOpen] = useState(false);
+  const [qrProductName, setQrProductName] = useState("");
+
+  const handleGetDemo = (productName: string) => {
+    setQrProductName(productName);
+    setQrModalOpen(true);
+  };
 
   return (
     <section id="products" className="relative py-24 lg:py-32">
@@ -141,15 +148,23 @@ export default function ProductsSection() {
         {/* Product grid - first 3 in top row, last 2 centered below */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6">
           {PRODUCTS.slice(0, 3).map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+            <ProductCard key={product.id} product={product} index={i} onGetDemo={handleGetDemo} />
           ))}
         </div>
         <div className="grid md:grid-cols-2 gap-5 lg:gap-6 mt-5 lg:mt-6 max-w-4xl mx-auto">
           {PRODUCTS.slice(3).map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i + 3} />
+            <ProductCard key={product.id} product={product} index={i + 3} onGetDemo={handleGetDemo} />
           ))}
         </div>
       </div>
+
+      {/* WeChat QR Modal */}
+      <WechatQRModal
+        open={qrModalOpen}
+        onClose={() => setQrModalOpen(false)}
+        title={`获取${qrProductName}演示`}
+        subtitle="扫码添加企业微信，获取一对一产品演示"
+      />
     </section>
   );
 }
