@@ -13,6 +13,8 @@ const SCENARIOS = [
     label: "AI智能客服",
     icon: "💬",
     defaults: { teamSize: 10, avgSalary: 8000, efficiency: 60 },
+    baseInvestment: 15,  // 基础投入万元
+    perPersonCost: 0.8,  // 每人额外成本万元
     description: "用AI替代部分人工客服，7×24小时在线",
   },
   {
@@ -20,6 +22,8 @@ const SCENARIOS = [
     label: "AI销售训练",
     icon: "🎯",
     defaults: { teamSize: 30, avgSalary: 12000, efficiency: 35 },
+    baseInvestment: 20,
+    perPersonCost: 0.5,
     description: "AI模拟客户训练销售，提升成交率",
   },
   {
@@ -27,6 +31,8 @@ const SCENARIOS = [
     label: "数字人复刻",
     icon: "🧑‍💼",
     defaults: { teamSize: 5, avgSalary: 20000, efficiency: 80 },
+    baseInvestment: 25,
+    perPersonCost: 3,
     description: "导师/专家数字分身，突破服务瓶颈",
   },
 ];
@@ -48,15 +54,16 @@ export default function ROICalculator() {
   };
 
   const roi = useMemo(() => {
+    const scenario = SCENARIOS[activeScenario];
     const monthlyCost = teamSize * avgSalary;
     const annualCost = monthlyCost * 12;
     const savingsRate = efficiencyGain / 100;
     const annualSavings = annualCost * savingsRate;
-    // 假设AI系统投入为年节省的30%
-    const aiInvestment = annualSavings * 0.3;
+    // AI系统投入 = 基础投入 + 每人额外成本，单位万元转为元
+    const aiInvestment = (scenario.baseInvestment + scenario.perPersonCost * teamSize) * 10000;
     const netSavings = annualSavings - aiInvestment;
     const roiPercent = aiInvestment > 0 ? ((netSavings / aiInvestment) * 100) : 0;
-    const paybackMonths = aiInvestment > 0 ? Math.ceil((aiInvestment / annualSavings) * 12) : 0;
+    const paybackMonths = annualSavings > 0 ? Math.max(1, Math.ceil((aiInvestment / annualSavings) * 12)) : 0;
 
     return {
       annualCost: Math.round(annualCost),
@@ -66,7 +73,7 @@ export default function ROICalculator() {
       roiPercent: Math.round(roiPercent),
       paybackMonths,
     };
-  }, [teamSize, avgSalary, efficiencyGain]);
+  }, [teamSize, avgSalary, efficiencyGain, activeScenario]);
 
   const formatCurrency = (value: number) => {
     if (value >= 10000) {

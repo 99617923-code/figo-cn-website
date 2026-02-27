@@ -5,9 +5,7 @@
  * 
  * 营销型网站完整结构（AI增强版 v2）：
  * 1. Hero首屏 - 第一印象，统计数据社会证明
- * 1.5 客户Logo滚动墙 - 无缝循环滚动，强化信任
  * 2. AI技术架构 - 三层AI架构可视化，展示技术深度
- * 2.5 AI系统实时数据 - 技术数据仪表盘，展示实力
  * 3. 产品矩阵 - 展示AI产品实力（AI Powered标签）
  * 3.5 产品对比矩阵 - 快速选择合适产品
  * 4. AI能力演示 - 实时对话演示，展示Moss等自研产品
@@ -24,9 +22,7 @@
  */
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ClientLogoWall from "@/components/ClientLogoWall";
 import AIArchitectureSection from "@/components/AIArchitectureSection";
-import AIMetricsDashboard from "@/components/AIMetricsDashboard";
 import ProductsSection from "@/components/ProductsSection";
 import ProductComparisonMatrix from "@/components/ProductComparisonMatrix";
 import AIShowcaseSection from "@/components/AIShowcaseSection";
@@ -51,9 +47,7 @@ export default function FigoAgent() {
       <Navbar />
       <main>
         <HeroSection />
-        <ClientLogoWall />
         <AIArchitectureSection />
-        <AIMetricsDashboard />
         <ProductsSection />
         <ProductComparisonMatrix />
         <AIShowcaseSection />
