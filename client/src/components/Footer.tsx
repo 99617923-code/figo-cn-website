@@ -21,10 +21,6 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
               <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/yUbGYKiGhGOgSXOq.png" alt="火鹰科技" className="h-9 w-auto object-contain" />
-              <div className="flex flex-col">
-                <span className="text-white font-semibold text-base leading-tight">{COMPANY_INFO.shortName}</span>
-                <span className="text-[10px] text-white/40 leading-tight tracking-wider">AI AGENT STUDIO</span>
-              </div>
             </div>
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
               {COMPANY_INFO.established}年成立，{companyYears}年专注软件定制开发，国家高新技术企业。从传统软件到AI智能体，始终引领技术前沿。

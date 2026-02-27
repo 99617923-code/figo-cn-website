@@ -83,10 +83,6 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
           className="flex items-center gap-2.5 group"
         >
           <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/yUbGYKiGhGOgSXOq.png" alt="火鹰科技" className="h-9 w-auto object-contain group-hover:brightness-110 transition-all" />
-          <div className="flex flex-col">
-            <span className="text-white font-semibold text-base leading-tight tracking-tight">{COMPANY_INFO.shortName}</span>
-            <span className="text-[10px] text-white/40 leading-tight tracking-wider">AI AGENT STUDIO</span>
-          </div>
         </Link>
 
         {/* Desktop Nav */}
