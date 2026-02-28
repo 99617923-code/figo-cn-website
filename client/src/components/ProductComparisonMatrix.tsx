@@ -33,11 +33,11 @@ const COMPARISON_DATA = {
     },
   ],
   products: [
-    { name: "FigoAPI", path: "/FigoAgent/products/figo-engine", gradient: "from-blue-500 to-purple-600" },
-    { name: "SaleSpark", path: "/FigoAgent/products/salespark", gradient: "from-orange-500 to-rose-500" },
-    { name: "Moss", path: "/FigoAgent/products/moss", gradient: "from-amber-500 to-red-600" },
-    { name: "Ring AI", path: "/FigoAgent/products/ring-ai", gradient: "from-emerald-500 to-cyan-500" },
-    { name: "FigoAI", path: "/FigoAgent/products/figo-ai", gradient: "from-violet-500 to-fuchsia-500" },
+    { name: "FigoAPI", path: "/products/figo-engine", gradient: "from-blue-500 to-purple-600" },
+    { name: "SaleSpark", path: "/products/salespark", gradient: "from-orange-500 to-rose-500" },
+    { name: "Moss", path: "/products/moss", gradient: "from-amber-500 to-red-600" },
+    { name: "Ring AI", path: "/products/ring-ai", gradient: "from-emerald-500 to-cyan-500" },
+    { name: "FigoAI", path: "/products/figo-ai", gradient: "from-violet-500 to-fuchsia-500" },
   ],
 };
 

@@ -19,7 +19,7 @@ export default function Moss() {
       tagline="AI数字人复刻系统"
       description="火鹰导师替身系统Moss深度复刻导师的思维模式、声音特征和知识体系，打造7×24小时在线的AI数字分身。自动回复学员咨询、主动关怀跟进、智能管理对话，让导师影响力突破时空限制。"
       keywords={["AI数字人", "导师替身", "声音克隆", "AI数字分身", "知识付费AI", "在线教育AI", "RAG知识库", "Moss", "火鹰科技"]}
-      path="/FigoAgent/products/moss"
+      path="/products/moss"
     />
     <ProductDetailLayout
       name="火鹰导师替身系统"

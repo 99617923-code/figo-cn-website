@@ -176,9 +176,9 @@ export default function ProductDetailLayout({
         <div className="container relative">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-white/40 mb-8">
-            <Link href="/FigoAgent" className="hover:text-white/60 transition-colors">首页</Link>
+            <Link href="/" className="hover:text-white/60 transition-colors">首页</Link>
             <ChevronRight size={14} />
-            <Link href="/FigoAgent#products" className="hover:text-white/60 transition-colors">产品矩阵</Link>
+            <Link href="/#products" className="hover:text-white/60 transition-colors">产品矩阵</Link>
             <ChevronRight size={14} />
             <span className="text-white/80">{name}</span>
           </div>

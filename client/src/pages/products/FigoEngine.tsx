@@ -26,7 +26,7 @@ export default function FigoEngine() {
       tagline="企业级大模型API管理平台"
       description="火鹰引擎FigoAPI是新一代企业级大模型API管理平台，统一接入OpenAI、Claude、Gemini、DeepSeek等20+主流大模型。提供智能路由、自动熔断、内容安全过滤、精细计费等核心能力，为企业AI应用保驾护航。"
       keywords={["大模型API管理", "AI API网关", "OpenAI API代理", "大模型统一接入", "AI模型路由", "企业级AI平台", "火鹰引擎", "FigoAPI", "火鹰科技"]}
-      path="/FigoAgent/products/figo-engine"
+      path="/products/figo-engine"
     />
     <ProductDetailLayout
       name="火鹰引擎 FigoAPI"

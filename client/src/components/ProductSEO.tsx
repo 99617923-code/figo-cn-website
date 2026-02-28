@@ -78,13 +78,13 @@ export default function ProductSEO({ name, tagline, description, keywords, path 
           "@type": "ListItem",
           position: 1,
           name: "首页",
-          item: `${baseUrl}/FigoAgent`,
+          item: `${baseUrl}/`,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "产品矩阵",
-          item: `${baseUrl}/FigoAgent#products`,
+          item: `${baseUrl}/#products`,
         },
         {
           "@type": "ListItem",

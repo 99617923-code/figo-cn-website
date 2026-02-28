@@ -18,7 +18,7 @@ export default function SaleSpark() {
       tagline="AI销售训练平台"
       description="SaleSpark是AI驱动的智能销售训练平台，通过AI虚拟客户进行沉浸式对话训练，掌握SPIN、挑战者销售、MEDDIC等8+种销售方法论。实时AI教练提供5维度评分反馈，游戏化成长体系提升销售团队战斗力。"
       keywords={["AI销售训练", "智能销售教练", "销售方法论训练", "SPIN销售", "MEDDIC", "AI虚拟客户", "销售团队培训", "SaleSpark", "火鹰科技"]}
-      path="/FigoAgent/products/salespark"
+      path="/products/salespark"
     />
     <ProductDetailLayout
       name="SaleSpark"

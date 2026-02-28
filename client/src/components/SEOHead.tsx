@@ -34,7 +34,7 @@ function getStructuredData() {
       },
       {
         "@type": "ContactPoint",
-        telephone: `+86-${COMPANY_INFO.phone}`,
+        telephone: `+86-${COMPANY_INFO.salesPhone.replace(/-/g, "")}`,
         email: COMPANY_INFO.email,
         contactType: "customer service",
         availableLanguage: ["Chinese", "English"],

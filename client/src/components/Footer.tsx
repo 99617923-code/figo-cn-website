@@ -1,9 +1,19 @@
 /*
  * 「量子棱镜」— 页脚
- * 品牌信息 + 导航链接 + 版权声明
- * 使用旧站真实备案信息，年份自动计算
+ * 品牌信息 + 导航链接 + 产品矩阵 + APP案例 + 联系方式 + 版权声明
  */
 import { COMPANY_INFO, NAV_ITEMS, PRODUCTS, getCompanyYears } from "@/lib/constants";
+
+const APP_CASES = [
+  { name: "智能家居APP", href: "/old/case/app/show_184.html" },
+  { name: "用工发布平台", href: "/old/case/app/show_173.html" },
+  { name: "幼儿园管理系统", href: "/old/case/app/show_169.html" },
+  { name: "一对一视频交友APP", href: "/old/case/app/show_168.html" },
+  { name: "工程施工管理系统", href: "/old/case/app/show_167.html" },
+  { name: "打印交易商城APP", href: "/old/case/app/show_165.html" },
+  { name: "智慧物业管理系统", href: "/old/case/xiaochengxu/show_187.html" },
+  { name: "研学活动小程序", href: "/old/case/xiaochengxu/show_186.html" },
+];
 
 export default function Footer() {
   const handleNavClick = (href: string) => {
@@ -16,7 +26,7 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/5 bg-[#080810]">
       <div className="container py-16 lg:py-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
@@ -41,15 +51,24 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">快速导航</h4>
             <ul className="space-y-2.5">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
-                    className="text-sm text-white/40 hover:text-white/70 transition-colors"
-                  >
-                    {item.label}
-                  </a>
+              {NAV_ITEMS.map((item, index) => (
+                <li key={`${item.href}-${index}`}>
+                  {(item as any).external ? (
+                    <a
+                      href={item.href}
+                      className="text-sm text-white/40 hover:text-white/70 transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
+                      className="text-sm text-white/40 hover:text-white/70 transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -72,16 +91,37 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* APP Cases */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4">APP定制开发</h4>
+            <ul className="space-y-2.5">
+              {APP_CASES.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="text-sm text-white/40 hover:text-white/70 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="/old/case"
+                  className="text-sm text-emerald-400/60 hover:text-emerald-400 transition-colors"
+                >
+                  查看更多案例 →
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">联系我们</h4>
             <ul className="space-y-2.5">
               <li className="text-sm text-white/40">
                 <span className="text-white/60">地址：</span>{COMPANY_INFO.address}
-              </li>
-              <li className="text-sm text-white/40">
-                <span className="text-white/60">座机：</span>
-                <a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-white/70 transition-colors">{COMPANY_INFO.phone}</a>
               </li>
               <li className="text-sm text-white/40">
                 <span className="text-white/60">官网：</span>

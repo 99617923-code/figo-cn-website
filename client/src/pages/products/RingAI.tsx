@@ -18,7 +18,7 @@ export default function RingAI() {
       tagline="通用AI智能戒指移动应用"
       description="Ring AI是面向全球市场的通用AI智能戒指移动应用，支持连接市场上所有开放API/SDK的智能戒指品牌。通过AI健康分析引擎提供个性化健康洞察、家人绑定关怀、多维度数据分析和订阅增值服务。"
       keywords={["AI智能戒指", "智能穿戴应用", "AI健康分析", "智能戒指App", "健康数据监测", "React Native", "Ring AI", "火鹰科技"]}
-      path="/FigoAgent/products/ring-ai"
+      path="/products/ring-ai"
     />
     <ProductDetailLayout
       name="Ring AI"

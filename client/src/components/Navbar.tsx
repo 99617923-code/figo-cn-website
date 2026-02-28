@@ -2,9 +2,10 @@
  * 「量子棱镜」— 顶部导航栏
  * 毛玻璃效果 + 滚动时背景变深
  * 产品矩阵下拉菜单 + 支持首页/详情页两种模式
+ * 支持外部链接（APP定制开发、旧站点）
  */
 import { NAV_ITEMS, PRODUCTS, COMPANY_INFO } from "@/lib/constants";
-import { Menu, X, ChevronDown, Cpu, Target, User, Watch, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Cpu, Target, User, Watch, Sparkles, ExternalLink } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "wouter";
 
@@ -47,7 +48,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
     setMobileOpen(false);
     if (isDetailPage) {
       // 在详情页中，跳转回首页对应锚点
-      window.location.href = `/FigoAgent${href}`;
+      window.location.href = `/${href}`;
     } else {
       const el = document.querySelector(href);
       if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -79,7 +80,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
       <nav className="container flex items-center justify-between h-16 lg:h-20">
         {/* Logo */}
         <Link
-          href="/FigoAgent"
+          href="/"
           className="flex items-center gap-2.5 group"
         >
           <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/yUbGYKiGhGOgSXOq.png" alt="火鹰科技" className="h-9 w-auto object-contain group-hover:brightness-110 transition-all" />
@@ -87,7 +88,21 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-1">
-          {NAV_ITEMS.map((item) => {
+          {NAV_ITEMS.map((item, index) => {
+            // 外部链接（APP定制开发、旧站点）
+            if ((item as any).external) {
+              return (
+                <a
+                  key={`${item.href}-${index}`}
+                  href={item.href}
+                  className="flex items-center gap-1 px-4 py-2 text-sm text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+                >
+                  {item.label}
+                  <ExternalLink size={11} className="opacity-40" />
+                </a>
+              );
+            }
+
             // 产品矩阵项需要下拉菜单
             if (item.href === "#products") {
               return (
@@ -166,7 +181,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                       {/* Dropdown footer */}
                       <div className="px-5 py-3 border-t border-white/[0.06] bg-white/[0.02]">
                         <Link
-                          href="/FigoAgent"
+                          href="/"
                           onClick={() => {
                             setProductDropdownOpen(false);
                             setTimeout(() => {
@@ -188,7 +203,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
             return (
               <a
                 key={item.href}
-                href={isDetailPage ? `/FigoAgent${item.href}` : item.href}
+                href={isDetailPage ? `/${item.href}` : item.href}
                 onClick={(e) => {
                   if (!isDetailPage) {
                     e.preventDefault();
@@ -203,16 +218,10 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
           })}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button — 只保留免费咨询 */}
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`}
-            className="px-3 py-2 text-sm text-white/50 hover:text-white transition-colors"
-          >
-            {COMPANY_INFO.salesPhone}
-          </a>
-          <a
-            href={isDetailPage ? "/FigoAgent#contact" : "#contact"}
+            href={isDetailPage ? "/#contact" : "#contact"}
             onClick={(e) => {
               if (!isDetailPage) {
                 e.preventDefault();
@@ -238,7 +247,22 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
       {mobileOpen && (
         <div className="lg:hidden bg-[#0c0c14]/95 backdrop-blur-xl border-t border-white/5 max-h-[80vh] overflow-y-auto">
           <div className="container py-4 flex flex-col gap-1">
-            {NAV_ITEMS.map((item) => {
+            {NAV_ITEMS.map((item, index) => {
+              // 外部链接
+              if ((item as any).external) {
+                return (
+                  <a
+                    key={`${item.href}-${index}`}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-2 px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  >
+                    {item.label}
+                    <ExternalLink size={11} className="opacity-40" />
+                  </a>
+                );
+              }
+
               if (item.href === "#products") {
                 return (
                   <div key={item.href}>
@@ -279,7 +303,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               return (
                 <a
                   key={item.href}
-                  href={isDetailPage ? `/FigoAgent${item.href}` : item.href}
+                  href={isDetailPage ? `/${item.href}` : item.href}
                   onClick={(e) => {
                     if (!isDetailPage) {
                       e.preventDefault();
@@ -294,7 +318,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               );
             })}
             <a
-              href={isDetailPage ? "/FigoAgent#contact" : "#contact"}
+              href={isDetailPage ? "/#contact" : "#contact"}
               onClick={(e) => {
                 if (!isDetailPage) {
                   e.preventDefault();

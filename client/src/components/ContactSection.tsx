@@ -124,7 +124,7 @@ export default function ContactSection() {
                 <a href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`} className="text-sm text-white/50 hover:text-blue-400 transition-colors">
                   {COMPANY_INFO.salesPhone}
                 </a>
-                <div className="text-xs text-white/30 mt-0.5">座机：{COMPANY_INFO.phone}</div>
+
               </div>
             </div>
 
