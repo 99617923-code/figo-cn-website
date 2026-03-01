@@ -54,13 +54,13 @@ export default function HeroSection() {
   const companyYears = getCompanyYears();
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen lg:min-h-screen flex items-center overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#050a15] via-[#0a1428] to-[#0d1f3c]" />
 
       {/* Content */}
-      <div className="relative z-10 container py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 container py-12 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center min-h-[600px] lg:min-h-[500px]">
         <div className="max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm mb-10 animate-fade-up">
@@ -113,7 +113,7 @@ export default function HeroSection() {
           </div>
         </div>
         {/* 右侧：AI聊天演示 */}
-        <div className="w-full h-96 lg:h-96">
+        <div className="w-full h-[500px] lg:h-96">
           <AIChatDemo />
         </div>
       </div>

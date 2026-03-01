@@ -144,8 +144,8 @@ export const getCompanyYears = () => new Date().getFullYear() - FOUNDED_YEAR;
 export const STATS = [
   { value: "DYNAMIC_YEARS", suffix: "年+", label: "行业深耕" },
   { value: "5000", suffix: "+", label: "项目交付" },
-  { value: "100", suffix: "+", label: "专业团队" },
-  { value: "20", suffix: "+", label: "AI模型接入" },
+  { value: "6", suffix: "+", label: "自研AI产品" },
+  { value: "38", suffix: "+", label: "AI模型接入" },
 ];
 
 export const COMPANY_INFO = {
