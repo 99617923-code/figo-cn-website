@@ -270,10 +270,10 @@ export default function AIChatDemo() {
   }, [displayedMessages]);
 
   return (
-    <div className="flex gap-6 lg:gap-8 h-full items-stretch w-full">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-full items-stretch w-full">
       {/* 左侧：聊天窗口 */}
-      <div className="flex-1 flex flex-col gap-3 justify-between min-w-0">
-        <div className="text-2xl lg:text-3xl font-bold text-white leading-tight">
+      <div className="flex-1 flex flex-col gap-2 lg:gap-3 justify-between min-w-0">
+        <div className="text-xl lg:text-3xl font-bold text-white leading-tight">
           与 <span className="text-cyan-400">AI</span> 对话
           <br />
           快速体验<span className="text-cyan-400">6大产品</span>能力
@@ -342,19 +342,19 @@ export default function AIChatDemo() {
 
       {/* 右侧：多模态内容展示区 */}
       <div className="flex-1 flex flex-col items-center justify-center min-w-0">
-        <div className="w-full h-full bg-white/8 backdrop-blur-sm border border-cyan-400/20 rounded-2xl p-4 lg:p-6 text-center flex flex-col justify-between items-center gap-3 animate-fade-up overflow-hidden">
+        <div className="w-full h-full bg-white/8 backdrop-blur-sm border border-cyan-400/20 rounded-xl lg:rounded-2xl p-3 lg:p-6 text-center flex flex-col justify-between items-center gap-2 lg:gap-3 animate-fade-up overflow-hidden">
           {/* 标题和图标 */}
-          <div className="flex flex-col items-center gap-2">
-            <div className="text-3xl lg:text-4xl text-cyan-400">
+          <div className="flex flex-col items-center gap-1 lg:gap-2">
+            <div className="text-2xl lg:text-4xl text-cyan-400">
               {currentScenario.icon}
             </div>
-            <div className="text-base lg:text-lg font-bold text-cyan-400 line-clamp-2">
+            <div className="text-sm lg:text-lg font-bold text-cyan-400 line-clamp-2">
               {currentScenario.title}
             </div>
           </div>
 
-          {/* 多模态内容预览 */}
-          <div className="flex-1 w-full min-h-0 flex items-center justify-center">
+          {/* 多模态内容预覽 */}
+          <div className="flex-1 w-full min-h-0 flex items-center justify-center text-xs lg:text-sm">
             {currentScenario.contentPreview}
           </div>
 

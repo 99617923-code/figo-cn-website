@@ -25,11 +25,11 @@ const COMPARISON_DATA = {
       name: "核心能力",
       features: [
         { name: "大模型接入", products: [true, true, true, true, true, true] },
-        { name: "私有化部署", products: [true, true, true, false, true, true] },
+        { name: "私有化部署", products: [true, true, true, true, true, true] },
         { name: "知识库/RAG", products: [true, false, true, false, false, true] },
         { name: "实时语音合成", products: [false, false, true, false, false, false] },
         { name: "数据可视化", products: [true, true, false, true, true, true] },
-        { name: "多租户SaaS", products: [false, false, false, false, true, false] },
+        { name: "多租户SaaS", products: [true, true, true, true, true, true] },
       ],
     },
   ],
