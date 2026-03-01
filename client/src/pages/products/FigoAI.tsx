@@ -17,7 +17,7 @@ export default function FigoAI() {
       name="FigoAI 智能工具平台"
       tagline="企业级AI智能工具订阅平台"
       description="FigoAI集成多种AI能力的一站式智能工具平台，涵盖AI写标书、AI视频创作、学术AI助手、企微智能客服、直播切片、AI智能表格等6大核心工具。按量付费，让每个企业都能用得起AI。"
-      keywords={["AI工具平台", "AI写标书", "AI视频创作", "企微智能客服", "直播切片", "AI智能表格", "FigoAI", "火鹰科技"]}
+      keywords={["AI工具平台", "AI写标书", "AI视频创作", "企微智能客服", "AI智能体定制开发", "直播切片", "AI智能表格", "FigoAI", "火鹰科技"]}
       path="/products/figo-ai"
     />
     <ProductDetailLayout

@@ -28,9 +28,7 @@ export default function FaruiChat() {
     <ProductSEO
       name="法睿聊"
       tagline="AI法律咨询SaaS系统"
-      description="法睿聊是基于阿里云通义法睿大模型的多租户SaaS平台，企业客户只需嵌入一行JavaScript代码，即可在自己的网站上拥有专业的AI法律咨询服务。覆盖合同纠纷、劳动争议等8大法律领域，完全国产化部署，安全合规。"
-      keywords={["AI法律咨询", "法律SaaS", "通义法睿", "智能法律顾问", "法律咨询系统", "法睿聊", "多租户SaaS", "火鹰科技"]}
-      path="/products/farui-chat"
+      description="法睿聊是基于阿里云通义法睿大模型的多租户SaaS平台，企业客户只需嵌入一行JavaScript代码，即可在自己的网站上拥有专业的AI法律咨询服务。覆盖合同纠纷、劳动争议等8大法律领域，完全国产化部署，安全合规。"      keywords={["AI法律咨询", "法律 SaaS", "通义法睦", "智能法律顾问", "AI智能体定制开发", "法律咨询系统", "法睦聘", "多租户 SaaS", "火鹰科技"]}      path="/products/farui-chat"
     />
     <ProductDetailLayout
       name="法睿聊"

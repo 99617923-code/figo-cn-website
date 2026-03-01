@@ -21,7 +21,7 @@ export default function ProductSEO({ name, tagline, description, keywords, path 
 
     // 动态设置 title
     const originalTitle = document.title;
-    document.title = `${name} - ${tagline} | 火鹰科技AI智能体定制开发`;
+    document.title = `${name} - ${tagline} | 火鹰科技AI智能体定制开发解决方案`;
 
     // 动态设置 meta description
     let metaDesc = document.querySelector('meta[name="description"]');
@@ -49,7 +49,7 @@ export default function ProductSEO({ name, tagline, description, keywords, path 
     productLD.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      name: name,
+      name: `${name} - AI智能体定制开发`,
       description: description,
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
@@ -63,6 +63,10 @@ export default function ProductSEO({ name, tagline, description, keywords, path 
         "@type": "Organization",
         name: COMPANY_INFO.name,
         url: baseUrl,
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "CN"
       },
     });
     document.head.appendChild(productLD);

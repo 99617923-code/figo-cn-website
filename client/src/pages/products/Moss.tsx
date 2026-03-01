@@ -18,8 +18,7 @@ export default function Moss() {
       name="火鹰数字人复刻系统"
       tagline="复刻创始人IP，让AI替你接待每一位客户"
       description="火鹰数字人复刻系统深度复刻创始人的思维、声音和知识体系，打造7×24小时在线的数字分身。一行代码嵌入官网，AI自动接待访客、收集需求、生成方案，将网站流量转化为销售线索。"
-      keywords={["AI数字人", "数字人复刻", "声音克隆", "AI数字分身", "智能获客", "创始人IP", "RAG知识库", "Moss", "火鹰科技"]}
-      path="/products/moss"
+      keywords={["AI数字人", "数字人复刻", "声音克隆", "AI数字分身", "智能获客", "创始人 IP", "AI智能体定制开发", "RAG知识库", "Moss", "火鹰科技"]}      path="/products/moss"
     />
     <ProductDetailLayout
       name="火鹰数字人复刻系统"

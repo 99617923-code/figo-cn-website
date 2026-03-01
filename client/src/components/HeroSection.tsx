@@ -72,18 +72,18 @@ export default function HeroSection() {
 
           {/* Heading — larger, bolder */}
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.1] mb-8 animate-fade-up stagger-1">
-            <span className="text-white">构建下一代</span>
+            <span className="text-white">AI智能体</span>
             <br />
             <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              AI 智能体
+              定制开发
             </span>
           </h1>
 
           {/* Subtitle — cleaner */}
           <p className="text-lg lg:text-xl text-white/55 max-w-2xl mb-12 leading-relaxed animate-fade-up stagger-2">
-            从大模型API管理到数字人复刻，从AI销售训练到智能工具平台
+            21年软件定制开发经验，专注AI智能体定制开发、大模型API接入、AI数字人定制
             <br className="hidden sm:block" />
-            火鹰科技为企业提供全栈AI智能体定制开发服务
+            火鹰科技为企业提供完整的AI智能体定制开发解决方案
           </p>
 
           {/* CTA Buttons */}
