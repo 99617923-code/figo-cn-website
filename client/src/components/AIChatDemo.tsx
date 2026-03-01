@@ -1,7 +1,6 @@
 /**
- * Hero区AI聊天演示 - 集成式设计
- * 展示效果直接嵌入AI消息中流式输出
- * PC端对话框占右侧宽度，移动端占满宽度
+ * Hero区AI聊天演示 - 连续多轮对话
+ * 在一个对话框中不断追问，展示6大产品能力
  */
 import { useState, useEffect, useRef } from "react";
 import { Bot, User, FileText, Video, Mic, TrendingUp, Zap } from "lucide-react";
@@ -12,24 +11,14 @@ interface Message {
   contentPreview?: React.ReactNode;
 }
 
-interface Scenario {
-  id: string;
-  icon: React.ReactNode;
-  title: string;
+const CONVERSATION: Array<{
   userQuery: string;
   aiResponse: string;
-  contentType: "document" | "video" | "audio" | "chart" | "card" | "proposal";
   contentPreview: React.ReactNode;
-}
-
-const SCENARIOS: Scenario[] = [
+}> = [
   {
-    id: "proposal",
-    icon: <FileText className="w-6 h-6" />,
-    title: "AI写标书",
     userQuery: "上传招标文件，帮我写投标标书",
-    aiResponse: "✅ 标书已完成！\n\n📄 投标标书.docx\n共 600 页\n\n包含：项目理解、技术方案、商务报价、实施计划、风险管理等完整内容",
-    contentType: "proposal",
+    aiResponse: "✅ 标书已完成！\n\n📄 投标标书.docx\n共 600 页",
     contentPreview: (
       <div className="w-full flex flex-col gap-3 p-3 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg border border-white/10">
         <div className="flex items-center gap-2">
@@ -50,12 +39,8 @@ const SCENARIOS: Scenario[] = [
     ),
   },
   {
-    id: "pricing",
-    icon: <Zap className="w-6 h-6" />,
-    title: "报价单生成",
     userQuery: "我需要报价",
     aiResponse: "✅ 已为您生成专业报价单",
-    contentType: "chart",
     contentPreview: (
       <div className="w-full flex flex-col gap-2 p-3">
         <div className="space-y-1">
@@ -89,12 +74,8 @@ const SCENARIOS: Scenario[] = [
     ),
   },
   {
-    id: "video",
-    icon: <Video className="w-6 h-6" />,
-    title: "视频生成中",
     userQuery: "帮我做个短视频",
     aiResponse: "⏳ 视频生成进度：75%",
-    contentType: "video",
     contentPreview: (
       <div className="w-full flex flex-col items-center justify-center gap-2 p-3">
         <div className="relative w-full aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center border border-white/10">
@@ -113,12 +94,8 @@ const SCENARIOS: Scenario[] = [
     ),
   },
   {
-    id: "contract",
-    icon: <FileText className="w-6 h-6" />,
-    title: "合同生成",
     userQuery: "生成合同",
     aiResponse: "✅ 已为您生成专业合同文档",
-    contentType: "document",
     contentPreview: (
       <div className="w-full flex flex-col gap-2 p-3 bg-white/10 rounded border border-white/10">
         <div className="font-semibold text-white/90 text-sm">📋 服务合同.docx</div>
@@ -133,12 +110,8 @@ const SCENARIOS: Scenario[] = [
     ),
   },
   {
-    id: "english",
-    icon: <Mic className="w-6 h-6" />,
-    title: "AI英语教练",
     userQuery: "做英语AI教练",
     aiResponse: "✅ 英语讲解已启动",
-    contentType: "audio",
     contentPreview: (
       <div className="w-full flex flex-col items-center justify-center gap-3 p-3">
         <div className="text-center">
@@ -161,12 +134,8 @@ const SCENARIOS: Scenario[] = [
     ),
   },
   {
-    id: "sales",
-    icon: <TrendingUp className="w-6 h-6" />,
-    title: "销售话术评分",
     userQuery: "评估销售话术",
     aiResponse: "✅ 评分结果",
-    contentType: "card",
     contentPreview: (
       <div className="w-full flex flex-col gap-2 p-3">
         <div className="text-center">
@@ -199,47 +168,61 @@ function TypewriterText({ text, speed = 20 }: { text: string; speed?: number }) 
 }
 
 export default function AIChatDemo() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [messages, setMessages] = useState<Message[]>([]);
   const [displayedMessages, setDisplayedMessages] = useState(0);
+  const [currentConversationIndex, setCurrentConversationIndex] = useState(0);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const currentScenario = SCENARIOS[currentIndex];
-
-  // 自动循环场景
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % SCENARIOS.length);
-      setMessages([]);
-      setDisplayedMessages(0);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // 初始化消息
+  // 初始化第一条消息
   useEffect(() => {
     if (messages.length === 0) {
+      const firstConv = CONVERSATION[0];
       setMessages([
-        { role: "user", content: currentScenario.userQuery },
+        { role: "user", content: firstConv.userQuery },
         {
           role: "ai",
-          content: currentScenario.aiResponse,
-          contentPreview: currentScenario.contentPreview,
+          content: firstConv.aiResponse,
+          contentPreview: firstConv.contentPreview,
         },
       ]);
       setDisplayedMessages(0);
     }
-  }, [currentIndex, currentScenario]);
+  }, [messages.length]);
 
   // 逐条显示消息
   useEffect(() => {
     if (displayedMessages < messages.length) {
       const timer = setTimeout(() => {
         setDisplayedMessages((prev) => prev + 1);
-      }, 800);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (displayedMessages === messages.length && messages.length > 0) {
+      // 当所有消息都显示后，等待后继续添加下一轮对话
+      const timer = setTimeout(() => {
+        if (currentConversationIndex < CONVERSATION.length - 1) {
+          const nextConv = CONVERSATION[currentConversationIndex + 1];
+          setMessages((prev) => [
+            ...prev,
+            { role: "user", content: nextConv.userQuery },
+            {
+              role: "ai",
+              content: nextConv.aiResponse,
+              contentPreview: nextConv.contentPreview,
+            },
+          ]);
+          setCurrentConversationIndex((prev) => prev + 1);
+        } else {
+          // 对话完成后，重新开始
+          setTimeout(() => {
+            setMessages([]);
+            setDisplayedMessages(0);
+            setCurrentConversationIndex(0);
+          }, 3000);
+        }
+      }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [displayedMessages, messages.length]);
+  }, [displayedMessages, messages.length, currentConversationIndex]);
 
   // 自动滚动到底部
   useEffect(() => {
@@ -255,7 +238,7 @@ export default function AIChatDemo() {
         与 <span className="text-cyan-400">AI</span> 对话 快速体验<span className="text-cyan-400">6大产品</span>能力
       </div>
 
-      {/* 对话框 - PC端占右侧宽度，移动端占满宽度 */}
+      {/* 对话框 */}
       <div
         ref={chatContainerRef}
         className="flex-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 lg:p-4 overflow-y-auto flex flex-col gap-3 min-h-0"
@@ -314,16 +297,11 @@ export default function AIChatDemo() {
         ))}
       </div>
 
-      {/* 场景指示器 */}
-      <div className="flex gap-1 justify-center">
-        {SCENARIOS.map((_, i) => (
-          <div
-            key={i}
-            className={`h-1 rounded-full transition-all ${
-              i === currentIndex ? "w-6 bg-cyan-400" : "w-1.5 bg-white/20"
-            }`}
-          />
-        ))}
+      {/* 进度指示 */}
+      <div className="flex gap-1 justify-center text-[10px] text-white/40">
+        <span>{currentConversationIndex + 1}</span>
+        <span>/</span>
+        <span>{CONVERSATION.length}</span>
       </div>
     </div>
   );
