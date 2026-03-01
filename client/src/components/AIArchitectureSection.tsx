@@ -129,7 +129,7 @@ export default function AIArchitectureSection() {
               <span className="text-xs font-medium text-white/30 tracking-widest uppercase px-3">应用层 · Application Layer</span>
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {APP_PRODUCTS.map((product, i) => (
                 <div
                   key={product.name}
