@@ -60,7 +60,7 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 container pt-24 sm:pt-32 lg:pt-20 pb-12 lg:pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center min-h-[600px] lg:min-h-[500px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center min-h-[600px] lg:min-h-[500px] h-full">
         <div className="max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm mb-10 animate-fade-up">
@@ -112,8 +112,8 @@ export default function HeroSection() {
             ))}
           </div>
         </div>
-        {/* 右侧：AI聊天演示 */}
-        <div className="w-full h-[650px] lg:h-96">
+        {/* 右侧：AI聊天演示 - 仅PC端显示 */}
+        <div className="hidden lg:flex w-full h-96">
           <AIChatDemo />
         </div>
       </div>
