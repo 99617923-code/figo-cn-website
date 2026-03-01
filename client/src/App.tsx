@@ -10,6 +10,7 @@ import Moss from "./pages/products/Moss";
 import RingAI from "./pages/products/RingAI";
 import FigoAI from "./pages/products/FigoAI";
 import FaruiChat from "./pages/products/FaruiChat";
+import Services from "./pages/Services";
 
 /** 路由切换时自动滚动到顶部 */
 function ScrollToTop() {
@@ -25,6 +26,8 @@ function Router() {
     <>
       <ScrollToTop />
       <Switch>
+        {/* 服务页路由 */}
+        <Route path={"/services"} component={Services} />
         {/* 产品详情页路由 */}
         <Route path={"/products/figo-engine"} component={FigoEngine} />
         <Route path={"/products/salespark"} component={SaleSpark} />
@@ -37,7 +40,6 @@ function Router() {
         <Route path={"/FigoAgent/"} component={FigoAgent} />
         {/* 首页 — FigoAgent 作为官网一级目录默认首页 */}
         <Route path={"/"} component={FigoAgent} />
-        <Route component={FigoAgent} />
       </Switch>
     </>
   );

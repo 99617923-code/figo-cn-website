@@ -170,6 +170,7 @@ export const COMPANY_INFO = {
 export const NAV_ITEMS = [
   { label: "首页", href: "#hero" },
   { label: "产品矩阵", href: "#products" },
+  { label: "AI智能体定制开发", href: "/services" },
   { label: "APP定制开发", href: "/old/", external: true },
   { label: "服务能力", href: "#services" },
   { label: "关于我们", href: "#about" },

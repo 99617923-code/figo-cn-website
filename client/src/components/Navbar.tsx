@@ -200,6 +200,20 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               );
             }
 
+            // 路由链接（/services 等）
+            if (item.href.startsWith("/")) {
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-2 text-sm text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+
             return (
               <a
                 key={item.href}
@@ -282,6 +296,20 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                       </div>
                     )}
                   </div>
+                );
+              }
+
+              // 路由链接（/services 等）
+              if (item.href.startsWith("/")) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  >
+                    {item.label}
+                  </Link>
                 );
               }
 

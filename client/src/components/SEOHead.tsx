@@ -105,6 +105,50 @@ function getWebsiteData() {
   };
 }
 
+function getLocalBusinessData() {
+  const years = getCompanyYears();
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `https://${COMPANY_INFO.website}`,
+    name: COMPANY_INFO.name,
+    alternateName: COMPANY_INFO.shortName,
+    description: `${years}年AI智能体定制开发经验，国家高新技术企业`,
+    url: `https://${COMPANY_INFO.website}`,
+    logo: `https://${COMPANY_INFO.website}/static/images/logo.png`,
+    image: `https://${COMPANY_INFO.website}/static/images/logo.png`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "番禺区南浦凹凸凹创意园C317-318",
+      addressLocality: "广州市",
+      addressRegion: "广东省",
+      postalCode: "510000",
+      addressCountry: "CN",
+    },
+    telephone: `+86-${COMPANY_INFO.salesPhone.replace(/-/g, "")}`,
+    email: COMPANY_INFO.email,
+    foundingDate: String(COMPANY_INFO.established),
+    areaServed: {
+      "@type": "Country",
+      name: "CN",
+    },
+    priceRange: "¥¥¥",
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+    sameAs: [
+      "https://api.figo.cn",
+      "https://www.salespark.vip",
+      "https://moss.figo.cn",
+      "https://www.figoai.xyz",
+      "https://widget.figo.cn",
+    ],
+  };
+}
+
 function getFAQData() {
   const years = getCompanyYears();
   return {
@@ -167,6 +211,11 @@ export default function SEOHead() {
     webScript.textContent = JSON.stringify(getWebsiteData());
     document.head.appendChild(webScript);
 
+    const localBusinessScript = document.createElement("script");
+    localBusinessScript.type = "application/ld+json";
+    localBusinessScript.textContent = JSON.stringify(getLocalBusinessData());
+    document.head.appendChild(localBusinessScript);
+
     const faqScript = document.createElement("script");
     faqScript.type = "application/ld+json";
     faqScript.textContent = JSON.stringify(getFAQData());
@@ -175,6 +224,7 @@ export default function SEOHead() {
     return () => {
       document.head.removeChild(orgScript);
       document.head.removeChild(webScript);
+      document.head.removeChild(localBusinessScript);
       document.head.removeChild(faqScript);
     };
   }, []);
