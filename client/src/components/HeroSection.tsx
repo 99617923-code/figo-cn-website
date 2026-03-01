@@ -38,14 +38,14 @@ function StatItem({ value, suffix, label, delay }: { value: string; suffix: stri
 
   return (
     <div
-      className="relative group text-center px-6 py-4"
+      className="relative group text-center px-2 sm:px-4 lg:px-6 py-2 sm:py-4 flex-shrink-0"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="font-mono-data text-3xl lg:text-5xl font-bold text-white tracking-tight">
+      <div className="font-mono-data text-xl sm:text-2xl lg:text-5xl font-bold text-white tracking-tight">
         <AnimatedNumber target={numericValue} duration={2000} />
         <span className="text-emerald-400">{suffix}</span>
       </div>
-      <div className="mt-2 text-sm text-white/50 tracking-wide">{label}</div>
+      <div className="mt-1 sm:mt-2 text-xs sm:text-sm text-white/50 tracking-wide">{label}</div>
     </div>
   );
 }
@@ -101,9 +101,9 @@ export default function HeroSection() {
           </div>
 
           {/* Stats — with dividers */}
-          <div className="flex flex-wrap items-center animate-fade-up stagger-4">
+          <div className="flex flex-nowrap items-center overflow-x-auto animate-fade-up stagger-4 -mx-6 px-6 pb-2">
             {STATS.map((stat, i) => (
-              <div key={stat.label} className="flex items-center">
+              <div key={stat.label} className="flex items-center flex-shrink-0">
                 <StatItem value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 200} />
                 {i < STATS.length - 1 && (
                   <div className="hidden md:block w-px h-12 bg-white/10 mx-2" />
@@ -113,17 +113,13 @@ export default function HeroSection() {
           </div>
         </div>
         {/* 右侧：AI聊天演示 */}
-        <div className="w-full h-[500px] lg:h-96">
+        <div className="w-full h-[650px] lg:h-96">
           <AIChatDemo />
         </div>
       </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-10">
-        <span className="text-xs text-white/25 tracking-[0.3em] uppercase">Scroll</span>
-        <ChevronDown className="w-5 h-5 text-white/25" />
-      </div>
+
     </section>
   );
 }

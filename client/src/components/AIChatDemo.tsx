@@ -273,7 +273,7 @@ export default function AIChatDemo() {
     <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-full items-stretch w-full">
       {/* 左侧：聊天窗口 */}
       <div className="flex-1 flex flex-col gap-2 lg:gap-3 justify-between min-w-0">
-        <div className="text-xl lg:text-3xl font-bold text-white leading-tight">
+        <div className="text-lg sm:text-xl lg:text-3xl font-bold text-white leading-tight">
           与 <span className="text-cyan-400">AI</span> 对话
           <br />
           快速体验<span className="text-cyan-400">6大产品</span>能力
