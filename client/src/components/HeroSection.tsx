@@ -6,6 +6,7 @@
 import { STATS, getCompanyYears } from "@/lib/constants";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import AIChatDemo from "./AIChatDemo";
 
 const HERO_BG_URL = "https://private-us-east-1.manuscdn.com/sessionFile/bN4U4uXLu8g7u0VyGeOUbh/sandbox/8vV0SJAlnc5i4U6yw9p09Q-img-1_1772125797000_na1fn_aGVyby1iZy1jbGVhbg.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvYk40VTR1WEx1OGc3dTBWeUdlT1ViaC9zYW5kYm94Lzh2VjBTSkFsbmM1aTRVNnl3OXAwOVEtaW1nLTFfMTc3MjEyNTc5NzAwMF9uYTFmbl9hR1Z5YnkxaVp5MWpiR1ZoYmcuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=ACj2gqXOuCnUD4Q6~zee0QGV6JNwQrITj7qBHJXRyT319D6FKwEMNr1AdqF6ACwDGtUMmEpjQ5zT8IC6iF7lMLZW7ED-HVXj~YI6Lq6oDS~gyNg5SHxU1mklxA3Ad1pOVD1cgAXR9tNr2HqTC43EGVrlRb8K05jAuuFrm7G-aEHe9csayns5A2~duRZjELFPOgUbCxZnEH-GhySffvcZfb-BB6aP7HuoSeptl6PwQaK1z43IorwGuoXtXfPglSHBM8-k3b5J~HYDOXqfddhIc6E74F3GC-IJUPMHaCX0ceUkjnJ2geRH73A5QaRTDJt3jKLoLVN382E1qCfuPtf0ZQ__";
 
@@ -53,22 +54,13 @@ export default function HeroSection() {
   const companyYears = getCompanyYears();
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Background Image — clean, minimal */}
-      <div className="absolute inset-0">
-        <img
-          src={HERO_BG_URL}
-          alt="AI technology background"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
-        {/* Subtle overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050a15]/90 via-[#050a15]/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050a15]/80 via-transparent to-[#050a15]/40" />
-      </div>
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050a15] via-[#0a1428] to-[#0d1f3c]" />
 
       {/* Content */}
-      <div className="relative z-10 container pt-32 pb-24">
+      <div className="relative z-10 container py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm mb-10 animate-fade-up">
@@ -120,6 +112,11 @@ export default function HeroSection() {
             ))}
           </div>
         </div>
+        {/* 右侧：AI聊天演示 */}
+        <div className="hidden lg:block h-96">
+          <AIChatDemo />
+        </div>
+      </div>
       </div>
 
       {/* Scroll Indicator */}

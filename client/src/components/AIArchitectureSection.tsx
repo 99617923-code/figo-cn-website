@@ -25,8 +25,9 @@ const MIDDLEWARE = [
 const APP_PRODUCTS = [
   { name: "Moss 智能客服", gradient: "from-amber-500 to-red-500", desc: "自研AI客服系统" },
   { name: "SaleSpark", gradient: "from-orange-500 to-rose-500", desc: "AI销售训练平台" },
+  { name: "法睿聊", gradient: "from-blue-500 to-indigo-600", desc: "AI法律咨询SaaS" },
   { name: "FigoAI 工具平台", gradient: "from-violet-500 to-fuchsia-500", desc: "AI工具订阅平台" },
-  { name: "数字人复刻", gradient: "from-cyan-500 to-blue-500", desc: "导师替身系统" },
+  { name: "数字人复刻", gradient: "from-cyan-500 to-blue-500", desc: "数字人复刻系统" },
   { name: "Ring AI", gradient: "from-emerald-500 to-cyan-500", desc: "AI健康管理" },
 ];
 

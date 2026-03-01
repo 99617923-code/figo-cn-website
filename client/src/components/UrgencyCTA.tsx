@@ -28,7 +28,7 @@ const OFFERS = [
   {
     icon: <Sparkles size={20} className="text-purple-400" />,
     title: "产品功能演示",
-    description: "预约我们5大AI产品的在线演示，亲身体验AI智能体的强大能力和实际应用效果",
+    description: "预约我们6大AI产品的在线演示，亲身体验AI智能体的强大能力和实际应用效果",
     tag: "预约",
     tagColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
   },

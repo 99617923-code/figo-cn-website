@@ -12,23 +12,24 @@ const COMPARISON_DATA = {
     {
       name: "适用场景",
       features: [
-        { name: "智能客服/问答", products: [true, false, true, false, true] },
-        { name: "销售培训/模拟", products: [false, true, false, false, false] },
-        { name: "数字人/声音克隆", products: [false, false, true, false, false] },
-        { name: "健康数据分析", products: [false, false, false, true, false] },
-        { name: "内容创作/标书", products: [false, false, false, false, true] },
-        { name: "API统一管理", products: [true, false, false, false, false] },
+        { name: "智能客服/问答", products: [true, false, true, false, false, true] },
+        { name: "销售培训/模拟", products: [false, true, false, false, false, false] },
+        { name: "数字人/声音克隆", products: [false, false, true, false, false, false] },
+        { name: "健康数据分析", products: [false, false, false, true, false, false] },
+        { name: "法律咨询服务", products: [false, false, false, false, true, false] },
+        { name: "内容创作/标书", products: [false, false, false, false, false, true] },
+        { name: "API统一管理", products: [true, false, false, false, false, false] },
       ],
     },
     {
       name: "核心能力",
       features: [
-        { name: "大模型接入", products: [true, true, true, true, true] },
-        { name: "私有化部署", products: [true, true, true, false, true] },
-        { name: "知识库/RAG", products: [true, false, true, false, true] },
-        { name: "实时语音合成", products: [false, false, true, false, false] },
-        { name: "数据可视化", products: [true, true, false, true, true] },
-        { name: "游戏化设计", products: [false, true, false, false, false] },
+        { name: "大模型接入", products: [true, true, true, true, true, true] },
+        { name: "私有化部署", products: [true, true, true, false, true, true] },
+        { name: "知识库/RAG", products: [true, false, true, false, false, true] },
+        { name: "实时语音合成", products: [false, false, true, false, false, false] },
+        { name: "数据可视化", products: [true, true, false, true, true, true] },
+        { name: "多租户SaaS", products: [false, false, false, false, true, false] },
       ],
     },
   ],
@@ -37,6 +38,7 @@ const COMPARISON_DATA = {
     { name: "SaleSpark", path: "/products/salespark", gradient: "from-orange-500 to-rose-500" },
     { name: "Moss", path: "/products/moss", gradient: "from-amber-500 to-red-600" },
     { name: "Ring AI", path: "/products/ring-ai", gradient: "from-emerald-500 to-cyan-500" },
+    { name: "法睿聊", path: "/products/farui-chat", gradient: "from-blue-500 to-indigo-600" },
     { name: "FigoAI", path: "/products/figo-ai", gradient: "from-violet-500 to-fuchsia-500" },
   ],
 };
@@ -69,7 +71,7 @@ export default function ProductComparisonMatrix() {
         >
           <div className="min-w-[700px]">
             {/* Product Headers */}
-            <div className="grid grid-cols-6 gap-0 mb-1">
+            <div className="grid grid-cols-7 gap-0 mb-1">
               <div className="p-3" /> {/* Empty corner */}
               {COMPARISON_DATA.products.map((product) => (
                 <div key={product.name} className="p-3 text-center">
@@ -95,7 +97,7 @@ export default function ProductComparisonMatrix() {
                 {category.features.map((feature, fi) => (
                   <div
                     key={feature.name}
-                    className={`grid grid-cols-6 gap-0 rounded-lg transition-colors ${
+                    className={`grid grid-cols-7 gap-0 rounded-lg transition-colors ${
                       fi % 2 === 0 ? "bg-white/[0.02]" : ""
                     } hover:bg-white/[0.04]`}
                   >
@@ -117,7 +119,7 @@ export default function ProductComparisonMatrix() {
             ))}
 
             {/* Bottom CTA Row */}
-            <div className="grid grid-cols-6 gap-0 mt-3 pt-3 border-t border-white/[0.06]">
+            <div className="grid grid-cols-7 gap-0 mt-3 pt-3 border-t border-white/[0.06]">
               <div className="p-3" />
               {COMPARISON_DATA.products.map((product) => (
                 <div key={product.name} className="p-3 text-center">

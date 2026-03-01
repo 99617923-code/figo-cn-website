@@ -5,12 +5,12 @@
  * 支持外部链接（APP定制开发、旧站点）
  */
 import { NAV_ITEMS, PRODUCTS, COMPANY_INFO } from "@/lib/constants";
-import { Menu, X, ChevronDown, Cpu, Target, User, Watch, Sparkles, ExternalLink } from "lucide-react";
+import { Menu, X, ChevronDown, Cpu, Target, User, Watch, Sparkles, Scale, ExternalLink } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "wouter";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-  Cpu, Target, User, Watch, Sparkles,
+  Cpu, Target, User, Watch, Sparkles, Scale,
 };
 
 interface NavbarProps {
@@ -218,21 +218,6 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
           })}
         </div>
 
-        {/* CTA Button — 只保留免费咨询 */}
-        <div className="hidden lg:flex items-center gap-3">
-          <a
-            href={isDetailPage ? "/#contact" : "#contact"}
-            onClick={(e) => {
-              if (!isDetailPage) {
-                e.preventDefault();
-                handleNavClick("#contact");
-              }
-            }}
-            className="px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all hover:-translate-y-0.5"
-          >
-            免费咨询
-          </a>
-        </div>
 
         {/* Mobile Toggle */}
         <button
@@ -317,19 +302,6 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                 </a>
               );
             })}
-            <a
-              href={isDetailPage ? "/#contact" : "#contact"}
-              onClick={(e) => {
-                if (!isDetailPage) {
-                  e.preventDefault();
-                  handleNavClick("#contact");
-                }
-                setMobileOpen(false);
-              }}
-              className="mt-2 px-4 py-3 text-sm font-medium text-center text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg"
-            >
-              免费咨询
-            </a>
           </div>
         </div>
       )}

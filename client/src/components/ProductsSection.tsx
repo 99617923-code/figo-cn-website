@@ -5,13 +5,13 @@
  */
 import { PRODUCTS } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
-import { Cpu, Target, User, Watch, Sparkles, ArrowRight } from "lucide-react";
+import { Cpu, Target, User, Watch, Sparkles, Scale, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
 import WechatQRModal from "@/components/WechatQRModal";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-  Cpu, Target, User, Watch, Sparkles,
+  Cpu, Target, User, Watch, Sparkles, Scale,
 };
 
 function ProductCard({ product, index, onGetDemo }: { product: typeof PRODUCTS[0]; index: number; onGetDemo: (name: string) => void }) {
@@ -138,22 +138,17 @@ export default function ProductsSection() {
         >
           <span className="text-xs font-medium tracking-widest uppercase text-blue-400/80 mb-3 block">Product Matrix</span>
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
-            五大AI产品<span className="gradient-text">矩阵</span>
+            六大AI产品<span className="gradient-text">矩阵</span>
           </h2>
           <p className="mt-4 text-base text-white/50 leading-relaxed">
             从底层API管理到上层应用场景，火鹰科技已构建覆盖AI全链路的产品生态，每一款产品都经过真实业务场景的打磨与验证。
           </p>
         </div>
 
-        {/* Product grid - first 3 in top row, last 2 centered below */}
+        {/* Product grid - 3x2 layout */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6">
-          {PRODUCTS.slice(0, 3).map((product, i) => (
+          {PRODUCTS.map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} onGetDemo={handleGetDemo} />
-          ))}
-        </div>
-        <div className="grid md:grid-cols-2 gap-5 lg:gap-6 mt-5 lg:mt-6 max-w-4xl mx-auto">
-          {PRODUCTS.slice(3).map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i + 3} onGetDemo={handleGetDemo} />
           ))}
         </div>
       </div>

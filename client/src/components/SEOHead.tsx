@@ -45,6 +45,7 @@ function getStructuredData() {
       "https://www.salespark.vip",
       "https://moss.figo.cn",
       "https://www.figoai.xyz",
+      "https://widget.figo.cn",
     ],
     knowsAbout: [
       "AI智能体开发",
@@ -53,6 +54,7 @@ function getStructuredData() {
       "声音克隆",
       "智能客服",
       "AI SaaS平台",
+      "AI法律咨询",
       "软件定制开发",
     ],
     hasOfferCatalog: {
@@ -79,8 +81,8 @@ function getStructuredData() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "数字人/声音克隆",
-            description: "基于AI技术深度复刻真人的思维模式和声音特征",
+            name: "数字人复刻/声音克隆",
+            description: "深度复刻创始人的思维、声音和知识体系，打造7×24小时在线的数字分身",
           },
         },
       ],
@@ -114,7 +116,7 @@ function getFAQData() {
         name: "火鹰科技在AI智能体开发方面有哪些优势？",
         acceptedAnswer: {
           "@type": "Answer",
-          text: `火鹰科技成立于2005年，拥有${years}年软件开发经验，是国家高新技术企业、CMMI Level-3认证企业。已成功交付5000+项目，在AI智能体领域已推出火鹰引擎、SaleSpark、导师替身系统、Ring AI、FigoAI等5大产品。`,
+          text: `火鹰科技成立于2005年，拥有${years}年软件开发经验，是国家高新技术企业、CMMI Level-3认证企业。已成功交付5000+项目，在AI智能体领域已推出火鹰引擎、SaleSpark、数字人复刻系统、Ring AI、法睿聊、FigoAI等6大产品。`,
         },
       },
       {

@@ -9,6 +9,7 @@ import SaleSpark from "./pages/products/SaleSpark";
 import Moss from "./pages/products/Moss";
 import RingAI from "./pages/products/RingAI";
 import FigoAI from "./pages/products/FigoAI";
+import FaruiChat from "./pages/products/FaruiChat";
 
 /** 路由切换时自动滚动到顶部 */
 function ScrollToTop() {
@@ -29,6 +30,7 @@ function Router() {
         <Route path={"/products/salespark"} component={SaleSpark} />
         <Route path={"/products/moss"} component={Moss} />
         <Route path={"/products/ring-ai"} component={RingAI} />
+        <Route path={"/products/farui-chat"} component={FaruiChat} />
         <Route path={"/products/figo-ai"} component={FigoAI} />
         {/* 兼容旧路径 /FigoAgent */}
         <Route path={"/FigoAgent"} component={FigoAgent} />
