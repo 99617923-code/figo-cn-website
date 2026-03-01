@@ -63,11 +63,11 @@ function ProductCard({ product, index, onGetDemo }: { product: typeof PRODUCTS[0
       <p className="relative text-sm text-white/55 leading-relaxed mb-6">{product.description}</p>
 
       {/* Stats */}
-      <div className="relative grid grid-cols-3 gap-3 mb-6">
+      <div className="relative grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3 mb-6">
         {product.stats.map((stat) => (
-          <div key={stat.label} className="text-center py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.06] group-hover:bg-white/[0.06] group-hover:border-white/[0.1] transition-all">
-            <div className="font-mono-data text-sm font-semibold text-white">{stat.value}</div>
-            <div className="text-[10px] text-white/40 mt-0.5">{stat.label}</div>
+          <div key={stat.label} className="text-center py-2 sm:py-2.5 px-1 rounded-lg bg-white/[0.04] border border-white/[0.06] group-hover:bg-white/[0.06] group-hover:border-white/[0.1] transition-all">
+            <div className="font-mono-data text-xs sm:text-sm font-semibold text-white">{stat.value}</div>
+            <div className="text-[9px] sm:text-[10px] text-white/40 mt-0.5">{stat.label}</div>
           </div>
         ))}
       </div>

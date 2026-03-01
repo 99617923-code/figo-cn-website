@@ -144,9 +144,6 @@ const SCENARIOS: Scenario[] = [
     contentType: "audio",
     contentPreview: (
       <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-3">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500/30 to-red-500/30 flex items-center justify-center border border-white/10">
-          <div className="text-xl">🎤</div>
-        </div>
         <div className="text-center">
           <div className="text-xs text-white/60 mb-1">发音评分</div>
           <div className="text-lg font-bold text-orange-400">7.5/10</div>
@@ -270,19 +267,17 @@ export default function AIChatDemo() {
   }, [displayedMessages]);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-full items-stretch w-full">
+    <div className="flex flex-col lg:flex-row gap-1 lg:gap-6 h-full items-stretch w-full">
       {/* 左侧：聊天窗口 */}
       <div className="flex-1 flex flex-col gap-2 lg:gap-3 justify-between min-w-0">
         <div className="text-lg sm:text-xl lg:text-3xl font-bold text-white leading-tight">
-          与 <span className="text-cyan-400">AI</span> 对话
-          <br />
-          快速体验<span className="text-cyan-400">6大产品</span>能力
+          与 <span className="text-cyan-400">AI</span> 对话 快速体验<span className="text-cyan-400">6大产品</span>能力
         </div>
 
         {/* 消息框 */}
         <div
           ref={chatContainerRef}
-          className="flex-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 overflow-y-auto flex flex-col gap-2 min-h-0"
+          className="h-[85%] bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 overflow-y-auto flex flex-col gap-2 min-h-0"
         >
           {messages.slice(0, displayedMessages).map((msg, idx) => (
             <div
@@ -342,7 +337,7 @@ export default function AIChatDemo() {
 
       {/* 右侧：多模态内容展示区 */}
       <div className="flex-1 flex flex-col items-center justify-center min-w-0">
-        <div className="w-full h-full bg-white/8 backdrop-blur-sm border border-cyan-400/20 rounded-xl lg:rounded-2xl p-3 lg:p-6 text-center flex flex-col justify-between items-center gap-2 lg:gap-3 animate-fade-up overflow-hidden">
+        <div className="w-full h-[70%] lg:h-full bg-white/8 backdrop-blur-sm border border-cyan-400/20 rounded-xl lg:rounded-2xl p-3 lg:p-6 text-center flex flex-col justify-between items-center gap-2 lg:gap-3 animate-fade-up overflow-hidden">
           {/* 标题和图标 */}
           <div className="flex flex-col items-center gap-1 lg:gap-2">
             <div className="text-2xl lg:text-4xl text-cyan-400">

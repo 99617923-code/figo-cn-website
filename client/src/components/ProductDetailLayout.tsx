@@ -198,11 +198,11 @@ export default function ProductDetailLayout({
               {heroDescription}
             </p>
 
-            <div className="flex flex-wrap gap-6 mb-10">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
               {stats.map((stat) => (
-                <div key={stat.label} className="text-center px-6 py-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
-                  <div className="font-mono text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-xs text-white/40 mt-1">{stat.label}</div>
+                <div key={stat.label} className="text-center px-3 sm:px-4 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                  <div className="font-mono text-lg sm:text-2xl font-bold text-white">{stat.value}</div>
+                  <div className="text-[10px] sm:text-xs text-white/40 mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>
