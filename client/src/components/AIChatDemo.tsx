@@ -271,7 +271,8 @@ export default function AIChatDemo() {
       {/* 左侧：聊天窗口 */}
       <div className="flex-1 flex flex-col gap-2 lg:gap-3 justify-between min-w-0">
         <div className="text-lg sm:text-xl lg:text-3xl font-bold text-white leading-tight">
-          与 <span className="text-cyan-400">AI</span> 对话 快速体验<span className="text-cyan-400">6大产品</span>能力
+          <div>与 <span className="text-cyan-400">AI</span> 对话</div>
+          <div>快速体验<span className="text-cyan-400">6大产品</span>能力</div>
         </div>
 
         {/* 消息框 */}

@@ -7,6 +7,7 @@ import { STATS, getCompanyYears } from "@/lib/constants";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import AIChatDemo from "./AIChatDemo";
+import WechatQRModal, { useWechatQRModal } from "./WechatQRModal";
 
 const HERO_BG_URL = "https://private-us-east-1.manuscdn.com/sessionFile/bN4U4uXLu8g7u0VyGeOUbh/sandbox/8vV0SJAlnc5i4U6yw9p09Q-img-1_1772125797000_na1fn_aGVyby1iZy1jbGVhbg.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvYk40VTR1WEx1OGc3dTBWeUdlT1ViaC9zYW5kYm94Lzh2VjBTSkFsbmM1aTRVNnl3OXAwOVEtaW1nLTFfMTc3MjEyNTc5NzAwMF9uYTFmbl9hR1Z5YnkxaVp5MWpiR1ZoYmcuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=ACj2gqXOuCnUD4Q6~zee0QGV6JNwQrITj7qBHJXRyT319D6FKwEMNr1AdqF6ACwDGtUMmEpjQ5zT8IC6iF7lMLZW7ED-HVXj~YI6Lq6oDS~gyNg5SHxU1mklxA3Ad1pOVD1cgAXR9tNr2HqTC43EGVrlRb8K05jAuuFrm7G-aEHe9csayns5A2~duRZjELFPOgUbCxZnEH-GhySffvcZfb-BB6aP7HuoSeptl6PwQaK1z43IorwGuoXtXfPglSHBM8-k3b5J~HYDOXqfddhIc6E74F3GC-IJUPMHaCX0ceUkjnJ2geRH73A5QaRTDJt3jKLoLVN382E1qCfuPtf0ZQ__";
 
@@ -52,6 +53,7 @@ function StatItem({ value, suffix, label, delay }: { value: string; suffix: stri
 
 export default function HeroSection() {
   const companyYears = getCompanyYears();
+  const { open, openModal, closeModal } = useWechatQRModal();
 
   return (
     <section id="hero" className="relative min-h-screen lg:min-h-screen flex items-center overflow-hidden">
@@ -92,12 +94,12 @@ export default function HeroSection() {
             >
               探索产品矩阵 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="#contact"
+            <button
+              onClick={openModal}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg border border-white/15 text-white/80 hover:bg-white/5 hover:border-white/25 hover:text-white transition-all duration-300"
             >
               预约技术咨询
-            </a>
+            </button>
           </div>
 
           {/* Stats — with dividers */}
@@ -120,6 +122,8 @@ export default function HeroSection() {
       </div>
 
 
+      {/* 企业微信二维码弹窗 */}
+      <WechatQRModal open={open} onClose={closeModal} title="预约技术咨询" subtitle="扫码添加企业微信，获取一对一专属咨询服务" />
     </section>
   );
 }
