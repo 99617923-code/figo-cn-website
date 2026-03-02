@@ -1,17 +1,14 @@
 /*
  * 「量子棱镜」— 顶部导航栏
  * 毛玻璃效果 + 滚动时背景变深
- * 产品矩阵下拉菜单 + 支持首页/详情页两种模式
- * 支持外部链接（APP定制开发、旧站点）
+ * 产品矩阵下拉菜单 + "马上定制开发"高亮按钮（包含下拉菜单和二维码）
+ * 支持外部链接（旧站点）
  */
-import { NAV_ITEMS, PRODUCTS, COMPANY_INFO } from "@/lib/constants";
-import { Menu, X, ChevronDown, Cpu, Target, User, Watch, Sparkles, Scale, ExternalLink } from "lucide-react";
+import { NAV_ITEMS, CUSTOM_DEV_ITEMS, COMPANY_INFO } from "@/lib/constants";
+import { Menu, X, ChevronDown, ExternalLink } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "wouter";
-
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-  Cpu, Target, User, Watch, Sparkles, Scale,
-};
+import WechatQRModal, { useWechatQRModal } from "./WechatQRModal";
 
 interface NavbarProps {
   /** 是否在详情页模式（非首页） */
@@ -21,10 +18,11 @@ interface NavbarProps {
 export default function Navbar({ isDetailPage = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [productDropdownOpen, setProductDropdownOpen] = useState(false);
-  const [mobileProductOpen, setMobileProductOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [customDevDropdownOpen, setCustomDevDropdownOpen] = useState(false);
+  const [mobileCustomDevOpen, setMobileCustomDevOpen] = useState(false);
+  const customDevDropdownRef = useRef<HTMLDivElement>(null);
+  const customDevDropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { open: qrModalOpen, openModal: openQRModal, closeModal: closeQRModal } = useWechatQRModal();
   const [location] = useLocation();
 
   useEffect(() => {
@@ -36,8 +34,8 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   // 点击外部关闭下拉菜单
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setProductDropdownOpen(false);
+      if (customDevDropdownRef.current && !customDevDropdownRef.current.contains(e.target as Node)) {
+        setCustomDevDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -56,18 +54,15 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   };
 
   const handleDropdownEnter = () => {
-    if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
-    setProductDropdownOpen(true);
+    if (customDevDropdownTimer.current) clearTimeout(customDevDropdownTimer.current);
+    setCustomDevDropdownOpen(true);
   };
 
   const handleDropdownLeave = () => {
-    dropdownTimer.current = setTimeout(() => {
-      setProductDropdownOpen(false);
+    customDevDropdownTimer.current = setTimeout(() => {
+      setCustomDevDropdownOpen(false);
     }, 200);
   };
-
-  // 检查当前路径是否匹配某个产品
-  const isProductActive = (detailPath: string) => location === detailPath;
 
   return (
     <header
@@ -88,115 +83,18 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-1">
-          {NAV_ITEMS.map((item, index) => {
-            // 外部链接（APP定制开发、旧站点）
+          {NAV_ITEMS.map((item) => {
+            // 外部链接（旧站点）
             if ((item as any).external) {
               return (
                 <a
-                  key={`${item.href}-${index}`}
+                  key={item.href}
                   href={item.href}
                   className="flex items-center gap-1 px-4 py-2 text-sm text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/5"
                 >
                   {item.label}
                   <ExternalLink size={11} className="opacity-40" />
                 </a>
-              );
-            }
-
-            // 产品矩阵项需要下拉菜单
-            if (item.href === "#products") {
-              return (
-                <div
-                  key={item.href}
-                  ref={dropdownRef}
-                  className="relative"
-                  onMouseEnter={handleDropdownEnter}
-                  onMouseLeave={handleDropdownLeave}
-                >
-                  <button
-                    onClick={() => {
-                      if (!isDetailPage) {
-                        handleNavClick(item.href);
-                      }
-                      setProductDropdownOpen(!productDropdownOpen);
-                    }}
-                    className={`flex items-center gap-1 px-4 py-2 text-sm transition-colors rounded-lg hover:bg-white/5 ${
-                      productDropdownOpen ? "text-white" : "text-white/60 hover:text-white"
-                    }`}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-300 ${productDropdownOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 transition-all duration-300 ${
-                      productDropdownOpen
-                        ? "opacity-100 translate-y-0 pointer-events-auto"
-                        : "opacity-0 -translate-y-2 pointer-events-none"
-                    }`}
-                  >
-                    <div className="bg-[#12121e]/95 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 overflow-hidden">
-                      {/* Dropdown header */}
-                      <div className="px-5 pt-4 pb-3 border-b border-white/[0.06]">
-                        <p className="text-xs font-medium text-white/40 tracking-wider uppercase">Product Matrix</p>
-                      </div>
-
-                      {/* Product list */}
-                      <div className="py-2">
-                        {PRODUCTS.map((product) => {
-                          const Icon = iconMap[product.icon] || Sparkles;
-                          const isActive = isProductActive(product.detailPath);
-                          return (
-                            <Link
-                              key={product.id}
-                              href={product.detailPath}
-                              onClick={() => setProductDropdownOpen(false)}
-                              className={`flex items-center gap-3.5 px-5 py-3 transition-all duration-200 group/item ${
-                                isActive
-                                  ? "bg-white/[0.08]"
-                                  : "hover:bg-white/[0.05]"
-                              }`}
-                            >
-                              <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${product.gradient} flex items-center justify-center flex-shrink-0 opacity-70 group-hover/item:opacity-100 transition-opacity`}>
-                                <Icon size={16} className="text-white" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className={`text-sm font-medium leading-tight ${isActive ? "text-white" : "text-white/70 group-hover/item:text-white"} transition-colors`}>
-                                  {product.name}
-                                </div>
-                                <div className="text-[11px] text-white/35 mt-0.5 truncate">{product.tagline}</div>
-                              </div>
-                              {isActive && (
-                                <div className="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
-                              )}
-                            </Link>
-                          );
-                        })}
-                      </div>
-
-                      {/* Dropdown footer */}
-                      <div className="px-5 py-3 border-t border-white/[0.06] bg-white/[0.02]">
-                        <Link
-                          href="/"
-                          onClick={() => {
-                            setProductDropdownOpen(false);
-                            setTimeout(() => {
-                              const el = document.getElementById("products");
-                              if (el) el.scrollIntoView({ behavior: "smooth" });
-                            }, 300);
-                          }}
-                          className="text-xs text-blue-400/70 hover:text-blue-400 transition-colors"
-                        >
-                          查看全部产品 →
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               );
             }
 
@@ -232,6 +130,86 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
           })}
         </div>
 
+        {/* 右侧：马上定制开发按钮（高亮） */}
+        <div className="hidden lg:flex items-center gap-4">
+          <div
+            ref={customDevDropdownRef}
+            className="relative"
+            onMouseEnter={handleDropdownEnter}
+            onMouseLeave={handleDropdownLeave}
+          >
+            <button
+              onClick={() => setCustomDevDropdownOpen(!customDevDropdownOpen)}
+              className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold hover:from-orange-400 hover:to-red-500 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 text-sm"
+            >
+              马上定制开发
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-300 ${customDevDropdownOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {/* Dropdown Menu */}
+            <div
+              className={`absolute top-full right-0 mt-2 w-80 transition-all duration-300 ${
+                customDevDropdownOpen
+                  ? "opacity-100 translate-y-0 pointer-events-auto"
+                  : "opacity-0 -translate-y-2 pointer-events-none"
+              }`}
+            >
+              <div className="bg-[#12121e]/95 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 overflow-hidden">
+                {/* Dropdown header */}
+                <div className="px-5 pt-4 pb-3 border-b border-white/[0.06]">
+                  <p className="text-xs font-medium text-white/40 tracking-wider uppercase">定制开发服务</p>
+                </div>
+
+                {/* Service links */}
+                <div className="py-2">
+                  {CUSTOM_DEV_ITEMS.map((item) => (
+                    <div key={item.href}>
+                      {item.href.startsWith("/") ? (
+                        <Link
+                          href={item.href}
+                          onClick={() => setCustomDevDropdownOpen(false)}
+                          className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200"
+                        >
+                          <span>{item.label}</span>
+                        </Link>
+                      ) : (
+                        <a
+                          href={item.href}
+                          onClick={() => setCustomDevDropdownOpen(false)}
+                          className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200"
+                        >
+                          <span>{item.label}</span>
+                          <ExternalLink size={12} className="opacity-40" />
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-white/[0.06]" />
+
+                {/* QR Code Section */}
+                <div className="px-5 py-4">
+                  <p className="text-xs font-medium text-white/40 tracking-wider uppercase mb-3">销售企业微信</p>
+                  <div className="flex justify-center">
+                    <div className="w-40 h-40 rounded-lg bg-white p-1.5">
+                      <img
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/YtbUYDAJtEwhIZuy.png"
+                        alt="销售企业微信二维码"
+                        className="w-full h-full object-contain rounded"
+                      />
+                    </div>
+                  </div>
+                  <p className="text-xs text-white/40 text-center mt-3">扫码添加销售，获取一对一咨询</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Mobile Toggle */}
         <button
@@ -246,12 +224,12 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
       {mobileOpen && (
         <div className="lg:hidden bg-[#0c0c14]/95 backdrop-blur-xl border-t border-white/5 max-h-[80vh] overflow-y-auto">
           <div className="container py-4 flex flex-col gap-1">
-            {NAV_ITEMS.map((item, index) => {
+            {NAV_ITEMS.map((item) => {
               // 外部链接
               if ((item as any).external) {
                 return (
                   <a
-                    key={`${item.href}-${index}`}
+                    key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center gap-2 px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
@@ -262,51 +240,13 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                 );
               }
 
-              if (item.href === "#products") {
-                return (
-                  <div key={item.href}>
-                    <button
-                      onClick={() => setMobileProductOpen(!mobileProductOpen)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                    >
-                      <span>{item.label}</span>
-                      <ChevronDown
-                        size={14}
-                        className={`transition-transform duration-300 ${mobileProductOpen ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                    {mobileProductOpen && (
-                      <div className="ml-4 mt-1 mb-2 space-y-0.5 border-l border-white/[0.08] pl-4">
-                        {PRODUCTS.map((product) => {
-                          const Icon = iconMap[product.icon] || Sparkles;
-                          return (
-                            <Link
-                              key={product.id}
-                              href={product.detailPath}
-                              onClick={() => setMobileOpen(false)}
-                              className="flex items-center gap-3 px-3 py-2.5 text-sm text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                            >
-                              <div className={`w-7 h-7 rounded-md bg-gradient-to-br ${product.gradient} flex items-center justify-center flex-shrink-0 opacity-60`}>
-                                <Icon size={12} className="text-white" />
-                              </div>
-                              <span>{product.name}</span>
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
-              // 路由链接（/services 等）
               if (item.href.startsWith("/")) {
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                    className="px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors block"
                   >
                     {item.label}
                   </Link>
@@ -330,9 +270,70 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                 </a>
               );
             })}
+
+            {/* Mobile: 马上定制开发 */}
+            <div className="mt-2 pt-2 border-t border-white/5">
+              <button
+                onClick={() => setMobileCustomDevOpen(!mobileCustomDevOpen)}
+                className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg hover:from-orange-400 hover:to-red-500 transition-all"
+              >
+                <span>马上定制开发</span>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-300 ${mobileCustomDevOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              {mobileCustomDevOpen && (
+                <div className="ml-4 mt-1 mb-2 space-y-0.5">
+                  {CUSTOM_DEV_ITEMS.map((item) => (
+                    <div key={item.href}>
+                      {item.href.startsWith("/") ? (
+                        <Link
+                          href={item.href}
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setMobileCustomDevOpen(false);
+                          }}
+                          className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={item.href}
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setMobileCustomDevOpen(false);
+                          }}
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded transition-colors"
+                        >
+                          {item.label}
+                          <ExternalLink size={11} className="opacity-40" />
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                  {/* Mobile QR Code */}
+                  <div className="px-4 py-3 mt-2 border-t border-white/5">
+                    <p className="text-xs font-medium text-white/40 mb-2">销售企业微信</p>
+                    <div className="w-32 h-32 rounded-lg bg-white p-1">
+                      <img
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/YtbUYDAJtEwhIZuy.png"
+                        alt="销售企业微信二维码"
+                        className="w-full h-full object-contain rounded"
+                      />
+                    </div>
+                    <p className="text-xs text-white/40 mt-2">扫码添加销售</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
+
+      {/* 企业微信二维码弹窗（备用） */}
+      <WechatQRModal open={qrModalOpen} onClose={closeQRModal} title="预约技术咨询" subtitle="扫码添加企业微信，获取一对一专属咨询服务" />
     </header>
   );
 }

@@ -143,7 +143,7 @@ export const getCompanyYears = () => new Date().getFullYear() - FOUNDED_YEAR;
 
 export const STATS = [
   { value: "DYNAMIC_YEARS", suffix: "年+", label: "行业深耕" },
-  { value: "5000", suffix: "+", label: "项目交付" },
+  { value: "100", suffix: "+", label: "重大项目交付" },
   { value: "6", suffix: "+", label: "自研AI产品" },
   { value: "38", suffix: "+", label: "AI模型接入" },
 ];
@@ -154,11 +154,12 @@ export const COMPANY_INFO = {
   established: FOUNDED_YEAR,
   founder: "莫国勇",
   founderEn: "Figo",
-  email: "ceo@figo.cn",
-  salesPhone: "158-8998-8630",
+  email: "jiazhu@figo.cn",
+  salesPhone: "15889988630",
+  salesPhoneAlt: "18520077913",
   // phone: "020-29869409", // 已停用座机
   website: "www.figo.cn",
-  address: "广东省广州市番禺区南浦凹凸凹创意园C317-318",
+  address: "广州市番禺区南浦时代公馆A406",
   icp: "粤ICP备09123041号-1",
   icpUrl: "https://beian.miit.gov.cn/",
   softwareCode: "粤R-2014-0169",
@@ -170,10 +171,14 @@ export const COMPANY_INFO = {
 export const NAV_ITEMS = [
   { label: "首页", href: "#hero" },
   { label: "产品矩阵", href: "#products" },
-  { label: "AI智能体定制开发", href: "/services" },
-  { label: "APP定制开发", href: "/old/", external: true },
   { label: "服务能力", href: "#services" },
   { label: "关于我们", href: "#about" },
   { label: "联系我们", href: "#contact" },
   { label: "旧站点", href: "/old/", external: true },
+];
+
+// 定制开发下拉菜单项
+export const CUSTOM_DEV_ITEMS = [
+  { label: "AI智能体定制开发", href: "/services" },
+  { label: "APP定制开发", href: "/old/", external: true },
 ];
