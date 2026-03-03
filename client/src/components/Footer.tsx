@@ -5,14 +5,14 @@
 import { COMPANY_INFO, NAV_ITEMS, PRODUCTS, getCompanyYears } from "@/lib/constants";
 
 const APP_CASES = [
-  { name: "智能家居APP", href: "/old/case/app/show_184.html" },
-  { name: "用工发布平台", href: "/old/case/app/show_173.html" },
-  { name: "幼儿园管理系统", href: "/old/case/app/show_169.html" },
-  { name: "一对一视频交友APP", href: "/old/case/app/show_168.html" },
-  { name: "工程施工管理系统", href: "/old/case/app/show_167.html" },
-  { name: "打印交易商城APP", href: "/old/case/app/show_165.html" },
-  { name: "智慧物业管理系统", href: "/old/case/xiaochengxu/show_187.html" },
-  { name: "研学活动小程序", href: "/old/case/xiaochengxu/show_186.html" },
+  { name: "智能家居APP", href: "http://appdev.figo.cn/case/app/show_184.html" },
+  { name: "用工发布平台", href: "http://appdev.figo.cn/case/app/show_173.html" },
+  { name: "幼儿园管理系统", href: "http://appdev.figo.cn/case/app/show_169.html" },
+  { name: "一对一视频交友APP", href: "http://appdev.figo.cn/case/app/show_168.html" },
+  { name: "工程施工管理系统", href: "http://appdev.figo.cn/case/app/show_167.html" },
+  { name: "打印交易商城APP", href: "http://appdev.figo.cn/case/app/show_165.html" },
+  { name: "智慧物业管理系统", href: "http://appdev.figo.cn/case/xiaochengxu/show_187.html" },
+  { name: "研学活动小程序", href: "http://appdev.figo.cn/case/xiaochengxu/show_186.html" },
 ];
 
 export default function Footer() {
@@ -107,7 +107,7 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="/old/case"
+                  href="http://appdev.figo.cn/case"
                   className="text-sm text-emerald-400/60 hover:text-emerald-400 transition-colors"
                 >
                   查看更多案例 →
