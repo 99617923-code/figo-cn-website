@@ -174,11 +174,11 @@ export const NAV_ITEMS = [
   { label: "服务能力", href: "#services" },
   { label: "关于我们", href: "#about" },
   { label: "联系我们", href: "#contact" },
-  { label: "旧站点", href: "http://appdev.figo.cn", external: true },
+  { label: "旧站点", href: "https://appdev.figo.cn", external: true },
 ];
 
 // 定制开发下拉菜单项
 export const CUSTOM_DEV_ITEMS = [
   { label: "AI智能体定制开发", href: "/services" },
-  { label: "APP定制开发", href: "http://appdev.figo.cn", external: true },
+  { label: "APP定制开发", href: "https://appdev.figo.cn", external: true },
 ];
