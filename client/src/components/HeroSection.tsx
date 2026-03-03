@@ -81,7 +81,7 @@ export default function HeroSection() {
 
           {/* Subtitle — cleaner */}
           <p className="text-lg lg:text-xl text-white/55 max-w-2xl mb-12 leading-relaxed animate-fade-up stagger-2">
-            21年软件定制开发经验，专注AI智能体定制开发、大模型API接入、AI数字人定制
+            21年软件定制开发经验，专注AI智能体定制开发、大模型API接入、APP/小程序定制开发、物联网系统开发。
             <br className="hidden sm:block" />
             火鹰科技为企业提供完整的AI智能体定制开发解决方案
           </p>
