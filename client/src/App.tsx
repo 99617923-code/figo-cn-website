@@ -1,5 +1,5 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, Redirect } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -40,6 +40,8 @@ function Router() {
         <Route path={"/FigoAgent/"} component={FigoAgent} />
         {/* 首页 — FigoAgent 作为官网一级目录默认首页 */}
         <Route path={"/"} component={FigoAgent} />
+        {/* 兜底路由：所有未匹配的路径自动跳转到首页 */}
+        <Route>{() => <Redirect to="/" />}</Route>
       </Switch>
     </>
   );
