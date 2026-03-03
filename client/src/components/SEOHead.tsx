@@ -19,7 +19,7 @@ function getStructuredData() {
     foundingDate: String(COMPANY_INFO.established),
     address: {
       "@type": "PostalAddress",
-      streetAddress: "番禺区南浦凹凸凹创意园C317-318",
+      streetAddress: COMPANY_INFO.address,
       addressLocality: "广州市",
       addressRegion: "广东省",
       addressCountry: "CN",
@@ -119,7 +119,7 @@ function getLocalBusinessData() {
     image: `https://${COMPANY_INFO.website}/static/images/logo.png`,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "番禺区南浦凹凸凹创意园C317-318",
+      streetAddress: COMPANY_INFO.address,
       addressLocality: "广州市",
       addressRegion: "广东省",
       postalCode: "510000",

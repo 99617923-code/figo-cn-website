@@ -38,11 +38,11 @@ export default function Footer() {
             <div className="mt-4 space-y-1.5">
               <p className="text-xs text-white/30">
                 <span className="text-white/50">热线：</span>
-                <a href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`} className="hover:text-white/60 transition-colors">{COMPANY_INFO.salesPhone}</a>
+                <a href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`} className="hover:text-white/60 transition-colors">{COMPANY_INFO.salesPhone}、{COMPANY_INFO.salesPhoneAlt}</a>
               </p>
               <p className="text-xs text-white/30">
                 <span className="text-white/50">邮箱：</span>
-                <a href="mailto:kefu@figo.cn" className="hover:text-white/60 transition-colors">kefu@figo.cn</a>
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-white/60 transition-colors">{COMPANY_INFO.email}</a>
               </p>
             </div>
           </div>

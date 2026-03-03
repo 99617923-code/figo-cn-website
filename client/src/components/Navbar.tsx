@@ -4,7 +4,7 @@
  * 产品矩阵下拉菜单 + "马上定制开发"高亮按钮（包含下拉菜单和二维码）
  * 支持外部链接（旧站点）
  */
-import { NAV_ITEMS, CUSTOM_DEV_ITEMS, COMPANY_INFO } from "@/lib/constants";
+import { NAV_ITEMS, CUSTOM_DEV_ITEMS, COMPANY_INFO, PRODUCTS } from "@/lib/constants";
 import { Menu, X, ChevronDown, ExternalLink } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "wouter";
@@ -19,9 +19,13 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [customDevDropdownOpen, setCustomDevDropdownOpen] = useState(false);
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const [mobileCustomDevOpen, setMobileCustomDevOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const customDevDropdownRef = useRef<HTMLDivElement>(null);
+  const productsDropdownRef = useRef<HTMLDivElement>(null);
   const customDevDropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const productsDropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { open: qrModalOpen, openModal: openQRModal, closeModal: closeQRModal } = useWechatQRModal();
   const [location] = useLocation();
 
@@ -36,6 +40,9 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
     const handleClickOutside = (e: MouseEvent) => {
       if (customDevDropdownRef.current && !customDevDropdownRef.current.contains(e.target as Node)) {
         setCustomDevDropdownOpen(false);
+      }
+      if (productsDropdownRef.current && !productsDropdownRef.current.contains(e.target as Node)) {
+        setProductsDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -53,14 +60,25 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
     }
   };
 
-  const handleDropdownEnter = () => {
+  const handleCustomDevDropdownEnter = () => {
     if (customDevDropdownTimer.current) clearTimeout(customDevDropdownTimer.current);
     setCustomDevDropdownOpen(true);
   };
 
-  const handleDropdownLeave = () => {
+  const handleCustomDevDropdownLeave = () => {
     customDevDropdownTimer.current = setTimeout(() => {
       setCustomDevDropdownOpen(false);
+    }, 200);
+  };
+
+  const handleProductsDropdownEnter = () => {
+    if (productsDropdownTimer.current) clearTimeout(productsDropdownTimer.current);
+    setProductsDropdownOpen(true);
+  };
+
+  const handleProductsDropdownLeave = () => {
+    productsDropdownTimer.current = setTimeout(() => {
+      setProductsDropdownOpen(false);
     }, 200);
   };
 
@@ -84,6 +102,54 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
+            // 产品矩阵 - 特殊处理，添加下拉菜单
+            if (item.label === "产品矩阵") {
+              return (
+                <div
+                  key={item.href}
+                  ref={productsDropdownRef}
+                  className="relative"
+                  onMouseEnter={handleProductsDropdownEnter}
+                  onMouseLeave={handleProductsDropdownLeave}
+                >
+                  <button
+                    onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                    className="flex items-center gap-1 px-4 py-2 text-sm text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-300 ${productsDropdownOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  {/* Products Dropdown */}
+                  <div
+                    className={`absolute top-full left-0 mt-2 w-56 transition-all duration-300 ${
+                      productsDropdownOpen
+                        ? "opacity-100 translate-y-0 pointer-events-auto"
+                        : "opacity-0 -translate-y-2 pointer-events-none"
+                    }`}
+                  >
+                    <div className="bg-[#12121e]/95 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 overflow-hidden">
+                      <div className="py-2">
+                        {PRODUCTS.map((product) => (
+                          <Link
+                            key={product.id}
+                            href={product.detailPath}
+                            onClick={() => setProductsDropdownOpen(false)}
+                            className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200 block"
+                          >
+                            <span>{product.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             // 外部链接（旧站点）
             if ((item as any).external) {
               return (
@@ -135,8 +201,8 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
           <div
             ref={customDevDropdownRef}
             className="relative"
-            onMouseEnter={handleDropdownEnter}
-            onMouseLeave={handleDropdownLeave}
+            onMouseEnter={handleCustomDevDropdownEnter}
+            onMouseLeave={handleCustomDevDropdownLeave}
           >
             <button
               onClick={() => setCustomDevDropdownOpen(!customDevDropdownOpen)}
@@ -151,7 +217,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
 
             {/* Dropdown Menu */}
             <div
-              className={`absolute top-full right-0 mt-2 w-80 transition-all duration-300 ${
+              className={`absolute top-full right-0 mt-2 w-64 transition-all duration-300 ${
                 customDevDropdownOpen
                   ? "opacity-100 translate-y-0 pointer-events-auto"
                   : "opacity-0 -translate-y-2 pointer-events-none"
@@ -225,6 +291,41 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
         <div className="lg:hidden bg-[#0c0c14]/95 backdrop-blur-xl border-t border-white/5 max-h-[80vh] overflow-y-auto">
           <div className="container py-4 flex flex-col gap-1">
             {NAV_ITEMS.map((item) => {
+              // 产品矩阵 - 移动端下拉菜单
+              if (item.label === "产品矩阵") {
+                return (
+                  <div key={item.href}>
+                    <button
+                      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-300 ${mobileProductsOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {mobileProductsOpen && (
+                      <div className="pl-4 py-2 space-y-1">
+                        {PRODUCTS.map((product) => (
+                          <Link
+                            key={product.id}
+                            href={product.detailPath}
+                            onClick={() => {
+                              setMobileOpen(false);
+                              setMobileProductsOpen(false);
+                            }}
+                            className="block px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                          >
+                            {product.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               // 外部链接
               if ((item as any).external) {
                 return (
@@ -284,7 +385,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                 />
               </button>
               {mobileCustomDevOpen && (
-                <div className="ml-4 mt-1 mb-2 space-y-0.5">
+                <div className="mt-2 space-y-1">
                   {CUSTOM_DEV_ITEMS.map((item) => (
                     <div key={item.href}>
                       {item.href.startsWith("/") ? (
@@ -294,9 +395,9 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                             setMobileOpen(false);
                             setMobileCustomDevOpen(false);
                           }}
-                          className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded transition-colors"
+                          className="flex items-center justify-between px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors block"
                         >
-                          {item.label}
+                          <span>{item.label}</span>
                         </Link>
                       ) : (
                         <a
@@ -305,35 +406,20 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                             setMobileOpen(false);
                             setMobileCustomDevOpen(false);
                           }}
-                          className="flex items-center gap-2 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded transition-colors"
+                          className="flex items-center justify-between px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                         >
-                          {item.label}
-                          <ExternalLink size={11} className="opacity-40" />
+                          <span>{item.label}</span>
+                          <ExternalLink size={12} className="opacity-40" />
                         </a>
                       )}
                     </div>
                   ))}
-                  {/* Mobile QR Code */}
-                  <div className="px-4 py-3 mt-2 border-t border-white/5">
-                    <p className="text-xs font-medium text-white/40 mb-2">销售企业微信</p>
-                    <div className="w-32 h-32 rounded-lg bg-white p-1">
-                      <img
-                        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/YtbUYDAJtEwhIZuy.png"
-                        alt="销售企业微信二维码"
-                        className="w-full h-full object-contain rounded"
-                      />
-                    </div>
-                    <p className="text-xs text-white/40 mt-2">扫码添加销售</p>
-                  </div>
                 </div>
               )}
             </div>
           </div>
         </div>
       )}
-
-      {/* 企业微信二维码弹窗（备用） */}
-      <WechatQRModal open={qrModalOpen} onClose={closeQRModal} title="预约技术咨询" subtitle="扫码添加企业微信，获取一对一专属咨询服务" />
     </header>
   );
 }

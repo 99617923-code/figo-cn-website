@@ -1,4 +1,4 @@
-/**
+/*
  * 「量子棱镜」— Hero首屏
  * 简洁大气的全屏设计：新背景图 + 大标题 + 核心数据
  * 去掉多余的浮动球体，让视觉更干净
@@ -86,8 +86,20 @@ export default function HeroSection() {
             火鹰科技为企业提供完整的AI智能体定制开发解决方案
           </p>
 
+          {/* Stats — moved up before CTA buttons */}
+          <div className="flex flex-nowrap items-center overflow-x-auto animate-fade-up stagger-3 -mx-6 px-6 pb-8 mb-4">
+            {STATS.map((stat, i) => (
+              <div key={stat.label} className="flex items-center flex-shrink-0">
+                <StatItem value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 200} />
+                {i < STATS.length - 1 && (
+                  <div className="hidden md:block w-px h-12 bg-white/10 mx-2" />
+                )}
+              </div>
+            ))}
+          </div>
+
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 mb-20 animate-fade-up stagger-3">
+          <div className="flex flex-wrap gap-4 mb-20 animate-fade-up stagger-4">
             <a
               href="#products"
               className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5"
@@ -100,18 +112,6 @@ export default function HeroSection() {
             >
               预约技术咨询
             </button>
-          </div>
-
-          {/* Stats — with dividers */}
-          <div className="flex flex-nowrap items-center overflow-x-auto animate-fade-up stagger-4 -mx-6 px-6 pb-2">
-            {STATS.map((stat, i) => (
-              <div key={stat.label} className="flex items-center flex-shrink-0">
-                <StatItem value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 200} />
-                {i < STATS.length - 1 && (
-                  <div className="hidden md:block w-px h-12 bg-white/10 mx-2" />
-                )}
-              </div>
-            ))}
           </div>
         </div>
         {/* 右侧：AI聊天演示 - 仅PC端显示 */}
