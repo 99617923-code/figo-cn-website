@@ -242,7 +242,9 @@
     "windowsDesktop": "Software de Escritorio Windows",
     "windowsDesktopDesc": "Desarrollo de aplicaciones de escritorio Windows con Electron/.NET/WPF. Sistemas de gestión empresarial, herramientas y plataformas de análisis de datos.",
     "macDesktop": "Software de Escritorio Mac",
-    "macDesktopDesc": "Desarrollo nativo de aplicaciones macOS con Swift/Electron, siguiendo las directrices de diseño de Apple. Publicación en Mac App Store y distribución empresarial."
+    "macDesktopDesc": "Desarrollo nativo de aplicaciones macOS con Swift/Electron, siguiendo las directrices de diseño de Apple. Publicación en Mac App Store y distribución empresarial.",
+    "enterpriseIntegration": "Integración de Aplicaciones Empresariales",
+    "enterpriseIntegrationDesc": "Integre capacidades de IA en cualquier software empresarial existente, incluyendo ERP, CRM, OA y más. Logre actualizaciones inteligentes sin reconstruir sus sistemas."
   },
   "cases": {
     "sectionLabel": "Casos de Éxito",

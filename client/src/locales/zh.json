@@ -242,7 +242,9 @@
     "windowsDesktop": "Windows桌面软件开发",
     "windowsDesktopDesc": "基于Electron/.NET/WPF的Windows桌面应用开发，支持企业级管理系统、工具软件、数据分析平台等场景。",
     "macDesktop": "Mac桌面软件开发",
-    "macDesktopDesc": "基于Swift/Electron的macOS原生应用开发，遵循Apple设计规范，支持Mac App Store上架和企业分发。"
+    "macDesktopDesc": "基于Swift/Electron的macOS原生应用开发，遵循Apple设计规范，支持Mac App Store上架和企业分发。",
+    "enterpriseIntegration": "企业级应用集成",
+    "enterpriseIntegrationDesc": "将AI能力无缝集成到企业现有的ERP、CRM、OA等任何软件系统中，实现智能化升级，无需重建系统即可拥有AI能力。"
   },
   "cases": {
     "sectionLabel": "成功案例",

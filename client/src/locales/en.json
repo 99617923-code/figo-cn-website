@@ -242,7 +242,9 @@
     "windowsDesktop": "Windows Desktop Software",
     "windowsDesktopDesc": "Windows desktop application development with Electron/.NET/WPF. Supporting enterprise management systems, utility tools, and data analytics platforms.",
     "macDesktop": "Mac Desktop Software",
-    "macDesktopDesc": "Native macOS application development with Swift/Electron, following Apple design guidelines. Supporting Mac App Store publishing and enterprise distribution."
+    "macDesktopDesc": "Native macOS application development with Swift/Electron, following Apple design guidelines. Supporting Mac App Store publishing and enterprise distribution.",
+    "enterpriseIntegration": "Enterprise Application Integration",
+    "enterpriseIntegrationDesc": "Seamlessly integrate AI capabilities into any existing enterprise software including ERP, CRM, OA and more. Achieve intelligent upgrades without rebuilding your systems."
   },
   "cases": {
     "sectionLabel": "Case Studies",

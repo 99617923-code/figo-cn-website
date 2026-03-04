@@ -160,6 +160,11 @@ export const SERVICES = [
     description: "基于Swift/Electron的macOS原生应用开发，遵循Apple设计规范，支持Mac App Store上架和企业分发。",
     icon: "Laptop",
   },
+  {
+    title: "企业级应用集成",
+    description: "将AI能力无缝集成到企业现有的ERP、CRM、OA等任何软件系统中，实现智能化升级，无需重建系统即可拥有AI能力。",
+    icon: "Plug",
+  },
 ];
 
 // 自动计算公司经营年份（基于2005年成立）
