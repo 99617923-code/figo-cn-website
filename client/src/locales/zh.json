@@ -341,7 +341,13 @@
     "netProfit": "净利润",
     "roiLabel": "投资回报率",
     "getReport": "获取详细报告",
-    "disclaimer": "以上数据为估算值，实际效果因企业而异"
+    "disclaimer": "以上数据为估算值，实际效果因企业而异",
+    "scenario1": "智能客服场景",
+    "scenario2": "销售培训场景",
+    "scenario3": "数字人场景",
+    "scenario1Desc": "通过AI智能客服替代人工客服，大幅降低人力成本，同时提升响应速度和服务质量。",
+    "scenario2Desc": "利用AI模拟真实客户进行销售培训，提升团队整体销售能力和成交率。",
+    "scenario3Desc": "打造创始人/专家数字分身，7×24小时在线接待，自动生成方案，提升转化率。"
   },
   "trust": {
     "sectionLabel": "信任背书",

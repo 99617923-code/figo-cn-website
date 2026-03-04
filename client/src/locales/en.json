@@ -341,7 +341,13 @@
     "netProfit": "Net Profit",
     "roiLabel": "ROI",
     "getReport": "Get Detailed Report",
-    "disclaimer": "Above data are estimates. Actual results may vary by enterprise"
+    "disclaimer": "Above data are estimates. Actual results may vary by enterprise",
+    "scenario1": "AI Customer Service",
+    "scenario2": "Sales Training",
+    "scenario3": "Digital Human",
+    "scenario1Desc": "Replace manual customer service with AI to significantly reduce labor costs while improving response speed and service quality.",
+    "scenario2Desc": "Use AI to simulate real customers for sales training, improving overall team sales capability and conversion rates.",
+    "scenario3Desc": "Create a digital twin of founders/experts, available 24/7 for customer engagement, auto-generating proposals and boosting conversions."
   },
   "trust": {
     "sectionLabel": "Trust & Credentials",

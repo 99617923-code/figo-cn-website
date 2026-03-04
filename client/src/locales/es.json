@@ -341,7 +341,13 @@
     "netProfit": "Beneficio Neto",
     "roiLabel": "ROI",
     "getReport": "Obtener Informe Detallado",
-    "disclaimer": "Los datos anteriores son estimaciones. Los resultados reales pueden variar según la empresa"
+    "disclaimer": "Los datos anteriores son estimaciones. Los resultados reales pueden variar según la empresa",
+    "scenario1": "Servicio al Cliente IA",
+    "scenario2": "Capacitación de Ventas",
+    "scenario3": "Humano Digital",
+    "scenario1Desc": "Reemplace el servicio al cliente manual con IA para reducir significativamente los costos laborales mientras mejora la velocidad de respuesta y la calidad del servicio.",
+    "scenario2Desc": "Use IA para simular clientes reales en capacitación de ventas, mejorando la capacidad de ventas del equipo y las tasas de conversión.",
+    "scenario3Desc": "Cree un gemelo digital de fundadores/expertos, disponible 24/7 para atención al cliente, generando propuestas automáticamente y aumentando las conversiones."
   },
   "trust": {
     "sectionLabel": "Confianza y Credenciales",
