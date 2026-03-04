@@ -1,6 +1,6 @@
 /*
  * i18n 国际化配置
- * 支持中文(zh)和英文(en)
+ * 支持中文(zh)、英文(en)和西班牙语(es)
  * 自动检测浏览器语言，支持手动切换
  */
 import i18n from "i18next";
@@ -9,6 +9,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import zh from "../locales/zh.json";
 import en from "../locales/en.json";
+import es from "../locales/es.json";
 
 i18n
   .use(LanguageDetector)
@@ -17,6 +18,7 @@ i18n
     resources: {
       zh: { translation: zh },
       en: { translation: en },
+      es: { translation: es },
     },
     fallbackLng: "zh",
     interpolation: {
@@ -31,6 +33,8 @@ i18n
   });
 
 export default i18n;
+
+export type SupportedLang = "zh" | "en" | "es";
 
 /**
  * 根据IP地理位置自动设置语言
@@ -78,7 +82,7 @@ export async function detectLanguageByIP(): Promise<void> {
 /**
  * 手动切换语言
  */
-export function switchLanguage(lang: "zh" | "en"): void {
+export function switchLanguage(lang: SupportedLang): void {
   i18n.changeLanguage(lang);
   localStorage.setItem("figo-lang", lang);
   localStorage.setItem("figo-lang-manual", "true");
