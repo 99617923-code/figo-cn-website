@@ -48,10 +48,10 @@ function StatItem({ value, suffix, labelKey, delay, suffixKey }: { value: string
 
   return (
     <div
-      className="relative group text-center px-2 sm:px-4 lg:px-6 py-2 sm:py-4 flex-shrink-0"
+      className="relative group text-center px-1 sm:px-2 py-2 sm:py-3"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="font-mono-data text-xl sm:text-2xl lg:text-5xl font-bold text-white tracking-tight">
+      <div className="font-mono-data text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white tracking-tight">
         <AnimatedNumber target={numericValue} duration={2000} />
         <span className="text-emerald-400">{displaySuffix}</span>
       </div>
@@ -104,18 +104,6 @@ export default function HeroSection() {
             {t("hero.subtitle2")}
           </p>
 
-          {/* Stats — moved up before CTA buttons */}
-          <div className="flex flex-nowrap items-center overflow-x-auto animate-fade-up stagger-3 -mx-6 px-6 pb-8 mb-4">
-            {STATS.map((stat, i) => (
-              <div key={STAT_LABEL_KEYS[i]} className="flex items-center flex-shrink-0">
-                <StatItem value={stat.value} suffix={stat.suffix} labelKey={STAT_LABEL_KEYS[i]} delay={i * 200} suffixKey={STAT_SUFFIX_KEYS[i]} />
-                {i < STATS.length - 1 && (
-                  <div className="hidden md:block w-px h-12 bg-white/10 mx-2" />
-                )}
-              </div>
-            ))}
-          </div>
-
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 mb-20 animate-fade-up stagger-4">
             <a
@@ -132,9 +120,23 @@ export default function HeroSection() {
             </button>
           </div>
         </div>
-        {/* 右侧：AI聊天演示 - 仅PC端显示 */}
-        <div className="hidden lg:flex w-full h-96">
-          <AIChatDemo />
+        {/* 右侧：AI聊天演示 + 统计数据 - 仅PC端显示 */}
+        <div className="hidden lg:flex lg:flex-col w-full gap-6">
+          <div className="h-96">
+            <AIChatDemo />
+          </div>
+          {/* Stats row — below chat demo */}
+          <div className="grid grid-cols-4 gap-2 animate-fade-up stagger-3">
+            {STATS.map((stat, i) => (
+              <StatItem key={STAT_LABEL_KEYS[i]} value={stat.value} suffix={stat.suffix} labelKey={STAT_LABEL_KEYS[i]} delay={i * 200} suffixKey={STAT_SUFFIX_KEYS[i]} />
+            ))}
+          </div>
+        </div>
+        {/* 移动端：统计数据 */}
+        <div className="lg:hidden grid grid-cols-2 sm:grid-cols-4 gap-4 animate-fade-up stagger-3 mb-4">
+          {STATS.map((stat, i) => (
+            <StatItem key={STAT_LABEL_KEYS[i]} value={stat.value} suffix={stat.suffix} labelKey={STAT_LABEL_KEYS[i]} delay={i * 200} suffixKey={STAT_SUFFIX_KEYS[i]} />
+          ))}
         </div>
       </div>
       </div>
