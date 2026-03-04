@@ -1,83 +1,86 @@
 /**
  * AI技术数据仪表盘 — 实时展示AI系统运行数据
- * 营销目标：用实时数据展示技术实力，增强专业感和信任感
- * 放在AI架构板块之后
+ * i18n国际化支持
  */
 import { useInView } from "@/hooks/useInView";
 import { useEffect, useState, useRef } from "react";
 import { Activity, Cpu, Database, Globe, Shield, Zap } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface MetricConfig {
   icon: React.ReactNode;
-  label: string;
+  labelKey: string;
   value: number;
   suffix: string;
   prefix?: string;
   color: string;
-  description: string;
+  descKey: string;
   trend: string;
+  trendKey?: string;
 }
 
 const METRICS: MetricConfig[] = [
   {
     icon: <Activity size={16} />,
-    label: "日均API调用",
+    labelKey: "metrics.apiCalls",
     value: 2847563,
     suffix: "",
     color: "text-emerald-400",
-    description: "火鹰引擎每日处理的API请求数",
+    descKey: "metrics.apiCallsDesc",
     trend: "+12.3%",
   },
   {
     icon: <Cpu size={16} />,
-    label: "模型推理延迟",
+    labelKey: "metrics.latency",
     value: 47,
     suffix: "ms",
     color: "text-blue-400",
-    description: "平均端到端响应时间",
+    descKey: "metrics.latencyDesc",
     trend: "-8.5%",
   },
   {
     icon: <Database size={16} />,
-    label: "知识库文档",
+    labelKey: "metrics.knowledgeDocs",
     value: 1285634,
     suffix: "",
     color: "text-purple-400",
-    description: "已索引的企业知识文档数",
+    descKey: "metrics.knowledgeDocsDesc",
     trend: "+23.1%",
   },
   {
     icon: <Globe size={16} />,
-    label: "服务可用性",
+    labelKey: "metrics.availability",
     value: 99.99,
     suffix: "%",
     color: "text-cyan-400",
-    description: "过去30天系统可用性",
-    trend: "稳定",
+    descKey: "metrics.availabilityDesc",
+    trendKey: "metrics.stable",
+    trend: "",
   },
   {
     icon: <Shield size={16} />,
-    label: "安全拦截",
+    labelKey: "metrics.safetyBlock",
     value: 15823,
     suffix: "",
     prefix: "",
     color: "text-amber-400",
-    description: "今日内容安全过滤次数",
+    descKey: "metrics.safetyBlockDesc",
     trend: "+5.2%",
   },
   {
     icon: <Zap size={16} />,
-    label: "并发处理",
+    labelKey: "metrics.concurrency",
     value: 8500,
     suffix: "",
     prefix: "",
     color: "text-rose-400",
-    description: "峰值每秒并发请求数",
+    descKey: "metrics.concurrencyDesc",
     trend: "+18.7%",
   },
 ];
 
 function AnimatedMetric({ metric, isVisible }: { metric: MetricConfig; isVisible: boolean }) {
+  const { t } = useTranslation();
   const [displayValue, setDisplayValue] = useState(0);
   const animatedRef = useRef(false);
 
@@ -117,6 +120,8 @@ function AnimatedMetric({ metric, isVisible }: { metric: MetricConfig; isVisible
     return val.toLocaleString();
   };
 
+  const trendText = metric.trendKey ? t(metric.trendKey) : metric.trend;
+
   return (
     <div className="group relative p-5 rounded-xl transition-all duration-300 hover:-translate-y-0.5"
       style={{
@@ -134,25 +139,26 @@ function AnimatedMetric({ metric, isVisible }: { metric: MetricConfig; isVisible
             {metric.icon}
           </div>
           <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${
-            metric.trend.startsWith("+") ? "text-emerald-400/70 bg-emerald-500/10" :
-            metric.trend.startsWith("-") ? "text-blue-400/70 bg-blue-500/10" :
+            trendText.startsWith("+") ? "text-emerald-400/70 bg-emerald-500/10" :
+            trendText.startsWith("-") ? "text-blue-400/70 bg-blue-500/10" :
             "text-white/30 bg-white/5"
           }`}>
-            {metric.trend}
+            {trendText}
           </span>
         </div>
 
         <div className="font-mono text-2xl lg:text-3xl font-bold text-white mb-1">
           {metric.prefix}{formatValue(displayValue)}{metric.suffix}
         </div>
-        <div className="text-xs text-white/50 font-medium">{metric.label}</div>
-        <div className="text-[10px] text-white/25 mt-1">{metric.description}</div>
+        <div className="text-xs text-white/50 font-medium">{t(metric.labelKey)}</div>
+        <div className="text-[10px] text-white/25 mt-1">{t(metric.descKey)}</div>
       </div>
     </div>
   );
 }
 
 export default function AIMetricsDashboard() {
+  const { t } = useTranslation();
   const { ref: titleRef, isInView: titleVisible } = useInView();
   const { ref: gridRef, isInView: gridVisible } = useInView();
 
@@ -167,11 +173,11 @@ export default function AIMetricsDashboard() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-xs font-medium text-emerald-400/80 tracking-wider uppercase">Live System Metrics</span>
+              <span className="text-xs font-medium text-emerald-400/80 tracking-wider uppercase">{t("metrics.liveLabel")}</span>
             </div>
-            <h3 className="text-xl lg:text-2xl font-bold text-white">AI系统实时数据</h3>
+            <h3 className="text-xl lg:text-2xl font-bold text-white">{t("metrics.title")}</h3>
           </div>
-          <span className="text-[10px] text-white/20 hidden sm:block">数据每5分钟自动更新</span>
+          <span className="text-[10px] text-white/20 hidden sm:block">{t("metrics.autoUpdate")}</span>
         </div>
 
         {/* Metrics Grid */}
@@ -181,7 +187,7 @@ export default function AIMetricsDashboard() {
         >
           {METRICS.map((metric, i) => (
             <AnimatedMetric
-              key={metric.label}
+              key={metric.labelKey}
               metric={metric}
               isVisible={gridVisible}
             />

@@ -1,10 +1,10 @@
 /**
  * 客户Logo滚动墙 — 无限循环滚动
- * 展示合作过的知名企业/品牌，增强社会证明
- * 放在Hero区下方，第一时间建立信任
+ * i18n国际化支持
  */
+import { useTranslation } from "react-i18next";
 
-const CLIENT_LOGOS = [
+const CLIENT_LOGOS_ZH = [
   { name: "中国平安", industry: "金融" },
   { name: "碧桂园", industry: "地产" },
   { name: "顺丰速运", industry: "物流" },
@@ -23,7 +23,26 @@ const CLIENT_LOGOS = [
   { name: "腾讯", industry: "互联网" },
 ];
 
-function LogoItem({ client }: { client: typeof CLIENT_LOGOS[0] }) {
+const CLIENT_LOGOS_EN = [
+  { name: "Ping An", industry: "Finance" },
+  { name: "Country Garden", industry: "Real Estate" },
+  { name: "SF Express", industry: "Logistics" },
+  { name: "CR Group", industry: "Conglomerate" },
+  { name: "CSG", industry: "Energy" },
+  { name: "GAC Group", industry: "Automotive" },
+  { name: "Vipshop", industry: "E-commerce" },
+  { name: "NetEase", industry: "Internet" },
+  { name: "TCL", industry: "Manufacturing" },
+  { name: "Midea", industry: "Appliances" },
+  { name: "China Mobile", industry: "Telecom" },
+  { name: "CMB", industry: "Finance" },
+  { name: "Vanke", industry: "Real Estate" },
+  { name: "Gree", industry: "Appliances" },
+  { name: "BYD", industry: "Automotive" },
+  { name: "Tencent", industry: "Internet" },
+];
+
+function LogoItem({ client }: { client: { name: string; industry: string } }) {
   return (
     <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-lg bg-white/[0.03] border border-white/[0.05] whitespace-nowrap select-none">
       <div className="w-7 h-7 rounded-md bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center text-[10px] font-bold text-white/50 border border-white/[0.08]">
@@ -36,23 +55,22 @@ function LogoItem({ client }: { client: typeof CLIENT_LOGOS[0] }) {
 }
 
 export default function ClientLogoWall() {
-  // 复制两份实现无缝滚动
-  const doubled = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+  const { i18n } = useTranslation();
+  const isEn = i18n.language === "en";
+  const logos = isEn ? CLIENT_LOGOS_EN : CLIENT_LOGOS_ZH;
+  const doubled = [...logos, ...logos];
 
   return (
     <section className="relative py-8 overflow-hidden border-y border-white/[0.04]">
-      {/* 左右渐隐遮罩 */}
       <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-[#0c0c14] to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-[#0c0c14] to-transparent pointer-events-none" />
 
-      {/* 标题行 */}
       <div className="text-center mb-4">
         <span className="text-[10px] tracking-[0.3em] uppercase text-white/20 font-medium">
           Trusted by leading enterprises
         </span>
       </div>
 
-      {/* 滚动容器 */}
       <div className="flex animate-scroll-left gap-3">
         {doubled.map((client, i) => (
           <LogoItem key={`${client.name}-${i}`} client={client} />

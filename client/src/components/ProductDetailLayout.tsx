@@ -1,6 +1,6 @@
 /*
  * 「量子棱镜」— 产品详情页通用布局
- * 统一的产品详情页结构：完整Navbar + Hero + 功能列表 + 应用场景 + 技术优势 + CTA + 完整Footer
+ * i18n国际化支持
  */
 import { useInView } from "@/hooks/useInView";
 import { COMPANY_INFO } from "@/lib/constants";
@@ -10,6 +10,7 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WechatQRModal from "./WechatQRModal";
+import { useTranslation } from "react-i18next";
 
 interface Feature {
   icon: React.ReactNode;
@@ -46,8 +47,6 @@ interface ProductDetailProps {
   children?: React.ReactNode;
 }
 
-/* ─── Extracted sub-components so hooks are NOT called inside loops ─── */
-
 function SectionHeader({ label, title, subtitle }: { label: string; title: string; subtitle: string }) {
   const { ref, isInView } = useInView();
   return (
@@ -65,11 +64,7 @@ function FeatureCard({ feature, gradient, index }: { feature: Feature; gradient:
     <div
       ref={ref}
       className={`relative p-6 rounded-2xl transition-all duration-700 group ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      style={{
-        transitionDelay: `${index * 80}ms`,
-        background: "rgba(255,255,255,0.03)",
-        border: "1px solid rgba(255,255,255,0.06)",
-      }}
+      style={{ transitionDelay: `${index * 80}ms`, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.04), rgba(139,92,246,0.04))", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "inherit" }}
@@ -98,11 +93,7 @@ function ScenarioCard({ scenario, gradient, index }: { scenario: Scenario; gradi
     <div
       ref={ref}
       className={`relative p-8 rounded-2xl transition-all duration-700 group ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      style={{
-        transitionDelay: `${index * 100}ms`,
-        background: "rgba(255,255,255,0.02)",
-        border: "1px solid rgba(255,255,255,0.05)",
-      }}
+      style={{ transitionDelay: `${index * 100}ms`, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}
     >
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.03), rgba(139,92,246,0.03))", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "inherit" }}
@@ -124,11 +115,7 @@ function TechCard({ adv, index }: { adv: TechAdvantage; index: number }) {
     <div
       ref={ref}
       className={`relative p-6 lg:p-8 rounded-2xl transition-all duration-700 group ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      style={{
-        transitionDelay: `${index * 100}ms`,
-        background: "rgba(255,255,255,0.03)",
-        border: "1px solid rgba(255,255,255,0.06)",
-      }}
+      style={{ transitionDelay: `${index * 100}ms`, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.04), rgba(139,92,246,0.04))", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "inherit" }}
@@ -149,19 +136,16 @@ function TechCard({ adv, index }: { adv: TechAdvantage; index: number }) {
   );
 }
 
-/* ─── Main Layout ─── */
-
 export default function ProductDetailLayout({
   name, tagline, heroDescription, gradient, gradientColors, heroIcon,
   stats, features, scenarios, techAdvantages, architectureDescription, children,
 }: ProductDetailProps) {
+  const { t } = useTranslation();
   const [qrModalOpen, setQrModalOpen] = useState(false);
-
   const companyYears = new Date().getFullYear() - 2005;
 
   return (
     <div className="min-h-screen bg-[#0c0c14] text-white overflow-x-hidden">
-      {/* 使用完整的Navbar，传入isDetailPage标记 */}
       <Navbar isDetailPage />
 
       {/* Hero Section */}
@@ -174,11 +158,10 @@ export default function ProductDetailLayout({
         </div>
 
         <div className="container relative">
-          {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-white/40 mb-8">
-            <Link href="/" className="hover:text-white/60 transition-colors">首页</Link>
+            <Link href="/" className="hover:text-white/60 transition-colors">{t("productDetail.home")}</Link>
             <ChevronRight size={14} />
-            <Link href="/#products" className="hover:text-white/60 transition-colors">产品矩阵</Link>
+            <Link href="/#products" className="hover:text-white/60 transition-colors">{t("productDetail.products")}</Link>
             <ChevronRight size={14} />
             <span className="text-white/80">{name}</span>
           </div>
@@ -194,9 +177,7 @@ export default function ProductDetailLayout({
               </div>
             </div>
 
-            <p className="text-lg lg:text-xl text-white/60 leading-relaxed max-w-3xl mb-10">
-              {heroDescription}
-            </p>
+            <p className="text-lg lg:text-xl text-white/60 leading-relaxed max-w-3xl mb-10">{heroDescription}</p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
               {stats.map((stat) => (
@@ -212,18 +193,17 @@ export default function ProductDetailLayout({
                 onClick={() => setQrModalOpen(true)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-white bg-gradient-to-r ${gradient} hover:shadow-lg transition-all hover:-translate-y-0.5`}
               >
-                {/* WeChat icon */}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18z" />
                 </svg>
-                预约产品演示
+                {t("productDetail.bookDemo")}
               </button>
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-white/70 bg-white/[0.06] border border-white/[0.1] hover:bg-white/[0.1] hover:text-white transition-all"
               >
                 <Mail size={16} />
-                商务咨询
+                {t("productDetail.bizConsult")}
               </a>
             </div>
           </div>
@@ -234,9 +214,9 @@ export default function ProductDetailLayout({
       <section className="relative py-20 lg:py-28">
         <div className="container">
           <SectionHeader
-            label="Core Features"
-            title="核心功能"
-            subtitle={`${name}提供全方位的功能支持，满足企业在不同场景下的需求`}
+            label={t("productDetail.featuresLabel")}
+            title={t("productDetail.featuresTitle")}
+            subtitle={t("productDetail.featuresSubtitle", { name })}
           />
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
             {features.map((feature, i) => (
@@ -254,9 +234,9 @@ export default function ProductDetailLayout({
         </div>
         <div className="container relative">
           <SectionHeader
-            label="Application Scenarios"
-            title="应用场景"
-            subtitle="覆盖多个行业和业务场景，为不同领域的企业提供专业的AI解决方案"
+            label={t("productDetail.scenariosLabel")}
+            title={t("productDetail.scenariosTitle")}
+            subtitle={t("productDetail.scenariosSubtitle")}
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {scenarios.map((scenario, i) => (
@@ -270,9 +250,9 @@ export default function ProductDetailLayout({
       <section className="relative py-20 lg:py-28">
         <div className="container">
           <SectionHeader
-            label="Technical Advantages"
-            title="技术优势"
-            subtitle="基于火鹰科技多年技术积累，为产品提供坚实的技术底座"
+            label={t("productDetail.techLabel")}
+            title={t("productDetail.techTitle")}
+            subtitle={t("productDetail.techSubtitle")}
           />
           {architectureDescription && (
             <div className="max-w-3xl mx-auto mb-12 p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
@@ -287,7 +267,6 @@ export default function ProductDetailLayout({
         </div>
       </section>
 
-      {/* Custom content slot */}
       {children}
 
       {/* CTA Section */}
@@ -298,42 +277,37 @@ export default function ProductDetailLayout({
         </div>
         <div className="container relative text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-            对{name}感兴趣？
+            {t("productDetail.ctaTitle", { name })}
           </h2>
           <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
-            联系我们的专业团队，获取产品演示和定制化解决方案。火鹰科技{companyYears}年行业经验，为您提供最专业的技术服务。
+            {t("productDetail.ctaSubtitle", { years: companyYears })}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button
               onClick={() => setQrModalOpen(true)}
               className={`flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium text-white bg-gradient-to-r ${gradient} hover:shadow-xl transition-all hover:-translate-y-0.5`}
             >
-              {/* WeChat icon */}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18z" />
               </svg>
-              扫码咨询：获取专属方案
+              {t("productDetail.ctaScan")}
             </button>
             <a
               href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`}
               className="flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium text-white/70 bg-white/[0.06] border border-white/[0.1] hover:bg-white/[0.1] hover:text-white transition-all"
             >
               <Phone size={18} />
-              电话咨询：{COMPANY_INFO.salesPhone}
+              {t("productDetail.ctaPhone")}{COMPANY_INFO.salesPhone}
             </a>
           </div>
         </div>
       </section>
 
-      {/* 使用完整的Footer */}
       <Footer />
 
-      {/* WeChat QR Modal */}
       <WechatQRModal
         open={qrModalOpen}
         onClose={() => setQrModalOpen(false)}
-        title={`获取${name}演示`}
-        subtitle="扫码添加企业微信，获取一对一产品演示和定制方案"
       />
     </div>
   );

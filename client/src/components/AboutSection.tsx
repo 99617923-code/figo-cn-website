@@ -1,40 +1,17 @@
 /*
  * 「量子棱镜」— 关于我们
  * 公司年份基于2005年成立自动计算，无需每年更新
+ * i18n国际化支持
  */
 import { IMAGES, COMPANY_INFO, getCompanyYears } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
 import { Shield, Award, Users, Clock, CheckCircle, type LucideIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-function getAdvantages() {
-  const years = getCompanyYears();
-  return [
-    {
-      icon: Clock,
-      title: `${years}年行业深耕`,
-      description: `自2005年成立以来，持续专注软件定制开发领域，积累了${years}年丰富的行业经验和技术沉淀。`,
-    },
-    {
-      icon: Users,
-      title: "100+专业团队",
-      description: "汇聚产品经理、架构师、全栈工程师、AI算法工程师等多领域专业人才。",
-    },
-    {
-      icon: Award,
-      title: "国家高新技术企业",
-      description: `通过国家高新技术企业认证，CMMI Level-3资质，新四板股权代码${COMPANY_INFO.stockCode}。`,
-    },
-    {
-      icon: Shield,
-      title: "5000+项目交付",
-      description: "服务覆盖金融、教育、医疗、零售等多个行业，项目交付成功率行业领先。",
-    },
-  ];
-}
-
-function AdvantageCard({ adv, index }: { adv: { icon: LucideIcon; title: string; description: string }; index: number }) {
+function AdvantageCard({ icon: Icon, titleKey, descKey, index }: { icon: LucideIcon; titleKey: string; descKey: string; index: number }) {
   const { ref, isInView } = useInView();
-  const Icon = adv.icon;
+  const { t } = useTranslation();
+  const years = getCompanyYears();
   return (
     <div
       ref={ref}
@@ -44,17 +21,33 @@ function AdvantageCard({ adv, index }: { adv: { icon: LucideIcon; title: string;
       style={{ transitionDelay: `${index * 100}ms` }}
     >
       <Icon size={20} className="text-amber-400 mb-3" />
-      <h3 className="text-base font-semibold text-white mb-1.5">{adv.title}</h3>
-      <p className="text-xs text-white/50 leading-relaxed">{adv.description}</p>
+      <h3 className="text-base font-semibold text-white mb-1.5">{t(titleKey, { years, code: COMPANY_INFO.stockCode })}</h3>
+      <p className="text-xs text-white/50 leading-relaxed">{t(descKey, { years, code: COMPANY_INFO.stockCode })}</p>
     </div>
   );
 }
 
+const ADVANTAGES = [
+  { icon: Clock, titleKey: "about.adv1Title", descKey: "about.adv1Desc" },
+  { icon: Users, titleKey: "about.adv2Title", descKey: "about.adv2Desc" },
+  { icon: Award, titleKey: "about.adv3Title", descKey: "about.adv3Desc" },
+  { icon: Shield, titleKey: "about.adv4Title", descKey: "about.adv4Desc" },
+];
+
 export default function AboutSection() {
+  const { t, i18n } = useTranslation();
   const { ref: titleRef, isInView: titleVisible } = useInView();
   const { ref: imgRef, isInView: imgVisible } = useInView();
   const companyYears = getCompanyYears();
-  const advantages = getAdvantages();
+  const isEn = !i18n.language?.startsWith("zh");
+
+  // 资质标签的英文翻译
+  const qualificationsEn: Record<string, string> = {
+    "国家高新技术企业": "National High-Tech Enterprise",
+    "CMMI Level-3": "CMMI Level-3",
+    "新四板挂牌": "NEEQ Listed",
+    "双软认证": "Dual Software Certified",
+  };
 
   return (
     <section id="about" className="relative py-24 lg:py-32">
@@ -67,12 +60,12 @@ export default function AboutSection() {
             titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <span className="text-xs font-medium tracking-widest uppercase text-amber-400/80 mb-3 block">About Us</span>
+          <span className="text-xs font-medium tracking-widest uppercase text-amber-400/80 mb-3 block">{t("about.sectionLabel")}</span>
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
-            <span className="gradient-text">{companyYears}年</span>技术沉淀
+            <span className="gradient-text">{t("about.title", { years: companyYears })}</span>{t("about.titleSuffix")}
           </h2>
           <p className="mt-4 text-base text-white/50 leading-relaxed">
-            {COMPANY_INFO.name}成立于{COMPANY_INFO.established}年，是一家专注于软件定制开发的国家高新技术企业。从传统软件开发到AI智能体定制，我们始终站在技术前沿，为企业数字化转型提供强有力的技术支撑。
+            {t("about.subtitle", { company: COMPANY_INFO.name, year: COMPANY_INFO.established, years: companyYears })}
           </p>
         </div>
 
@@ -85,7 +78,7 @@ export default function AboutSection() {
           >
             <img
               src={IMAGES.heritage}
-              alt={`火鹰科技${companyYears}年技术演进历程`}
+              alt={`${COMPANY_INFO.name} ${companyYears} years`}
               className="w-full h-72 lg:h-96 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c14]/80 via-transparent to-transparent" />
@@ -94,7 +87,7 @@ export default function AboutSection() {
                 {COMPANY_INFO.qualifications.map((q) => (
                   <span key={q} className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs text-amber-300/80 bg-amber-500/10 border border-amber-500/20 rounded-full">
                     <CheckCircle size={12} />
-                    {q}
+                    {isEn ? (qualificationsEn[q] || q) : q}
                   </span>
                 ))}
               </div>
@@ -102,8 +95,8 @@ export default function AboutSection() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
-            {advantages.map((adv, i) => (
-              <AdvantageCard key={adv.title} adv={adv} index={i} />
+            {ADVANTAGES.map((adv, i) => (
+              <AdvantageCard key={adv.titleKey} icon={adv.icon} titleKey={adv.titleKey} descKey={adv.descKey} index={i} />
             ))}
           </div>
         </div>

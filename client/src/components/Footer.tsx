@@ -1,27 +1,50 @@
 /*
  * 「量子棱镜」— 页脚
  * 品牌信息 + 导航链接 + 产品矩阵 + APP案例 + 联系方式 + 版权声明
+ * i18n国际化支持
  */
-import { COMPANY_INFO, NAV_ITEMS, PRODUCTS, getCompanyYears } from "@/lib/constants";
+import { COMPANY_INFO, PRODUCTS, getCompanyYears } from "@/lib/constants";
+import { useTranslation } from "react-i18next";
 
 const APP_CASES = [
-  { name: "智能家居APP", href: "https://appdev.figo.cn/case/app/show_184.html" },
-  { name: "用工发布平台", href: "https://appdev.figo.cn/case/app/show_173.html" },
-  { name: "幼儿园管理系统", href: "https://appdev.figo.cn/case/app/show_169.html" },
-  { name: "一对一视频交友APP", href: "https://appdev.figo.cn/case/app/show_168.html" },
-  { name: "工程施工管理系统", href: "https://appdev.figo.cn/case/app/show_167.html" },
-  { name: "打印交易商城APP", href: "https://appdev.figo.cn/case/app/show_165.html" },
-  { name: "智慧物业管理系统", href: "https://appdev.figo.cn/case/xiaochengxu/show_187.html" },
-  { name: "研学活动小程序", href: "https://appdev.figo.cn/case/xiaochengxu/show_186.html" },
+  { nameKey: "智能家居APP", nameEn: "Smart Home App", href: "https://appdev.figo.cn/case/app/show_184.html" },
+  { nameKey: "用工发布平台", nameEn: "Labor Platform", href: "https://appdev.figo.cn/case/app/show_173.html" },
+  { nameKey: "幼儿园管理系统", nameEn: "Kindergarten System", href: "https://appdev.figo.cn/case/app/show_169.html" },
+  { nameKey: "一对一视频交友APP", nameEn: "Video Dating App", href: "https://appdev.figo.cn/case/app/show_168.html" },
+  { nameKey: "工程施工管理系统", nameEn: "Construction System", href: "https://appdev.figo.cn/case/app/show_167.html" },
+  { nameKey: "打印交易商城APP", nameEn: "Print Marketplace", href: "https://appdev.figo.cn/case/app/show_165.html" },
+  { nameKey: "智慧物业管理系统", nameEn: "Smart Property System", href: "https://appdev.figo.cn/case/xiaochengxu/show_187.html" },
+  { nameKey: "研学活动小程序", nameEn: "Study Tour Mini-App", href: "https://appdev.figo.cn/case/xiaochengxu/show_186.html" },
 ];
 
+const PRODUCT_I18N_MAP: Record<string, string> = {
+  "figo-engine": "figoEngine",
+  "salespark": "salespark",
+  "moss": "moss",
+  "ring-ai": "ringAI",
+  "farui-chat": "faruiChat",
+  "figo-ai": "figoAI",
+};
+
 export default function Footer() {
+  const { t, i18n } = useTranslation();
+  const isEn = !i18n.language?.startsWith("zh");
+
   const handleNavClick = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   const companyYears = getCompanyYears();
+
+  const navItems = [
+    { label: t("nav.home"), href: "#hero" },
+    { label: t("nav.products"), href: "#products" },
+    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.oldSite"), href: "https://appdev.figo.cn", external: true },
+  ];
 
   return (
     <footer className="relative border-t border-white/5 bg-[#080810]">
@@ -33,15 +56,15 @@ export default function Footer() {
               <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/yUbGYKiGhGOgSXOq.png" alt="火鹰科技" className="h-9 w-auto object-contain" />
             </div>
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
-              {COMPANY_INFO.established}年成立，{companyYears}年专注软件定制开发，国家高新技术企业。从传统软件到AI智能体，始终引领技术前沿。
+              {t("footer.brandDesc", { year: COMPANY_INFO.established, years: companyYears })}
             </p>
             <div className="mt-4 space-y-1.5">
               <p className="text-xs text-white/30">
-                <span className="text-white/50">热线：</span>
+                <span className="text-white/50">{t("footer.hotline")}</span>
                 <a href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`} className="hover:text-white/60 transition-colors">{COMPANY_INFO.salesPhone}、{COMPANY_INFO.salesPhoneAlt}</a>
               </p>
               <p className="text-xs text-white/30">
-                <span className="text-white/50">邮箱：</span>
+                <span className="text-white/50">{t("footer.emailLabel")}</span>
                 <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-white/60 transition-colors">{COMPANY_INFO.email}</a>
               </p>
             </div>
@@ -49,11 +72,11 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">快速导航</h4>
+            <h4 className="text-sm font-semibold text-white mb-4">{t("footer.quickNav")}</h4>
             <ul className="space-y-2.5">
-              {NAV_ITEMS.map((item, index) => (
+              {navItems.map((item, index) => (
                 <li key={`${item.href}-${index}`}>
-                  {(item as any).external ? (
+                  {item.external ? (
                     <a
                       href={item.href}
                       className="text-sm text-white/40 hover:text-white/70 transition-colors"
@@ -76,7 +99,7 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">产品矩阵</h4>
+            <h4 className="text-sm font-semibold text-white mb-4">{t("footer.productMatrix")}</h4>
             <ul className="space-y-2.5">
               {PRODUCTS.map((product) => (
                 <li key={product.id}>
@@ -84,7 +107,7 @@ export default function Footer() {
                     href={product.detailPath}
                     className="text-sm text-white/40 hover:text-white/70 transition-colors"
                   >
-                    {product.name}
+                    {t(`products.${PRODUCT_I18N_MAP[product.id]}.name`)}
                   </a>
                 </li>
               ))}
@@ -93,7 +116,7 @@ export default function Footer() {
 
           {/* APP Cases */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">APP定制开发</h4>
+            <h4 className="text-sm font-semibold text-white mb-4">{t("footer.appDev")}</h4>
             <ul className="space-y-2.5">
               {APP_CASES.map((item) => (
                 <li key={item.href}>
@@ -101,7 +124,7 @@ export default function Footer() {
                     href={item.href}
                     className="text-sm text-white/40 hover:text-white/70 transition-colors"
                   >
-                    {item.name}
+                    {isEn ? item.nameEn : item.nameKey}
                   </a>
                 </li>
               ))}
@@ -110,7 +133,7 @@ export default function Footer() {
                   href="https://appdev.figo.cn/case"
                   className="text-sm text-emerald-400/60 hover:text-emerald-400 transition-colors"
                 >
-                  查看更多案例 →
+                  {t("footer.moreCases")}
                 </a>
               </li>
             </ul>
@@ -118,19 +141,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">联系我们</h4>
+            <h4 className="text-sm font-semibold text-white mb-4">{t("footer.contactUs")}</h4>
             <ul className="space-y-2.5">
               <li className="text-sm text-white/40">
-                <span className="text-white/60">地址：</span>{COMPANY_INFO.address}
+                <span className="text-white/60">{t("footer.addressLabel")}</span>{COMPANY_INFO.address}
               </li>
               <li className="text-sm text-white/40">
-                <span className="text-white/60">官网：</span>
+                <span className="text-white/60">{t("footer.websiteLabel")}</span>
                 <a href={`https://${COMPANY_INFO.website}`} target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">{COMPANY_INFO.website}</a>
               </li>
             </ul>
             <div className="mt-4 pt-4 border-t border-white/5">
-              <p className="text-xs text-white/25">软件企业编号：{COMPANY_INFO.softwareCode}</p>
-              <p className="text-xs text-white/25 mt-1">高企编号：{COMPANY_INFO.highTechCode}</p>
+              <p className="text-xs text-white/25">{t("footer.softwareCode")}{COMPANY_INFO.softwareCode}</p>
+              <p className="text-xs text-white/25 mt-1">{t("footer.highTechCode")}{COMPANY_INFO.highTechCode}</p>
             </div>
           </div>
         </div>
@@ -151,7 +174,7 @@ export default function Footer() {
             >
               {COMPANY_INFO.icp}
             </a>
-            <span className="text-xs text-white/30">新四板股权代码: {COMPANY_INFO.stockCode}</span>
+            <span className="text-xs text-white/30">{t("footer.stockCode", { code: COMPANY_INFO.stockCode })}</span>
           </div>
         </div>
       </div>

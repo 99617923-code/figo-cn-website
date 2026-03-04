@@ -1,16 +1,16 @@
 /**
  * Moss自研产品标识组件
- * 在页面右下角Moss客服上方展示"Powered by Moss — 火鹰科技自研"
- * 让访客知道这个AI客服就是火鹰科技自己做的
+ * i18n国际化支持
  */
 import { useState, useEffect } from "react";
 import { Sparkles, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function MossBadge() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
-  // 延迟3秒后显示，给Moss客服加载时间
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 3000);
     return () => clearTimeout(timer);
@@ -33,7 +33,7 @@ export default function MossBadge() {
           </div>
           <div className="flex flex-col">
             <span className="text-[10px] font-medium text-emerald-400/90 leading-tight">Powered by Moss</span>
-            <span className="text-[9px] text-white/30 leading-tight">火鹰科技自研AI客服</span>
+            <span className="text-[9px] text-white/30 leading-tight">{t("mossBadge.desc")}</span>
           </div>
         </div>
       </div>

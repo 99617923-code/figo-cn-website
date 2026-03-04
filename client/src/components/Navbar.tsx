@@ -3,12 +3,15 @@
  * 毛玻璃效果 + 滚动时背景变深
  * 产品矩阵下拉菜单 + "马上定制开发"高亮按钮（包含下拉菜单和二维码）
  * 支持外部链接（旧站点）
+ * i18n国际化支持
  */
-import { NAV_ITEMS, CUSTOM_DEV_ITEMS, COMPANY_INFO, PRODUCTS } from "@/lib/constants";
+import { CUSTOM_DEV_ITEMS, COMPANY_INFO, PRODUCTS } from "@/lib/constants";
 import { Menu, X, ChevronDown, ExternalLink } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 import WechatQRModal, { useWechatQRModal } from "./WechatQRModal";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavbarProps {
   /** 是否在详情页模式（非首页） */
@@ -16,6 +19,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ isDetailPage = false }: NavbarProps) {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [customDevDropdownOpen, setCustomDevDropdownOpen] = useState(false);
@@ -28,6 +32,22 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   const productsDropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { open: qrModalOpen, openModal: openQRModal, closeModal: closeQRModal } = useWechatQRModal();
   const [location] = useLocation();
+
+  // 导航项 - 使用i18n翻译
+  const navItems = [
+    { label: t("nav.home"), href: "#hero" },
+    { label: t("nav.products"), href: "#products", isProducts: true },
+    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.oldSite"), href: "https://appdev.figo.cn", external: true },
+  ];
+
+  // 定制开发下拉菜单项 - 使用i18n翻译
+  const customDevItems = [
+    { label: t("nav.aiAgentDev"), href: "/services" },
+    { label: t("nav.appDev"), href: "https://appdev.figo.cn", external: true },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -52,7 +72,6 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     if (isDetailPage) {
-      // 在详情页中，跳转回首页对应锚点
       window.location.href = `/${href}`;
     } else {
       const el = document.querySelector(href);
@@ -101,9 +120,9 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-1">
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             // 产品矩阵 - 特殊处理，添加下拉菜单
-            if (item.label === "产品矩阵") {
+            if (item.isProducts) {
               return (
                 <div
                   key={item.href}
@@ -140,7 +159,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                             onClick={() => setProductsDropdownOpen(false)}
                             className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200 block"
                           >
-                            <span>{product.name}</span>
+                            <span>{t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "ring-ai" ? "ringAI" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}</span>
                           </Link>
                         ))}
                       </div>
@@ -151,7 +170,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
             }
 
             // 外部链接（旧站点）
-            if ((item as any).external) {
+            if (item.external) {
               return (
                 <a
                   key={item.href}
@@ -196,8 +215,9 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
           })}
         </div>
 
-        {/* 右侧：马上定制开发按钮（高亮） */}
-        <div className="hidden lg:flex items-center gap-4">
+        {/* 右侧：语言切换 + 马上定制开发按钮 */}
+        <div className="hidden lg:flex items-center gap-3">
+          <LanguageSwitcher />
           <div
             ref={customDevDropdownRef}
             className="relative"
@@ -208,7 +228,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               onClick={() => setCustomDevDropdownOpen(!customDevDropdownOpen)}
               className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold hover:from-orange-400 hover:to-red-500 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 text-sm"
             >
-              马上定制开发
+              {t("nav.customDev")}
               <ChevronDown
                 size={16}
                 className={`transition-transform duration-300 ${customDevDropdownOpen ? "rotate-180" : ""}`}
@@ -226,12 +246,12 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               <div className="bg-[#12121e]/95 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 overflow-hidden">
                 {/* Dropdown header */}
                 <div className="px-5 pt-4 pb-3 border-b border-white/[0.06]">
-                  <p className="text-xs font-medium text-white/40 tracking-wider uppercase">定制开发服务</p>
+                  <p className="text-xs font-medium text-white/40 tracking-wider uppercase">{t("nav.customDevService")}</p>
                 </div>
 
                 {/* Service links */}
                 <div className="py-2">
-                  {CUSTOM_DEV_ITEMS.map((item) => (
+                  {customDevItems.map((item) => (
                     <div key={item.href}>
                       {item.href.startsWith("/") ? (
                         <Link
@@ -260,17 +280,17 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
 
                 {/* QR Code Section */}
                 <div className="px-5 py-4">
-                  <p className="text-xs font-medium text-white/40 tracking-wider uppercase mb-3">销售企业微信</p>
+                  <p className="text-xs font-medium text-white/40 tracking-wider uppercase mb-3">{t("nav.salesWechat")}</p>
                   <div className="flex justify-center">
                     <div className="w-40 h-40 rounded-lg bg-white p-1.5">
                       <img
                         src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/YtbUYDAJtEwhIZuy.png"
-                        alt="销售企业微信二维码"
+                        alt={t("nav.salesWechat")}
                         className="w-full h-full object-contain rounded"
                       />
                     </div>
                   </div>
-                  <p className="text-xs text-white/40 text-center mt-3">扫码添加销售，获取一对一咨询</p>
+                  <p className="text-xs text-white/40 text-center mt-3">{t("nav.scanToAdd")}</p>
                 </div>
               </div>
             </div>
@@ -278,21 +298,24 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="lg:hidden p-2 text-white/70 hover:text-white"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          <LanguageSwitcher />
+          <button
+            className="p-2 text-white/70 hover:text-white"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
       {mobileOpen && (
         <div className="lg:hidden bg-[#0c0c14]/95 backdrop-blur-xl border-t border-white/5 max-h-[80vh] overflow-y-auto">
           <div className="container py-4 flex flex-col gap-1">
-            {NAV_ITEMS.map((item) => {
+            {navItems.map((item) => {
               // 产品矩阵 - 移动端下拉菜单
-              if (item.label === "产品矩阵") {
+              if (item.isProducts) {
                 return (
                   <div key={item.href}>
                     <button
@@ -317,7 +340,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                             }}
                             className="block px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                           >
-                            {product.name}
+                            {t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "ring-ai" ? "ringAI" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}
                           </Link>
                         ))}
                       </div>
@@ -327,7 +350,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               }
 
               // 外部链接
-              if ((item as any).external) {
+              if (item.external) {
                 return (
                   <a
                     key={item.href}
@@ -378,7 +401,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                 onClick={() => setMobileCustomDevOpen(!mobileCustomDevOpen)}
                 className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg hover:from-orange-400 hover:to-red-500 transition-all"
               >
-                <span>马上定制开发</span>
+                <span>{t("nav.customDev")}</span>
                 <ChevronDown
                   size={14}
                   className={`transition-transform duration-300 ${mobileCustomDevOpen ? "rotate-180" : ""}`}
@@ -386,7 +409,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               </button>
               {mobileCustomDevOpen && (
                 <div className="mt-2 space-y-1">
-                  {CUSTOM_DEV_ITEMS.map((item) => (
+                  {customDevItems.map((item) => (
                     <div key={item.href}>
                       {item.href.startsWith("/") ? (
                         <Link

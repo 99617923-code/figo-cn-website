@@ -3,14 +3,17 @@
  * 固定在页面右侧的快速咨询按钮组
  * 包含：电话咨询、微信扫码、回到顶部
  * 营销目标：随时可见的转化入口，降低客户决策门槛
+ * i18n国际化支持
  */
 import { COMPANY_INFO } from "@/lib/constants";
 import { Phone, ArrowUp, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const WECHAT_QR_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663267704571/YtbUYDAJtEwhIZuy.png";
 
 export default function FloatingCTA() {
+  const { t } = useTranslation();
   const [showBackTop, setShowBackTop] = useState(false);
   const [phoneExpanded, setPhoneExpanded] = useState(false);
   const [wechatExpanded, setWechatExpanded] = useState(false);
@@ -43,7 +46,7 @@ export default function FloatingCTA() {
           <button
             onClick={scrollToTop}
             className="w-12 h-12 rounded-xl bg-white/[0.08] backdrop-blur-xl border border-white/[0.1] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.12] transition-all duration-300 shadow-lg shadow-black/20"
-            title="回到顶部"
+            title={t("floating.backTop")}
           >
             <ArrowUp size={18} />
           </button>
@@ -54,7 +57,7 @@ export default function FloatingCTA() {
           {wechatExpanded && (
             <div className="absolute right-full mr-3 bottom-0 bg-[#12121e]/95 backdrop-blur-xl rounded-2xl border border-white/[0.1] p-5 shadow-2xl shadow-black/40 w-64">
               <div className="flex items-center justify-between mb-3">
-                <div className="text-sm font-medium text-white">微信咨询</div>
+                <div className="text-sm font-medium text-white">{t("floating.wechatConsult")}</div>
                 <button
                   onClick={() => setWechatExpanded(false)}
                   className="text-white/40 hover:text-white transition-colors"
@@ -65,12 +68,12 @@ export default function FloatingCTA() {
               <div className="w-full aspect-square rounded-xl bg-white p-2 mb-3 overflow-hidden">
                 <img
                   src={WECHAT_QR_URL}
-                  alt="企业微信二维码"
+                  alt={t("floating.wechatQRAlt")}
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
               <p className="text-xs text-white/40 text-center leading-relaxed">
-                扫码添加企业微信<br />获取一对一专属咨询服务
+                {t("floating.wechatScanDesc")}
               </p>
             </div>
           )}
@@ -81,7 +84,7 @@ export default function FloatingCTA() {
               trackClick("wechat");
             }}
             className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-0.5"
-            title="微信咨询"
+            title={t("floating.wechatConsult")}
           >
             {/* WeChat icon */}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -94,7 +97,7 @@ export default function FloatingCTA() {
         <div className="relative">
           {phoneExpanded && (
             <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-[#12121e]/95 backdrop-blur-xl rounded-xl border border-white/[0.1] px-4 py-3 shadow-2xl shadow-black/40">
-              <div className="text-xs text-white/40 mb-1">售前热线</div>
+              <div className="text-xs text-white/40 mb-1">{t("floating.salesHotline")}</div>
               <a href={`tel:${COMPANY_INFO.salesPhone.replace(/-/g, "")}`} className="text-sm font-medium text-white hover:text-blue-400 transition-colors">
                 {COMPANY_INFO.salesPhone}
               </a>
@@ -108,7 +111,7 @@ export default function FloatingCTA() {
               trackClick("phone");
             }}
             className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:-translate-y-0.5"
-            title="电话咨询"
+            title={t("floating.phoneConsult")}
           >
             <Phone size={18} />
           </button>
