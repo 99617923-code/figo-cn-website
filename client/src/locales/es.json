@@ -216,8 +216,8 @@
   },
   "services": {
     "sectionLabel": "Servicios",
-    "title": "Servicios de Desarrollo",
-    "titleHighlight": "IA Full-Stack",
+    "title": "Servicios de Desarrollo ",
+    "titleHighlight": "IA Full-Stack a Medida",
     "subtitle": "{{years}} años de experiencia en desarrollo de software a medida combinados con tecnología IA de vanguardia, proporcionando soluciones IA integrales desde la consultoría hasta la entrega.",
     "aiAgent": "Desarrollo de Agentes IA",
     "aiAgentDesc": "Agentes IA personalizados construidos sobre capacidades LLM para empresas, cubriendo servicio al cliente inteligente, asistentes de ventas, gestión del conocimiento y más.",
@@ -232,7 +232,17 @@
     "iotAI": "IoT + Hardware IA",
     "iotAIDesc": "Integración profunda de hardware IoT como anillos inteligentes y wearables con IA, proporcionando análisis de salud e insights de datos.",
     "ecosystem": "Ecosistema de Productos IA",
-    "ecosystemDesc": "Con Figo Engine en el centro, conectando LLMs, humanos digitales, herramientas inteligentes, hardware IoT y más para construir un ecosistema completo de productos IA."
+    "ecosystemDesc": "Con Figo Engine en el centro, conectando LLMs, humanos digitales, herramientas inteligentes, hardware IoT y más para construir un ecosistema completo de productos IA.",
+    "androidApp": "Desarrollo de Apps Android",
+    "androidAppDesc": "Desarrollo nativo de apps Android con Kotlin/Java, siguiendo las directrices de Material Design. Cubriendo comercio electrónico, redes sociales, gestión empresarial y más.",
+    "iosApp": "Desarrollo de Apps iOS",
+    "iosAppDesc": "Desarrollo nativo de apps iOS con Swift, siguiendo las Apple Human Interface Guidelines. Experiencias de usuario fluidas con soporte de publicación en App Store.",
+    "miniProgram": "Desarrollo de Mini Programas",
+    "miniProgramDesc": "Desarrollo de mini programas multiplataforma para WeChat, Alipay, Douyin y más. Frameworks multiplataforma para un código, múltiples plataformas.",
+    "windowsDesktop": "Software de Escritorio Windows",
+    "windowsDesktopDesc": "Desarrollo de aplicaciones de escritorio Windows con Electron/.NET/WPF. Sistemas de gestión empresarial, herramientas y plataformas de análisis de datos.",
+    "macDesktop": "Software de Escritorio Mac",
+    "macDesktopDesc": "Desarrollo nativo de aplicaciones macOS con Swift/Electron, siguiendo las directrices de diseño de Apple. Publicación en Mac App Store y distribución empresarial."
   },
   "cases": {
     "sectionLabel": "Casos de Éxito",

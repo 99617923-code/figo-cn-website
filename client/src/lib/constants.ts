@@ -135,6 +135,31 @@ export const SERVICES = [
     description: "智能戒指、可穿戴设备等IoT硬件与AI的深度融合开发，提供健康分析、数据洞察等增值服务。",
     icon: "Wifi",
   },
+  {
+    title: "安卓App定制开发",
+    description: "基于Kotlin/Java的原生安卓应用开发，支持Material Design设计规范，覆盖电商、社交、企业管理等各类场景。",
+    icon: "Smartphone",
+  },
+  {
+    title: "iOS App定制开发",
+    description: "基于Swift的原生iOS应用开发，遵循Apple Human Interface Guidelines，提供流畅的用户体验和App Store上架服务。",
+    icon: "Apple",
+  },
+  {
+    title: "小程序定制开发",
+    description: "微信小程序、支付宝小程序、抖音小程序等多平台小程序开发，支持跨平台框架，一套代码多端运行。",
+    icon: "AppWindow",
+  },
+  {
+    title: "Windows桌面软件开发",
+    description: "基于Electron/.NET/WPF的Windows桌面应用开发，支持企业级管理系统、工具软件、数据分析平台等场景。",
+    icon: "Monitor",
+  },
+  {
+    title: "Mac桌面软件开发",
+    description: "基于Swift/Electron的macOS原生应用开发，遵循Apple设计规范，支持Mac App Store上架和企业分发。",
+    icon: "Laptop",
+  },
 ];
 
 // 自动计算公司经营年份（基于2005年成立）

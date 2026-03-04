@@ -216,7 +216,7 @@
   },
   "services": {
     "sectionLabel": "Services",
-    "title": "Full-Stack AI",
+    "title": "Full-Stack AI Custom ",
     "titleHighlight": "Development Services",
     "subtitle": "{{years}} years of custom software development expertise combined with cutting-edge AI technology, providing end-to-end AI solutions from consulting to delivery.",
     "aiAgent": "AI Agent Development",
@@ -232,7 +232,17 @@
     "iotAI": "IoT + AI Hardware",
     "iotAIDesc": "Deep integration of IoT hardware like smart rings and wearables with AI, providing health analytics and data insights.",
     "ecosystem": "AI Product Ecosystem",
-    "ecosystemDesc": "With Figo Engine at the core, connecting LLMs, digital humans, smart tools, IoT hardware, and more to build a complete AI product ecosystem."
+    "ecosystemDesc": "With Figo Engine at the core, connecting LLMs, digital humans, smart tools, IoT hardware, and more to build a complete AI product ecosystem.",
+    "androidApp": "Android App Development",
+    "androidAppDesc": "Native Android app development with Kotlin/Java, following Material Design guidelines. Covering e-commerce, social, enterprise management and more.",
+    "iosApp": "iOS App Development",
+    "iosAppDesc": "Native iOS app development with Swift, following Apple Human Interface Guidelines. Delivering smooth user experiences with App Store publishing support.",
+    "miniProgram": "Mini Program Development",
+    "miniProgramDesc": "Multi-platform mini program development for WeChat, Alipay, Douyin and more. Cross-platform frameworks for one codebase, multiple platforms.",
+    "windowsDesktop": "Windows Desktop Software",
+    "windowsDesktopDesc": "Windows desktop application development with Electron/.NET/WPF. Supporting enterprise management systems, utility tools, and data analytics platforms.",
+    "macDesktop": "Mac Desktop Software",
+    "macDesktopDesc": "Native macOS application development with Swift/Electron, following Apple design guidelines. Supporting Mac App Store publishing and enterprise distribution."
   },
   "cases": {
     "sectionLabel": "Case Studies",

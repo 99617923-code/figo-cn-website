@@ -5,11 +5,11 @@
  */
 import { IMAGES, SERVICES, getCompanyYears } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
-import { Bot, Blocks, AudioWaveform, LayoutDashboard, Cloud, Wifi } from "lucide-react";
+import { Bot, Blocks, AudioWaveform, LayoutDashboard, Cloud, Wifi, Smartphone, Apple, AppWindow, Monitor, Laptop } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-  Bot, Blocks, AudioWaveform, LayoutDashboard, Cloud, Wifi,
+  Bot, Blocks, AudioWaveform, LayoutDashboard, Cloud, Wifi, Smartphone, Apple, AppWindow, Monitor, Laptop,
 };
 
 // 将SERVICES数组的index映射到i18n key
@@ -20,6 +20,11 @@ const SERVICE_I18N_KEYS = [
   { titleKey: "services.enterpriseAI", descKey: "services.enterpriseAIDesc" },
   { titleKey: "services.aiSaaS", descKey: "services.aiSaaSDesc" },
   { titleKey: "services.iotAI", descKey: "services.iotAIDesc" },
+  { titleKey: "services.androidApp", descKey: "services.androidAppDesc" },
+  { titleKey: "services.iosApp", descKey: "services.iosAppDesc" },
+  { titleKey: "services.miniProgram", descKey: "services.miniProgramDesc" },
+  { titleKey: "services.windowsDesktop", descKey: "services.windowsDesktopDesc" },
+  { titleKey: "services.macDesktop", descKey: "services.macDesktopDesc" },
 ];
 
 function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: number }) {
