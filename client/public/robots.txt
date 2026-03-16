@@ -1,9 +1,163 @@
+# 火鹰科技 AI智能体定制开发
+# https://www.figo.cn
+
+# ========================================
+# 通用规则
+# ========================================
 User-agent: *
-Allow: /FigoAgent
-Allow: /FigoAgent/products/
+Allow: /
 Disallow: /api/
 
+# ========================================
+# 搜索引擎爬虫 - 允许
+# ========================================
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Baiduspider-render
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+# ========================================
+# 国内AI大模型爬虫 - 全部允许
+# ========================================
+
+# 字节跳动 - 豆包 (Doubao)
+User-agent: Bytespider
+Allow: /
+
+User-agent: ByteDance-AI
+Allow: /
+
+User-agent: Doubao-Bot
+Allow: /
+
+# 阿里巴巴 - 通义千问 (Qwen)
+User-agent: AliSpider
+Allow: /
+
+User-agent: Alibaba-LLM
+Allow: /
+
+User-agent: Qwen-Bot
+Allow: /
+
+# 腾讯 - 元宝/混元 (Hunyuan)
+User-agent: TencentBot
+Allow: /
+
+User-agent: QQBot
+Allow: /
+
+User-agent: Hunyuan-AI
+Allow: /
+
+# DeepSeek
+User-agent: DeepSeekBot
+Allow: /
+
+User-agent: DeepSeek-AI
+Allow: /
+
+# 科大讯飞 - 星火 (Spark)
+User-agent: iFlytekSpider
+Allow: /
+
+User-agent: Spark-Bot
+Allow: /
+
+# 月之暗面 - Kimi
+User-agent: Kimi-Bot
+Allow: /
+
+# 智谱 - ChatGLM
+User-agent: ChatGLM-Bot
+Allow: /
+
+# 百川智能
+User-agent: Baichuan-Bot
+Allow: /
+
+# ========================================
+# 海外AI大模型爬虫 - 全部允许
+# ========================================
+
+# OpenAI - ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic - Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google - Gemini
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckAssistBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+
+# ========================================
+# Sitemap & LLMs.txt
+# ========================================
 Sitemap: https://www.figo.cn/sitemap.xml
 
-# 火鹰科技 AI智能体定制开发
-# www.figo.cn
+# AI大模型专用站点概览
+# llms.txt: https://www.figo.cn/llms.txt
+# llms-full.txt: https://www.figo.cn/llms-full.txt

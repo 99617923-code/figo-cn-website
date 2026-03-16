@@ -73,9 +73,32 @@ export async function detectLanguageByIP(): Promise<void> {
     if (i18n.language !== targetLang) {
       i18n.changeLanguage(targetLang);
       localStorage.setItem("figo-lang", targetLang);
+      updateHtmlLang(targetLang as SupportedLang);
     }
   } catch {
     // 静默失败，使用默认语言
+  }
+}
+
+/**
+ * 更新 HTML lang 属性，帮助 AI 爬虫正确识别页面语言
+ */
+function updateHtmlLang(lang: SupportedLang): void {
+  const langMap: Record<SupportedLang, string> = {
+    zh: "zh-CN",
+    en: "en",
+    es: "es",
+  };
+  document.documentElement.lang = langMap[lang] || "zh-CN";
+  // 同步更新 og:locale meta 标签
+  const ogLocaleMap: Record<SupportedLang, string> = {
+    zh: "zh_CN",
+    en: "en_US",
+    es: "es_ES",
+  };
+  const ogLocale = document.querySelector('meta[property="og:locale"]');
+  if (ogLocale) {
+    ogLocale.setAttribute("content", ogLocaleMap[lang] || "zh_CN");
   }
 }
 
@@ -86,4 +109,5 @@ export function switchLanguage(lang: SupportedLang): void {
   i18n.changeLanguage(lang);
   localStorage.setItem("figo-lang", lang);
   localStorage.setItem("figo-lang-manual", "true");
+  updateHtmlLang(lang);
 }

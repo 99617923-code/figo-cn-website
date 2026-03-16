@@ -1,39 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- 首页 -->
   <url>
-    <loc>https://www.figo.cn/FigoAgent</loc>
-    <lastmod>2026-02-27</lastmod>
+    <loc>https://www.figo.cn/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.figo.cn/" />
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- 兼容旧路径 /FigoAgent -->
   <url>
-    <loc>https://www.figo.cn/FigoAgent/products/figo-engine</loc>
-    <lastmod>2026-02-27</lastmod>
+    <loc>https://www.figo.cn/FigoAgent</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 服务能力页 -->
+  <url>
+    <loc>https://www.figo.cn/services</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/services" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/services" />
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- 产品：火鹰引擎 FigoAPI -->
   <url>
-    <loc>https://www.figo.cn/FigoAgent/products/salespark</loc>
-    <lastmod>2026-02-27</lastmod>
+    <loc>https://www.figo.cn/products/figo-engine</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/products/figo-engine" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/products/figo-engine" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/products/figo-engine" />
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- 产品：SaleSpark -->
   <url>
-    <loc>https://www.figo.cn/FigoAgent/products/moss</loc>
-    <lastmod>2026-02-27</lastmod>
+    <loc>https://www.figo.cn/products/salespark</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/products/salespark" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/products/salespark" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/products/salespark" />
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- 产品：火鹰数字人复刻系统 Moss -->
   <url>
-    <loc>https://www.figo.cn/FigoAgent/products/ring-ai</loc>
-    <lastmod>2026-02-27</lastmod>
+    <loc>https://www.figo.cn/products/moss</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/products/moss" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/products/moss" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/products/moss" />
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- 产品：ReviewHub -->
   <url>
-    <loc>https://www.figo.cn/FigoAgent/products/figo-ai</loc>
-    <lastmod>2026-02-27</lastmod>
+    <loc>https://www.figo.cn/products/reviewhub</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/products/reviewhub" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/products/reviewhub" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/products/reviewhub" />
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- 产品：Ring AI -->
+  <url>
+    <loc>https://www.figo.cn/products/ring-ai</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/products/ring-ai" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/products/ring-ai" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/products/ring-ai" />
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 产品：法睿聊 -->
+  <url>
+    <loc>https://www.figo.cn/products/farui-chat</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/products/farui-chat" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/products/farui-chat" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/products/farui-chat" />
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 产品：FigoAI 智能工具平台 -->
+  <url>
+    <loc>https://www.figo.cn/products/figo-ai</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.figo.cn/products/figo-ai" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.figo.cn/products/figo-ai" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.figo.cn/products/figo-ai" />
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- LLMs.txt 入口 -->
+  <url>
+    <loc>https://www.figo.cn/llms.txt</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
