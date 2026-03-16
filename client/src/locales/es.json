@@ -170,6 +170,24 @@
         "Clips en Vivo",
         "Hojas de Cálculo IA"
       ]
+    },
+    "reviewhub": {
+      "name": "ReviewHub",
+      "tagline": "Plataforma Integrada de Opiniones y Requisitos",
+      "description": "Herramienta integrada de recopilación de opiniones para equipos de desarrollo web, con anotación de capturas, grabación de voz con IA, integración con una línea de código y análisis de cambios de requisitos con IA.",
+      "features": [
+        "Anotación de Capturas",
+        "Voz con IA",
+        "Integración 1 Línea",
+        "Análisis IA",
+        "SaaS Multi-Tenant",
+        "API Abierta"
+      ],
+      "stats": {
+        "platforms": "Endpoints API",
+        "aiReply": "Eventos Webhook",
+        "sentiment": "Disponibilidad"
+      }
     }
   },
   "comparison": {
@@ -189,7 +207,7 @@
     "p1": "FigoAPI",
     "p2": "SaleSpark",
     "p3": "Moss",
-    "p4": "Ring AI",
+    "p4": "ReviewHub",
     "p5": "FaruiChat",
     "p6": "FigoAI",
     "cat1": "Casos de Uso",
@@ -197,7 +215,7 @@
     "f1": "CS Inteligente / Q&A",
     "f2": "Entrenamiento / Simulación de Ventas",
     "f3": "Humano Digital / Clonación de Voz",
-    "f4": "Análisis de Datos de Salud",
+    "f4": "Opiniones/Requisitos",
     "f5": "Consulta Legal",
     "f6": "Creación de Contenido / Propuestas",
     "f7": "Gestión Unificada de API",
@@ -726,8 +744,8 @@
     "app2Desc": "Entrenamiento de Ventas IA",
     "app3": "Moss Humano Digital",
     "app3Desc": "Clon de Humano Digital",
-    "app4": "Ring AI",
-    "app4Desc": "Wearable Inteligente",
+    "app4": "ReviewHub",
+    "app4Desc": "Centro de Opiniones",
     "app5": "FaruiChat",
     "app5Desc": "Consulta Legal IA",
     "app6": "FigoAI",
@@ -809,5 +827,13 @@
   },
   "mossBadge": {
     "desc": "Servicio al Cliente IA de Figo Technology"
+  },
+  "solutions": {
+    "title": "Soluciones",
+    "ringAI": {
+      "name": "Ring AI",
+      "desc": "Aplicación móvil universal de anillo inteligente IA, compatible con todos los anillos inteligentes con API/SDK abiertos",
+      "cta": "Más Información"
+    }
   }
 }

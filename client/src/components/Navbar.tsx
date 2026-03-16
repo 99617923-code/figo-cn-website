@@ -152,14 +152,14 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                   >
                     <div className="bg-[#12121e]/95 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 overflow-hidden">
                       <div className="py-2">
-                        {PRODUCTS.map((product) => (
+                        {PRODUCTS.filter(p => p.id !== "ring-ai").map((product) => (
                           <Link
                             key={product.id}
                             href={product.detailPath}
                             onClick={() => setProductsDropdownOpen(false)}
                             className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200 block"
                           >
-                            <span>{t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "ring-ai" ? "ringAI" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}</span>
+                            <span>{t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "reviewhub" ? "reviewhub" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}</span>
                           </Link>
                         ))}
                       </div>
@@ -330,7 +330,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                     </button>
                     {mobileProductsOpen && (
                       <div className="pl-4 py-2 space-y-1">
-                        {PRODUCTS.map((product) => (
+                        {PRODUCTS.filter(p => p.id !== "ring-ai").map((product) => (
                           <Link
                             key={product.id}
                             href={product.detailPath}
@@ -340,7 +340,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                             }}
                             className="block px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                           >
-                            {t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "ring-ai" ? "ringAI" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}
+                            {t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "reviewhub" ? "reviewhub" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}
                           </Link>
                         ))}
                       </div>

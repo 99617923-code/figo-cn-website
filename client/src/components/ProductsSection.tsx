@@ -5,20 +5,21 @@
  */
 import { PRODUCTS } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
-import { Cpu, Target, User, Watch, Sparkles, Scale, ArrowRight } from "lucide-react";
+import { Cpu, Target, User, Watch, Sparkles, Scale, Star, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
 import WechatQRModal from "@/components/WechatQRModal";
 import { useTranslation } from "react-i18next";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-  Cpu, Target, User, Watch, Sparkles, Scale,
+  Cpu, Target, User, Watch, Sparkles, Scale, Star,
 };
 
 const PRODUCT_I18N_MAP: Record<string, string> = {
   "figo-engine": "figoEngine",
   "salespark": "salespark",
   "moss": "moss",
+  "reviewhub": "reviewhub",
   "ring-ai": "ringAI",
   "farui-chat": "faruiChat",
   "figo-ai": "figoAI",
@@ -29,6 +30,7 @@ const PRODUCT_STATS_KEYS: Record<string, string[]> = {
   "figo-engine": ["products.figoEngine.stats.models", "products.figoEngine.stats.availability", "products.figoEngine.stats.latency"],
   "salespark": ["products.salespark.stats.users", "products.salespark.stats.sessions", "products.salespark.stats.methods"],
   "moss": ["products.moss.stats.voice", "products.moss.stats.uptime", "products.moss.stats.proposal"],
+  "reviewhub": ["products.reviewhub.stats.platforms", "products.reviewhub.stats.aiReply", "products.reviewhub.stats.sentiment"],
   "ring-ai": ["products.ringAI.stats.compat", "products.ringAI.stats.lang", "products.ringAI.stats.health"],
   "farui-chat": ["products.faruiChat.stats.fields", "products.faruiChat.stats.code", "products.faruiChat.stats.domestic"],
   "figo-ai": ["products.figoAI.stats.users", "products.figoAI.stats.tasks", "products.figoAI.stats.tools"],
@@ -37,6 +39,7 @@ const PRODUCT_STATS_KEYS: Record<string, string[]> = {
 // Stats value translation keys for products with Chinese values
 const PRODUCT_STATS_VALUE_KEYS: Record<string, (string | null)[]> = {
   "moss": ["products.moss.stats.voiceVal", null, "products.moss.stats.proposalVal"],
+  "reviewhub": [null, null, null],
   "ring-ai": ["products.ringAI.stats.compatVal", "products.ringAI.stats.langVal", null],
   "farui-chat": ["products.faruiChat.stats.fieldsVal", "products.faruiChat.stats.codeVal", null],
 };
@@ -170,7 +173,7 @@ export default function ProductsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6">
-          {PRODUCTS.map((product, i) => (
+          {PRODUCTS.filter(p => p.id !== "ring-ai").map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} onGetDemo={handleGetDemo} />
           ))}
         </div>

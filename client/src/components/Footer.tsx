@@ -21,6 +21,7 @@ const PRODUCT_I18N_MAP: Record<string, string> = {
   "figo-engine": "figoEngine",
   "salespark": "salespark",
   "moss": "moss",
+  "reviewhub": "reviewhub",
   "ring-ai": "ringAI",
   "farui-chat": "faruiChat",
   "figo-ai": "figoAI",
@@ -101,7 +102,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">{t("footer.productMatrix")}</h4>
             <ul className="space-y-2.5">
-              {PRODUCTS.map((product) => (
+              {PRODUCTS.filter(p => p.id !== "ring-ai").map((product) => (
                 <li key={product.id}>
                   <a
                     href={product.detailPath}
@@ -111,6 +112,18 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+            </ul>
+            {/* Ring AI Solution */}
+            <h4 className="text-sm font-semibold text-white mb-3 mt-6">{t("solutions.title")}</h4>
+            <ul className="space-y-2.5">
+              <li>
+                <a
+                  href="/products/ring-ai"
+                  className="text-sm text-white/40 hover:text-white/70 transition-colors"
+                >
+                  {t("solutions.ringAI.name")}
+                </a>
+              </li>
             </ul>
           </div>
 

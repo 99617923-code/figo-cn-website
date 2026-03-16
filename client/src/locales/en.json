@@ -170,6 +170,24 @@
         "Live Clips",
         "AI Spreadsheets"
       ]
+    },
+    "reviewhub": {
+      "name": "ReviewHub",
+      "tagline": "Embedded Feedback & Requirements Platform",
+      "description": "An embedded feedback collection tool for web development teams, supporting screenshot annotation, voice recording with AI processing, one-line embedding, and built-in AI requirement change analysis.",
+      "features": [
+        "Screenshot Annotation",
+        "Voice AI Processing",
+        "One-Line Embed",
+        "AI Change Analysis",
+        "Multi-Tenant SaaS",
+        "Open API"
+      ],
+      "stats": {
+        "platforms": "API Endpoints",
+        "aiReply": "Webhook Events",
+        "sentiment": "Uptime SLA"
+      }
     }
   },
   "comparison": {
@@ -189,7 +207,7 @@
     "p1": "FigoAPI",
     "p2": "SaleSpark",
     "p3": "Moss",
-    "p4": "Ring AI",
+    "p4": "ReviewHub",
     "p5": "FaruiChat",
     "p6": "FigoAI",
     "cat1": "Use Cases",
@@ -197,7 +215,7 @@
     "f1": "Smart CS / Q&A",
     "f2": "Sales Training / Simulation",
     "f3": "Digital Human / Voice Clone",
-    "f4": "Health Data Analytics",
+    "f4": "Feedback/Requirements",
     "f5": "Legal Consultation",
     "f6": "Content Creation / Proposals",
     "f7": "Unified API Management",
@@ -726,8 +744,8 @@
     "app2Desc": "AI Sales Training",
     "app3": "Moss Digital Human",
     "app3Desc": "Digital Human Clone",
-    "app4": "Ring AI",
-    "app4Desc": "Smart Wearable",
+    "app4": "ReviewHub",
+    "app4Desc": "Feedback Hub",
     "app5": "FaruiChat",
     "app5Desc": "AI Legal Consultation",
     "app6": "FigoAI",
@@ -809,5 +827,13 @@
   },
   "mossBadge": {
     "desc": "Figo Technology's AI Customer Service"
+  },
+  "solutions": {
+    "title": "Solutions",
+    "ringAI": {
+      "name": "Ring AI",
+      "desc": "Universal AI smart ring mobile app, supporting all open API/SDK smart rings on the market",
+      "cta": "Learn More"
+    }
   }
 }

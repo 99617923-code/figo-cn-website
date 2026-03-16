@@ -8,6 +8,7 @@ import FigoEngine from "./pages/products/FigoEngine";
 import SaleSpark from "./pages/products/SaleSpark";
 import Moss from "./pages/products/Moss";
 import RingAI from "./pages/products/RingAI";
+import ReviewHub from "./pages/products/ReviewHub";
 import FigoAI from "./pages/products/FigoAI";
 import FaruiChat from "./pages/products/FaruiChat";
 import Services from "./pages/Services";
@@ -32,6 +33,7 @@ function Router() {
         <Route path={"/products/figo-engine"} component={FigoEngine} />
         <Route path={"/products/salespark"} component={SaleSpark} />
         <Route path={"/products/moss"} component={Moss} />
+        <Route path={"/products/reviewhub"} component={ReviewHub} />
         <Route path={"/products/ring-ai"} component={RingAI} />
         <Route path={"/products/farui-chat"} component={FaruiChat} />
         <Route path={"/products/figo-ai"} component={FigoAI} />

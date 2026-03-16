@@ -10,7 +10,7 @@ const PRODUCTS = [
   { nameKey: "comparison.p1", path: "/products/figo-engine", gradient: "from-blue-500 to-purple-600" },
   { nameKey: "comparison.p2", path: "/products/salespark", gradient: "from-orange-500 to-rose-500" },
   { nameKey: "comparison.p3", path: "/products/moss", gradient: "from-amber-500 to-red-600" },
-  { nameKey: "comparison.p4", path: "/products/ring-ai", gradient: "from-emerald-500 to-cyan-500" },
+  { nameKey: "comparison.p4", path: "/products/reviewhub", gradient: "from-emerald-500 to-cyan-500" },
   { nameKey: "comparison.p5", path: "/products/farui-chat", gradient: "from-blue-500 to-indigo-600" },
   { nameKey: "comparison.p6", path: "/products/figo-ai", gradient: "from-violet-500 to-fuchsia-500" },
 ];

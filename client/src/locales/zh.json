@@ -170,6 +170,24 @@
         "直播切片",
         "AI智能表格"
       ]
+    },
+    "reviewhub": {
+      "name": "ReviewHub",
+      "tagline": "嵌入式意见收集与需求管理平台",
+      "description": "专为网站开发团队打造的嵌入式意见收集工具，支持截图标注、语音录制AI整理、一行代码嵌入，内置AI需求变更分析引擎。",
+      "features": [
+        "截图标注",
+        "语音AI整理",
+        "一行嵌入",
+        "AI变更分析",
+        "多租户SaaS",
+        "开放API"
+      ],
+      "stats": {
+        "platforms": "API 接口",
+        "aiReply": "Webhook 事件",
+        "sentiment": "服务可用性"
+      }
     }
   },
   "comparison": {
@@ -189,7 +207,7 @@
     "p1": "FigoAPI",
     "p2": "SaleSpark",
     "p3": "Moss",
-    "p4": "Ring AI",
+    "p4": "ReviewHub",
     "p5": "法睿聊",
     "p6": "FigoAI",
     "cat1": "适用场景",
@@ -197,7 +215,7 @@
     "f1": "智能客服/问答",
     "f2": "销售培训/模拟",
     "f3": "数字人/声音克隆",
-    "f4": "健康数据分析",
+    "f4": "意见收集/需求管理",
     "f5": "法律咨询服务",
     "f6": "内容创作/标书",
     "f7": "API统一管理",
@@ -726,8 +744,8 @@
     "app2Desc": "AI销售训练",
     "app3": "Moss数字人",
     "app3Desc": "数字人复刻",
-    "app4": "Ring AI",
-    "app4Desc": "智能穿戴",
+    "app4": "ReviewHub",
+    "app4Desc": "意见收集",
     "app5": "法睿聊",
     "app5Desc": "AI法律咨询",
     "app6": "FigoAI",
@@ -809,5 +827,13 @@
   },
   "mossBadge": {
     "desc": "火鹰科技自研AI客服"
+  },
+  "solutions": {
+    "title": "解决方案",
+    "ringAI": {
+      "name": "Ring AI",
+      "desc": "通用AI智能戒指移动应用，支持连接市场上所有开放API/SDK的智能戒指",
+      "cta": "了解详情"
+    }
   }
 }

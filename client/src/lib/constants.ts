@@ -58,6 +58,21 @@ export const PRODUCTS = [
     icon: "User",
   },
   {
+    id: "reviewhub",
+    name: "ReviewHub",
+    detailPath: "/products/reviewhub",
+    tagline: "嵌入式意见收集与需求管理平台",
+    description: "专为网站开发团队打造的嵌入式意见收集工具，支持截图标注、语音录制AI整理、一行代码嵌入，内置AI需求变更分析引擎。",
+    stats: [
+      { label: "API接口", value: "28+" },
+      { label: "Webhook事件", value: "6" },
+      { label: "服务可用性", value: "99.9%" },
+    ],
+    features: ["截图标注", "语音AI整理", "一行嵌入", "AI变更分析", "多租户SaaS", "开放API"],
+    gradient: "from-emerald-500 to-cyan-500",
+    icon: "Star",
+  },
+  {
     id: "ring-ai",
     name: "Ring AI",
     detailPath: "/products/ring-ai",
@@ -69,7 +84,7 @@ export const PRODUCTS = [
       { label: "健康维度", value: "10+" },
     ],
     features: ["AI健康分析", "家人绑定", "多维数据", "订阅增值", "全球适配", "智能报告"],
-    gradient: "from-emerald-500 to-cyan-500",
+    gradient: "from-teal-500 to-green-500",
     icon: "Watch",
   },
   {
