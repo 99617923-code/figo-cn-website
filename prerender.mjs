@@ -29,6 +29,7 @@ const ROUTES = [
   '/products/ring-ai',
   '/products/farui-chat',
   '/products/figo-ai',
+  '/solutions/ai-quote',
 ];
 
 /**

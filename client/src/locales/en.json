@@ -12,7 +12,8 @@
     "appDev": "App Development",
     "salesWechat": "Sales WeChat",
     "scanToAdd": "Scan to add on WeChat",
-    "getExclusiveConsult": "Get exclusive one-on-one consultation"
+    "getExclusiveConsult": "Get exclusive one-on-one consultation",
+    "solutions": "Solutions"
   },
   "hero": {
     "badge": "{{years}} Years of Expertise · National High-Tech Enterprise",
@@ -188,6 +189,11 @@
         "aiReply": "Webhook Events",
         "sentiment": "Uptime SLA"
       }
+    },
+    "aiQuote": {
+      "name": "AI Smart Quote",
+      "tagline": "AI-Powered Intelligent Quoting Solution",
+      "desc": "An AI-powered intelligent quoting system based on large language models. Through conversational AI, it automatically understands customer needs, matches pricing plans, and generates professional quotes in real-time."
     }
   },
   "comparison": {
@@ -847,11 +853,28 @@
     "desc": "Figo Technology's AI Customer Service"
   },
   "solutions": {
-    "title": "Solutions",
+    "sectionLabel": "Industry Solutions",
+    "title": "Scenario-Based ",
+    "titleHighlight": "Solutions",
+    "subtitle": "Leveraging Figo Tech's AI expertise and industry experience, delivering ready-to-deploy solutions for diverse scenarios",
+    "aiQuote": {
+      "name": "AI Smart Quote",
+      "tagline": "Precise, Professional, Efficient Quoting",
+      "desc": "An LLM-powered intelligent quoting system that understands customer needs through AI conversation, matches pricing plans, and generates professional quotes in real-time. Applicable to all industries. The widget on figo.cn is a live demo.",
+      "h1": "Conversational AI",
+      "h2": "All Industries",
+      "h3": "One-Line Embed",
+      "h4": "PDF Export",
+      "badge": "NEW"
+    },
     "ringAI": {
-      "name": "Ring AI",
-      "desc": "Universal AI smart ring mobile app, supporting all open API/SDK smart rings on the market",
-      "cta": "Learn More"
+      "name": "Ring AI Smart Ring",
+      "tagline": "AI-Powered Wearable Health Solution",
+      "desc": "A universal AI smart ring app for the global market, supporting all smart ring brands with open APIs/SDKs, providing personalized health insights through AI analysis.",
+      "h1": "All Brands",
+      "h2": "AI Health Analysis",
+      "h3": "Family Binding",
+      "h4": "Subscription+"
     }
   }
 }

@@ -24,6 +24,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AIArchitectureSection from "@/components/AIArchitectureSection";
 import ProductsSection from "@/components/ProductsSection";
+import SolutionsSection from "@/components/SolutionsSection";
 import ProductComparisonMatrix from "@/components/ProductComparisonMatrix";
 import AIShowcaseSection from "@/components/AIShowcaseSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -48,6 +49,7 @@ export default function FigoAgent() {
         <HeroSection />
         <AIArchitectureSection />
         <ProductsSection />
+        <SolutionsSection />
         <ProductComparisonMatrix />
         <AIShowcaseSection />
         <ServicesSection />

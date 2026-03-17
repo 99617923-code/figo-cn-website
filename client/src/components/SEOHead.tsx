@@ -466,6 +466,38 @@ export default function SEOHead() {
     const serviceData = getServiceData();
     serviceData.forEach((service) => addSchema(service));
 
+    // AI智能报价系统解决方案 Schema
+    addSchema({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "AI智能报价系统",
+      alternateName: "AI Intelligent Quotation System",
+      description: "基于大语言模型的AI智能报价系统解决方案。通过自然语言对话自动理解客户需求、智能匹配报价方案、实时生成专业报价单并导出PDF。适用于软件开发、装修建材、广告传媒、工业制造等各行各业。",
+      url: `https://${COMPANY_INFO.website}/solutions/ai-quote`,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "CNY",
+        description: "免费体验，定制开发按需报价",
+      },
+      featureList: [
+        "AI对话式智能报价",
+        "智能需求分析引擎",
+        "自动生成专业PDF报价单",
+        "行业知识库配置",
+        "线索数据沉淀分析",
+        "一行代码嵌入任意网站",
+        "多租户SaaS架构",
+      ],
+      author: {
+        "@type": "Organization",
+        "@id": `https://${COMPANY_INFO.website}/#organization`,
+        name: COMPANY_INFO.name,
+      },
+    });
+
     return () => {
       scripts.forEach((script) => {
         if (script.parentNode) {

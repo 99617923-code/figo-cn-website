@@ -41,6 +41,7 @@ export default function Footer() {
   const navItems = [
     { label: t("nav.home"), href: "#hero" },
     { label: t("nav.products"), href: "#products" },
+    { label: t("nav.solutions"), href: "#solutions" },
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.about"), href: "#about" },
     { label: t("nav.contact"), href: "#contact" },
@@ -116,6 +117,14 @@ export default function Footer() {
             {/* Ring AI Solution */}
             <h4 className="text-sm font-semibold text-white mb-3 mt-6">{t("solutions.title")}</h4>
             <ul className="space-y-2.5">
+              <li>
+                <a
+                  href="/solutions/ai-quote"
+                  className="text-sm text-white/40 hover:text-white/70 transition-colors"
+                >
+                  {t("solutions.aiQuote.name")}
+                </a>
+              </li>
               <li>
                 <a
                   href="/products/ring-ai"

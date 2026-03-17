@@ -12,7 +12,8 @@
     "appDev": "Desarrollo de Apps",
     "salesWechat": "WeChat de Ventas",
     "scanToAdd": "Escanea para agregar en WeChat",
-    "getExclusiveConsult": "Obtén consulta personalizada exclusiva"
+    "getExclusiveConsult": "Obtén consulta personalizada exclusiva",
+    "solutions": "Soluciones"
   },
   "hero": {
     "badge": "{{years}} Años de Experiencia · Empresa Nacional de Alta Tecnología",
@@ -188,6 +189,11 @@
         "aiReply": "Eventos Webhook",
         "sentiment": "Disponibilidad"
       }
+    },
+    "aiQuote": {
+      "name": "Cotización Inteligente IA",
+      "tagline": "Solución de Cotización Inteligente con IA",
+      "desc": "Un sistema de cotización inteligente basado en modelos de lenguaje grandes. A través de IA conversacional, comprende automáticamente las necesidades del cliente y genera cotizaciones profesionales en tiempo real."
     }
   },
   "comparison": {
@@ -847,11 +853,28 @@
     "desc": "Servicio al Cliente IA de Figo Technology"
   },
   "solutions": {
-    "title": "Soluciones",
+    "sectionLabel": "Soluciones Industriales",
+    "title": "Soluciones ",
+    "titleHighlight": "por Escenario",
+    "subtitle": "Aprovechando la experiencia en IA de Figo Tech, ofrecemos soluciones listas para implementar en diversos escenarios",
+    "aiQuote": {
+      "name": "Cotización Inteligente IA",
+      "tagline": "Cotizaciones precisas, profesionales y eficientes",
+      "desc": "Un sistema de cotización inteligente basado en LLM que comprende las necesidades del cliente a través de conversación IA y genera cotizaciones profesionales en tiempo real.",
+      "h1": "IA Conversacional",
+      "h2": "Todas las Industrias",
+      "h3": "Una Línea de Código",
+      "h4": "Exportar PDF",
+      "badge": "NUEVO"
+    },
     "ringAI": {
-      "name": "Ring AI",
-      "desc": "Aplicación móvil universal de anillo inteligente IA, compatible con todos los anillos inteligentes con API/SDK abiertos",
-      "cta": "Más Información"
+      "name": "Ring AI Anillo Inteligente",
+      "tagline": "Solución de Salud con IA",
+      "desc": "Una app universal de anillo inteligente IA para el mercado global, compatible con todas las marcas con APIs/SDKs abiertos.",
+      "h1": "Todas las Marcas",
+      "h2": "Análisis de Salud IA",
+      "h3": "Vinculación Familiar",
+      "h4": "Suscripción+"
     }
   }
 }

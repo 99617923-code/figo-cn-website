@@ -37,6 +37,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   const navItems = [
     { label: t("nav.home"), href: "#hero" },
     { label: t("nav.products"), href: "#products", isProducts: true },
+    { label: t("nav.solutions"), href: "#solutions" },
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.about"), href: "#about" },
     { label: t("nav.contact"), href: "#contact" },

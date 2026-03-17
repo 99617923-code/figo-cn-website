@@ -11,6 +11,7 @@ import RingAI from "./pages/products/RingAI";
 import ReviewHub from "./pages/products/ReviewHub";
 import FigoAI from "./pages/products/FigoAI";
 import FaruiChat from "./pages/products/FaruiChat";
+import AIQuote from "./pages/solutions/AIQuote";
 import Services from "./pages/Services";
 
 /** 路由切换时自动滚动到顶部 */
@@ -35,6 +36,7 @@ function Router() {
         <Route path={"/products/moss"} component={Moss} />
         <Route path={"/products/reviewhub"} component={ReviewHub} />
         <Route path={"/products/ring-ai"} component={RingAI} />
+        <Route path={"/solutions/ai-quote"} component={AIQuote} />
         <Route path={"/products/farui-chat"} component={FaruiChat} />
         <Route path={"/products/figo-ai"} component={FigoAI} />
         {/* 兼容旧路径 /FigoAgent */}
