@@ -876,5 +876,9 @@
       "h3": "家人绑定",
       "h4": "订阅增值"
     }
-  }
+  },
+  "solutions.aiQuote.tagline": "为各行各业定制开发并私有化部署的AI智能报价系统",
+  "solutions.aiQuote.desc": "基于大语言模型，通过AI对话自动理解客户需求、智能匹配报价方案、实时生成专业报价单。每套系统针对您的行业深度定制，部署在您自己的服务器上，数据完全自主可控。",
+  "solutions.aiQuote.h3": "私有化部署",
+  "solutions.aiQuote.h4": "深度定制开发"
 }

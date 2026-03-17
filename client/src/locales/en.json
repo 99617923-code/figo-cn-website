@@ -876,5 +876,9 @@
       "h3": "Family Binding",
       "h4": "Subscription+"
     }
-  }
+  },
+  "solutions.aiQuote.tagline": "Custom-Built AI Quoting Solutions with Private Deployment",
+  "solutions.aiQuote.desc": "Built on large language models, the system understands customer needs through conversational AI, matches pricing plans intelligently, and generates professional quotes. Every system is deeply customized for your industry and deployed on your own servers.",
+  "solutions.aiQuote.h3": "Private Deployment",
+  "solutions.aiQuote.h4": "Deep Customization"
 }

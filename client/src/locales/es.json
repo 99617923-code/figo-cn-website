@@ -876,5 +876,9 @@
       "h3": "Vinculación Familiar",
       "h4": "Suscripción+"
     }
-  }
+  },
+  "solutions.aiQuote.tagline": "Sistemas de Cotización AI Personalizados con Despliegue Privado",
+  "solutions.aiQuote.desc": "Basado en modelos de lenguaje grandes, el sistema comprende las necesidades del cliente a través de IA conversacional, combina planes de precios de manera inteligente y genera cotizaciones profesionales. Cada sistema está personalizado para su industria y desplegado en sus propios servidores.",
+  "solutions.aiQuote.h3": "Despliegue Privado",
+  "solutions.aiQuote.h4": "Personalización Profunda"
 }

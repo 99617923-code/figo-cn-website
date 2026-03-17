@@ -37,8 +37,8 @@ const SOLUTIONS: SolutionItem[] = [
     highlights: [
       "AI对话式报价",
       "全行业适用",
-      "一行代码嵌入",
-      "PDF报价单导出",
+      "私有化部署",
+      "深度定制开发",
     ],
     highlightKeys: [
       "solutions.aiQuote.h1",
