@@ -10,12 +10,14 @@
  */
 import ProductDetailLayout from "@/components/ProductDetailLayout";
 import ProductSEO from "@/components/ProductSEO";
+import QuoteDemoChat from "@/components/QuoteDemoChat";
 import { useTranslation } from "react-i18next";
 import {
   Calculator, MessageSquare, FileText, Zap, Globe, Shield,
   Building2, Paintbrush, Megaphone, Factory, ShoppingCart, Stethoscope,
   Brain, BarChart3, Users, Clock,
   Code2, Database, Layers, Lock,
+  ExternalLink,
 } from "lucide-react";
 
 export default function AIQuote() {
@@ -38,6 +40,8 @@ export default function AIQuote() {
       path="/solutions/ai-quote"
     />
     <ProductDetailLayout
+      breadcrumbCategory={{ label: isEn ? "Solutions" : "解决方案", href: "/#solutions" }}
+      heroBackgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663267704571/XAMAdpWLjiWEUWvDujnjHu/ai-quote-hero-bg-VMv8jsCAAoRfRqSfANKm5L.webp"
       name={isEn ? "AI Smart Quote" : "AI 智能报价系统"}
       tagline={isEn ? "AI-Powered Intelligent Quoting Solution" : "让每一次报价都精准、专业、高效"}
       heroDescription={isEn
@@ -197,6 +201,154 @@ export default function AIQuote() {
         : "AI 智能报价系统采用微服务架构，核心包含四大模块：对话 AI 引擎（多轮对话管理、意图识别、需求提取）、定价引擎（规则定价与 AI 估算、知识库匹配）、文档生成器（实时 PDF 生成、自定义模板、多语言支持）、数据分析平台（线索评分、转化追踪、数据可视化）。前端 Widget 通过 WebSocket 与后端服务通信，实现实时流式响应。所有大模型调用经由火鹰引擎 FigoAPI 统一网关，实现智能路由和成本优化。"
       }
     >
+      {/* 真实案例演示区域 - 火鹰科技官网 Widget */}
+      <section className="py-20 lg:py-28 bg-[#0c0c14] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-[0.06]"
+            style={{ background: "radial-gradient(circle, rgba(245,158,11,0.5), transparent 60%)" }} />
+        </div>
+        <div className="container relative">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-medium tracking-widest uppercase text-amber-400/80 mb-3 block">
+              {isEn ? "LIVE CASE" : "真实案例"}
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+              {isEn ? "Already Running on figo.cn" : "已在 figo.cn 官网实际部署运行"}
+            </h2>
+            <p className="mt-4 text-base text-white/50 leading-relaxed">
+              {isEn
+                ? "The AI Smart Quoting Widget on Figo Technology's official website is the best live demonstration. Visitors can experience AI-powered quoting for custom software development in real-time."
+                : "火鹰科技官网右下角的 Moss 智能客服 Widget，就是本解决方案的最佳真实演示。访客可以实时体验 AI 对话报价软件定制开发项目的全流程。"
+              }
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* 左侧：流程说明 + 实际截图 */}
+            <div>
+              <div className="space-y-6 mb-10">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-amber-400 font-bold text-sm">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-1">
+                      {isEn ? "Visitor Describes Needs" : "访客描述需求"}
+                    </h3>
+                    <p className="text-white/50 text-sm leading-relaxed">
+                      {isEn
+                        ? "Open the chat widget and describe needs in natural language, e.g., 'I need an engineering inspection AI quoting system'."
+                        : "打开聊天窗口，用自然语言描述需求，例如“我需要一个工程检测 AI 智能报价系统”。"
+                      }
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-amber-400 font-bold text-sm">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-1">
+                      {isEn ? "AI Analyzes & Generates Quote" : "AI 分析并生成报价"}
+                    </h3>
+                    <p className="text-white/50 text-sm leading-relaxed">
+                      {isEn
+                        ? "AI understands requirements, asks clarifying questions, and generates a detailed quote with module breakdown, timeline, and pricing."
+                        : "AI 自动理解需求要点，追问关键细节，生成包含模块拆解、工期规划、费用明细的详细报价单。"
+                      }
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-amber-400 font-bold text-sm">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-1">
+                      {isEn ? "Export Proposal & Follow Up" : "导出方案并跟进"}
+                    </h3>
+                    <p className="text-white/50 text-sm leading-relaxed">
+                      {isEn
+                        ? "Auto-generate PDF proposal, support voice and document quoting. The demo on figo.cn quoted \u00a5100,000 for an engineering inspection AI system."
+                        : "自动生成 PDF 方案，支持语音报价和文档报价。如右图所示，工程检测 AI 系统初步报价 ¥100,000。"
+                      }
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <a
+                href="https://www.figo.cn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:shadow-lg hover:shadow-amber-500/20 transition-all hover:-translate-y-0.5"
+              >
+                <ExternalLink size={16} />
+                {isEn ? "Try it live on figo.cn" : "去 figo.cn 官网亲自体验"}
+              </a>
+            </div>
+
+            {/* 右侧：Moss Widget 实际截图 */}
+            <div className="relative flex justify-center">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-3xl blur-2xl" />
+                <div className="relative bg-[#1a1a2e] rounded-2xl border border-white/10 p-3 shadow-2xl">
+                  <img
+                    src="https://d2xsxph8kpxj0f.cloudfront.net/310519663267704571/XAMAdpWLjiWEUWvDujnjHu/widget-demo-screenshot_0e03f7b9.png"
+                    alt={isEn ? "Moss AI Smart Quoting Widget running on figo.cn" : "Moss AI 智能报价 Widget 在 figo.cn 官网实际运行截图"}
+                    className="rounded-xl max-w-[340px] w-full"
+                  />
+                  <div className="mt-3 flex items-center justify-between px-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="text-xs text-white/40">{isEn ? "Live on figo.cn" : "正在 figo.cn 运行"}</span>
+                    </div>
+                    <span className="text-[10px] text-white/30 px-2 py-0.5 rounded-full border border-white/[0.06]">
+                      Moss Widget
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 模拟交互演示区域 */}
+      <section className="py-20 lg:py-28 bg-[#0a0a16] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
+        </div>
+        <div className="container relative">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-medium tracking-widest uppercase text-amber-400/80 mb-3 block">
+              {isEn ? "INTERACTIVE DEMO" : "交互演示"}
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+              {isEn ? "See How AI Quoting Works" : "看看 AI 智能报价如何工作"}
+            </h2>
+            <p className="mt-4 text-base text-white/50 leading-relaxed">
+              {isEn
+                ? "Watch a simulated conversation where a customer describes their renovation project needs and receives an instant AI-generated quote with detailed module breakdown."
+                : "以下是一个模拟对话演示：客户描述装修行业的智能报价需求，AI 自动分析并生成包含模块拆解的详细报价单。"
+              }
+            </p>
+          </div>
+
+          <QuoteDemoChat isEn={isEn} />
+
+          <p className="text-center text-xs text-white/30 mt-8">
+            {isEn
+              ? "* This is a simulated demo. Visit figo.cn to experience the real AI quoting system."
+              : "※ 以上为模拟演示。访问 figo.cn 可体验真实的 AI 智能报价系统。"
+            }
+          </p>
+        </div>
+      </section>
     </ProductDetailLayout>
     </>
   );

@@ -1,7 +1,7 @@
 /*
  * 「量子棱镜」— 顶部导航栏
  * 毛玻璃效果 + 滚动时背景变深
- * 产品矩阵下拉菜单 + "马上定制开发"高亮按钮（包含下拉菜单和二维码）
+ * 产品矩阵下拉菜单 + 解决方案下拉菜单 + "马上定制开发"高亮按钮
  * 支持外部链接（旧站点）
  * i18n国际化支持
  */
@@ -12,6 +12,22 @@ import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import WechatQRModal, { useWechatQRModal } from "./WechatQRModal";
 import LanguageSwitcher from "./LanguageSwitcher";
+
+// 产品 ID 到 i18n key 的映射
+const PRODUCT_I18N_MAP: Record<string, string> = {
+  "figo-engine": "figoEngine",
+  salespark: "salespark",
+  moss: "moss",
+  reviewhub: "reviewhub",
+  "farui-chat": "faruiChat",
+  "figo-ai": "figoAI",
+};
+
+// 解决方案列表（可扩展）
+const SOLUTIONS = [
+  { id: "ai-quote", path: "/solutions/ai-quote", i18nKey: "aiQuote", isNew: true },
+  { id: "ring-ai", path: "/products/ring-ai", i18nKey: "ringAI", isNew: false },
+];
 
 interface NavbarProps {
   /** 是否在详情页模式（非首页） */
@@ -24,12 +40,16 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [customDevDropdownOpen, setCustomDevDropdownOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
   const [mobileCustomDevOpen, setMobileCustomDevOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const customDevDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
+  const solutionsDropdownRef = useRef<HTMLDivElement>(null);
   const customDevDropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const productsDropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const solutionsDropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { open: qrModalOpen, openModal: openQRModal, closeModal: closeQRModal } = useWechatQRModal();
   const [location] = useLocation();
 
@@ -37,7 +57,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
   const navItems = [
     { label: t("nav.home"), href: "#hero" },
     { label: t("nav.products"), href: "#products", isProducts: true },
-    { label: t("nav.solutions"), href: "#solutions" },
+    { label: t("nav.solutions"), href: "#solutions", isSolutions: true },
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.about"), href: "#about" },
     { label: t("nav.contact"), href: "#contact" },
@@ -64,6 +84,9 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
       }
       if (productsDropdownRef.current && !productsDropdownRef.current.contains(e.target as Node)) {
         setProductsDropdownOpen(false);
+      }
+      if (solutionsDropdownRef.current && !solutionsDropdownRef.current.contains(e.target as Node)) {
+        setSolutionsDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -102,6 +125,61 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
     }, 200);
   };
 
+  const handleSolutionsDropdownEnter = () => {
+    if (solutionsDropdownTimer.current) clearTimeout(solutionsDropdownTimer.current);
+    setSolutionsDropdownOpen(true);
+  };
+
+  const handleSolutionsDropdownLeave = () => {
+    solutionsDropdownTimer.current = setTimeout(() => {
+      setSolutionsDropdownOpen(false);
+    }, 200);
+  };
+
+  // 渲染下拉菜单的通用函数
+  const renderDropdown = (
+    item: typeof navItems[0],
+    isOpen: boolean,
+    setIsOpen: (v: boolean) => void,
+    ref: React.RefObject<HTMLDivElement | null>,
+    onEnter: () => void,
+    onLeave: () => void,
+    children: React.ReactNode
+  ) => (
+    <div
+      key={item.href}
+      ref={ref}
+      className="relative"
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-1 px-4 py-2 text-sm text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+      >
+        {item.label}
+        <ChevronDown
+          size={14}
+          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      <div
+        className={`absolute top-full left-0 mt-2 w-56 transition-all duration-300 ${
+          isOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="bg-[#12121e]/95 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 overflow-hidden">
+          <div className="py-2">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -122,51 +200,50 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => {
-            // 产品矩阵 - 特殊处理，添加下拉菜单
+            // 产品矩阵 - 下拉菜单
             if (item.isProducts) {
-              return (
-                <div
-                  key={item.href}
-                  ref={productsDropdownRef}
-                  className="relative"
-                  onMouseEnter={handleProductsDropdownEnter}
-                  onMouseLeave={handleProductsDropdownLeave}
-                >
-                  <button
-                    onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                    className="flex items-center gap-1 px-4 py-2 text-sm text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+              return renderDropdown(
+                item,
+                productsDropdownOpen,
+                setProductsDropdownOpen,
+                productsDropdownRef,
+                handleProductsDropdownEnter,
+                handleProductsDropdownLeave,
+                PRODUCTS.filter(p => p.id !== "ring-ai").map((product) => (
+                  <Link
+                    key={product.id}
+                    href={product.detailPath}
+                    onClick={() => setProductsDropdownOpen(false)}
+                    className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200 block"
                   >
-                    {item.label}
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-300 ${productsDropdownOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
+                    <span>{t(`products.${PRODUCT_I18N_MAP[product.id] || product.id}.name`)}</span>
+                  </Link>
+                ))
+              );
+            }
 
-                  {/* Products Dropdown */}
-                  <div
-                    className={`absolute top-full left-0 mt-2 w-56 transition-all duration-300 ${
-                      productsDropdownOpen
-                        ? "opacity-100 translate-y-0 pointer-events-auto"
-                        : "opacity-0 -translate-y-2 pointer-events-none"
-                    }`}
+            // 解决方案 - 下拉菜单
+            if (item.isSolutions) {
+              return renderDropdown(
+                item,
+                solutionsDropdownOpen,
+                setSolutionsDropdownOpen,
+                solutionsDropdownRef,
+                handleSolutionsDropdownEnter,
+                handleSolutionsDropdownLeave,
+                SOLUTIONS.map((sol) => (
+                  <Link
+                    key={sol.id}
+                    href={sol.path}
+                    onClick={() => setSolutionsDropdownOpen(false)}
+                    className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200 block"
                   >
-                    <div className="bg-[#12121e]/95 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 overflow-hidden">
-                      <div className="py-2">
-                        {PRODUCTS.filter(p => p.id !== "ring-ai").map((product) => (
-                          <Link
-                            key={product.id}
-                            href={product.detailPath}
-                            onClick={() => setProductsDropdownOpen(false)}
-                            className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200 block"
-                          >
-                            <span>{t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "reviewhub" ? "reviewhub" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    <span>{t(`solutions.${sol.i18nKey}.name`)}</span>
+                    {sol.isNew && (
+                      <span className="px-1.5 py-0.5 text-[10px] font-bold bg-emerald-500/20 text-emerald-400 rounded">NEW</span>
+                    )}
+                  </Link>
+                ))
               );
             }
 
@@ -258,7 +335,7 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                         <Link
                           href={item.href}
                           onClick={() => setCustomDevDropdownOpen(false)}
-                          className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200"
+                          className="flex items-center justify-between px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-all duration-200 block"
                         >
                           <span>{item.label}</span>
                         </Link>
@@ -341,7 +418,45 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                             }}
                             className="block px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                           >
-                            {t(`products.${product.id === "figo-engine" ? "figoEngine" : product.id === "salespark" ? "salespark" : product.id === "moss" ? "moss" : product.id === "reviewhub" ? "reviewhub" : product.id === "farui-chat" ? "faruiChat" : "figoAI"}.name`)}
+                            {t(`products.${PRODUCT_I18N_MAP[product.id] || product.id}.name`)}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              // 解决方案 - 移动端下拉菜单
+              if (item.isSolutions) {
+                return (
+                  <div key={item.href}>
+                    <button
+                      onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-300 ${mobileSolutionsOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {mobileSolutionsOpen && (
+                      <div className="pl-4 py-2 space-y-1">
+                        {SOLUTIONS.map((sol) => (
+                          <Link
+                            key={sol.id}
+                            href={sol.path}
+                            onClick={() => {
+                              setMobileOpen(false);
+                              setMobileSolutionsOpen(false);
+                            }}
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                          >
+                            {t(`solutions.${sol.i18nKey}.name`)}
+                            {sol.isNew && (
+                              <span className="px-1.5 py-0.5 text-[10px] font-bold bg-emerald-500/20 text-emerald-400 rounded">NEW</span>
+                            )}
                           </Link>
                         ))}
                       </div>

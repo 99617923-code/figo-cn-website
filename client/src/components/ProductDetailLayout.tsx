@@ -45,6 +45,10 @@ interface ProductDetailProps {
   techAdvantages: TechAdvantage[];
   architectureDescription?: string;
   children?: React.ReactNode;
+  /** 自定义面包屑分类（默认“产品矩阵”） */
+  breadcrumbCategory?: { label: string; href: string };
+  /** Hero 区域背景图 */
+  heroBackgroundImage?: string;
 }
 
 function SectionHeader({ label, title, subtitle }: { label: string; title: string; subtitle: string }) {
@@ -139,6 +143,8 @@ function TechCard({ adv, index }: { adv: TechAdvantage; index: number }) {
 export default function ProductDetailLayout({
   name, tagline, heroDescription, gradient, gradientColors, heroIcon,
   stats, features, scenarios, techAdvantages, architectureDescription, children,
+  breadcrumbCategory,
+  heroBackgroundImage,
 }: ProductDetailProps) {
   const { t } = useTranslation();
   const [qrModalOpen, setQrModalOpen] = useState(false);
@@ -151,17 +157,26 @@ export default function ProductDetailLayout({
       {/* Hero Section */}
       <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] opacity-[0.12]"
-            style={{ background: `radial-gradient(ellipse, ${gradientColors}, transparent 70%)` }} />
-          <div className="absolute top-1/4 right-0 w-[400px] h-[400px] opacity-[0.06]"
-            style={{ background: `radial-gradient(circle, ${gradientColors}, transparent 60%)` }} />
+          {heroBackgroundImage ? (
+            <>
+              <img src={heroBackgroundImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c14]/60 via-[#0c0c14]/40 to-[#0c0c14]" />
+            </>
+          ) : (
+            <>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] opacity-[0.12]"
+                style={{ background: `radial-gradient(ellipse, ${gradientColors}, transparent 70%)` }} />
+              <div className="absolute top-1/4 right-0 w-[400px] h-[400px] opacity-[0.06]"
+                style={{ background: `radial-gradient(circle, ${gradientColors}, transparent 60%)` }} />
+            </>
+          )}
         </div>
 
         <div className="container relative">
           <div className="flex items-center gap-2 text-sm text-white/40 mb-8">
             <Link href="/" className="hover:text-white/60 transition-colors">{t("productDetail.home")}</Link>
             <ChevronRight size={14} />
-            <Link href="/#products" className="hover:text-white/60 transition-colors">{t("productDetail.products")}</Link>
+            <Link href={breadcrumbCategory?.href || "/#products"} className="hover:text-white/60 transition-colors">{breadcrumbCategory?.label || t("productDetail.products")}</Link>
             <ChevronRight size={14} />
             <span className="text-white/80">{name}</span>
           </div>
