@@ -61,7 +61,6 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.about"), href: "#about" },
     { label: t("nav.contact"), href: "#contact" },
-    { label: t("nav.oldSite"), href: "https://appdev.figo.cn", external: true },
   ];
 
   // 定制开发下拉菜单项 - 使用i18n翻译
@@ -247,19 +246,6 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
               );
             }
 
-            // 外部链接（旧站点）
-            if (item.external) {
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/5"
-                >
-                  {item.label}
-                  <ExternalLink size={11} className="opacity-40" />
-                </a>
-              );
-            }
 
             // 路由链接（/services 等）
             if (item.href.startsWith("/")) {
@@ -465,20 +451,6 @@ export default function Navbar({ isDetailPage = false }: NavbarProps) {
                 );
               }
 
-              // 外部链接
-              if (item.external) {
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2 px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                  >
-                    {item.label}
-                    <ExternalLink size={11} className="opacity-40" />
-                  </a>
-                );
-              }
 
               if (item.href.startsWith("/")) {
                 return (
